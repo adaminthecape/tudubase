@@ -1,4 +1,3 @@
-import { boolean, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { DrizzleHandler } from "../DrizzleInterface";
@@ -6,14 +5,13 @@ import { DbFilterOperator } from "../Filters";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Utils, Uuid } from "../Utils";
-import { defaultItemSchema } from "./itemSchema";
 
 export const fieldsForInAppNotification: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'title',
 		label: 'Title',
@@ -27,7 +25,7 @@ export const fieldsForInAppNotification: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'message',
 		label: 'Message',
@@ -40,7 +38,7 @@ export const fieldsForInAppNotification: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'date',
 		label: 'Date',
@@ -53,7 +51,7 @@ export const fieldsForInAppNotification: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'readAt',
 		label: 'Read',
@@ -63,7 +61,7 @@ export const fieldsForInAppNotification: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'archivedAt',
 		label: 'Archived',
@@ -79,18 +77,6 @@ export interface InAppNotification
 	readAt: Nullable<number>;
 	archivedAt: Nullable<number>;
 }
-
-export const inAppNotificationsTable = pgTable('in_app_notifications_table', {
-	...defaultItemSchema,
-	title: text('title'),
-	message: text('message'),
-	date: integer('date').$default(() => Utils.getCurrentSecond()),
-	readAt: integer('read_at'),
-	archivedAt: integer('archived_at'),
-}).enableRLS();
-
-export type InsertInAppNotification = typeof inAppNotificationsTable.$inferInsert;
-export type SelectInAppNotification = typeof inAppNotificationsTable.$inferSelect;
 
 export const ITEM_TYPE = ItemTypes.InAppNotification;
 export const ITEM_FIELDS = fieldsForInAppNotification;

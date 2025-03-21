@@ -1,17 +1,15 @@
-import { pgTable, integer, serial, text } from "drizzle-orm/pg-core";
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
-import { defaultItemSchema } from "./itemSchema";
 
 export const fieldsForProfile: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'username',
 		label: 'Name',
@@ -25,7 +23,7 @@ export const fieldsForProfile: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'description',
 		label: 'Description',
@@ -42,14 +40,14 @@ export const fieldsForProfile: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 	},
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'logInCount',
 		label: 'Log Ins',
@@ -59,7 +57,7 @@ export const fieldsForProfile: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'lastLogIn',
 		label: 'Last Log In',
@@ -69,7 +67,7 @@ export const fieldsForProfile: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'profilePic',
 		label: 'Profile Picture',
@@ -79,7 +77,7 @@ export const fieldsForProfile: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'profileBackground',
 		label: 'Profile Background',
@@ -97,20 +95,6 @@ export interface Profile
 	profilePic: Nullable<string>;
 	profileBackground: Nullable<string>;
 }
-
-export const profilesTable = pgTable('profiles_table', {
-	...defaultItemSchema,
-	username: text('username').notNull(),
-	description: text('description').notNull(),
-	joinedAt: integer('joined_at').notNull(),
-	logInCount: integer('log_in_count').notNull(),
-	lastLogIn: integer('last_log_in').notNull(),
-	profilePic: text('profile_pic').notNull(),
-	profileBackground: text('profile_background').notNull(),
-}).enableRLS();
-
-export type InsertProfile = typeof profilesTable.$inferInsert;
-export type SelectProfile = typeof profilesTable.$inferSelect;
 
 export const ITEM_TYPE = ItemTypes.Profile;
 export const ITEM_FIELDS = fieldsForProfile;

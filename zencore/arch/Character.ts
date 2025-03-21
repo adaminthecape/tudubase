@@ -1,17 +1,15 @@
-import { integer, pgTable, text } from "drizzle-orm/pg-core";
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
-import { defaultItemSchema } from "./itemSchema";
 
 export const fieldsForCharacter: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'name',
 		label: 'Name',
@@ -26,7 +24,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'health',
 		label: 'Health',
@@ -40,7 +38,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'mana',
 		label: 'Mana',
@@ -54,7 +52,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'strength',
 		label: 'Strength',
@@ -68,7 +66,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'agility',
 		label: 'Agility',
@@ -82,7 +80,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'intelligence',
 		label: 'Intelligence',
@@ -97,7 +95,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'armor',
 		label: 'Armor',
@@ -111,7 +109,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'mainHand',
 		label: 'Main Hand',
@@ -122,7 +120,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'offHand',
 		label: 'Off Hand',
@@ -133,7 +131,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'mainArmor',
 		label: 'Armor',
@@ -144,7 +142,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'helmet',
 		label: 'Helmet',
@@ -155,7 +153,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'gloves',
 		label: 'Gloves',
@@ -166,7 +164,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'boots',
 		label: 'Off Hand',
@@ -177,7 +175,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'necklace',
 		label: 'Necklace',
@@ -188,7 +186,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'ring',
 		label: 'Ring',
@@ -199,7 +197,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'belt',
 		label: 'Belt',
@@ -210,7 +208,7 @@ export const fieldsForCharacter: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'cloak',
 		label: 'Cloak',
@@ -239,30 +237,6 @@ export interface Character
 	belt: Nullable<string>;
 	cloak: Nullable<string>;
 }
-
-export const charactersTable = pgTable('characters_table', {
-	...defaultItemSchema,
-	name: text('name').notNull(),
-	health: integer('health').notNull(),
-	mana: integer('mana').notNull(),
-	strength: integer('strength').notNull(),
-	agility: integer('agility').notNull(),
-	intelligence: integer('intelligence').notNull(),
-	armor: text('armor'),
-	mainHand: text('main_hand'),
-	offHand: text('off_hand'),
-	mainArmor: text('main_armor'),
-	helmet: text('helmet'),
-	gloves: text('gloves'),
-	boots: text('boots'),
-	necklace: text('necklace'),
-	ring: text('ring'),
-	belt: text('belt'),
-	cloak: text('cloak'),
-}).enableRLS();
-
-export type InsertCharacter = typeof charactersTable.$inferInsert;
-export type SelectCharacter = typeof charactersTable.$inferSelect;
 
 export const ITEM_TYPE = ItemTypes.Character;
 export const ITEM_FIELDS = fieldsForCharacter;

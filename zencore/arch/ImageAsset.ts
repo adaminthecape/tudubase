@@ -1,17 +1,15 @@
-import { boolean, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
-import { defaultItemSchema } from "./itemSchema";
 
 export const fieldsForImageAsset: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'title',
 		label: 'Title',
@@ -25,7 +23,7 @@ export const fieldsForImageAsset: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'description',
 		label: 'Description',
@@ -39,7 +37,7 @@ export const fieldsForImageAsset: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'imagePath',
 		label: 'Image Path',
@@ -52,7 +50,7 @@ export const fieldsForImageAsset: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'tags',
 		label: 'Tags',
@@ -67,17 +65,6 @@ export interface ImageAsset
 	imagePath: Nullable<string>;
 	tags: Nullable<string[]>;
 };
-
-export const imageAssetsTable = pgTable('image_assets_table', {
-	...defaultItemSchema,
-	title: text('title').notNull(),
-	description: text('description').notNull(),
-	imagePath: text('imagePath').notNull(),
-	tags: text('tags'),
-}).enableRLS();
-
-export type InsertImageAsset = typeof imageAssetsTable.$inferInsert;
-export type SelectImageAsset = typeof imageAssetsTable.$inferSelect;
 
 export const ITEM_TYPE = ItemTypes.ImageAsset;
 export const ITEM_FIELDS = fieldsForImageAsset;

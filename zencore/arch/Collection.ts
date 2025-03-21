@@ -1,17 +1,15 @@
-import { boolean, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
-import { defaultItemSchema } from "./itemSchema";
 
 export const fieldsForCollection: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'name',
 		label: 'Name',
@@ -25,7 +23,7 @@ export const fieldsForCollection: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'items',
 		label: 'Items',
@@ -35,7 +33,7 @@ export const fieldsForCollection: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'description',
 		label: 'Description',
@@ -43,16 +41,6 @@ export const fieldsForCollection: FieldData[] = [
 		validation: { between: { max: 1000 } }
 	}
 ];
-
-export const collectionsTable = pgTable('collections_table', {
-	...defaultItemSchema,
-	name: text('name').notNull(),
-	items: text('items'),
-	description: text('description'),
-}).enableRLS();
-
-export type InsertCollection = typeof collectionsTable.$inferInsert;
-export type SelectCollection = typeof collectionsTable.$inferSelect;
 
 export interface Collection
 {

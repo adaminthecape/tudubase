@@ -1,5 +1,3 @@
-import { DbFilters } from "./Filters";
-
 export type IItemType = Record<string, unknown>;
 export type Nullable<T> = T | null | undefined;
 export type Item<T> = T & ItemData;
@@ -12,20 +10,20 @@ export type ItemHandler<T> = ItemData & {
 export enum ItemTypes
 {
 	Archetype = 'Archetype',
-	CustomItem = 'CustomItem',
-	Field = 'Field',
-	Task = 'Task',
+	Character = 'Character',
 	Collection = 'Collection',
+	CustomItem = 'CustomItem',
+	Equipment = 'Equipment',
+	EquipmentType = 'EquipmentType',
+	Field = 'Field',
+	InAppNotification = 'InAppNotification',
+	ImageAsset = 'ImageAsset',
+	Profile = 'Profile',
 	Reminder = 'Reminder',
 	Reward = 'Reward',
 	Tag = 'Tag',
+	Task = 'Task',
 	TaskMaster = 'TaskMaster',
-	Profile = 'Profile',
-	ImageAsset = 'ImageAsset',
-	Character = 'Character',
-	Equipment = 'Equipment',
-	EquipmentType = 'EquipmentType',
-	InAppNotification = 'InAppNotification',
 };
 
 export type ItemData = {

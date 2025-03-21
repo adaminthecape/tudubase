@@ -1,17 +1,15 @@
-import { boolean, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
-import { defaultItemSchema } from "./itemSchema";
 
 export const fieldsForTag: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'name',
 		label: 'Name',
@@ -25,7 +23,7 @@ export const fieldsForTag: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'description',
 		label: 'Description',
@@ -41,15 +39,6 @@ export interface Tag
 	name: Nullable<string>;
 	description: Nullable<string>;
 }
-
-export const tagsTable = pgTable('tags_table', {
-	...defaultItemSchema,
-	name: text('name'),
-	description: text('description'),
-}).enableRLS();
-
-export type InsertTag = typeof tagsTable.$inferInsert;
-export type SelectTag = typeof tagsTable.$inferSelect;
 
 export const ITEM_TYPE = ItemTypes.Tag;
 export const ITEM_FIELDS = fieldsForTag;

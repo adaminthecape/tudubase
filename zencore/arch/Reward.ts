@@ -1,10 +1,8 @@
-import { boolean, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
-import { defaultItemSchema } from "./itemSchema";
 
 export const fieldsForReward: FieldData[] = [
 	// a Reward is something given to the user as a reward for completing a Task
@@ -14,7 +12,7 @@ export const fieldsForReward: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'name',
 		label: 'Name',
@@ -28,7 +26,7 @@ export const fieldsForReward: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'description',
 		label: 'Description',
@@ -41,7 +39,7 @@ export const fieldsForReward: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'value',
 		label: 'Value',
@@ -55,7 +53,7 @@ export const fieldsForReward: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'imageUrl',
 		label: 'Image',
@@ -69,7 +67,7 @@ export const fieldsForReward: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'category',
 		label: 'Category',
@@ -81,7 +79,7 @@ export const fieldsForReward: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'rarity',
 		label: 'Rarity',
@@ -96,7 +94,7 @@ export const fieldsForReward: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'sortValue',
 		label: 'Sort Value',
@@ -117,20 +115,6 @@ export interface Reward
 	rarity: Nullable<string>;
 	sortValue: Nullable<number>;
 };
-
-export const rewardsTable = pgTable('rewards_table', {
-	...defaultItemSchema,
-	name: text('name'),
-	description: text('description'),
-	value: integer('value'),
-	imageUrl: text('imageUrl'),
-	category: text('category'),
-	rarity: text('rarity'),
-	sortValue: integer('sortValue'),
-}).enableRLS();
-
-export type InsertReward = typeof rewardsTable.$inferInsert;
-export type SelectReward = typeof rewardsTable.$inferSelect;
 
 export const ITEM_TYPE = ItemTypes.Reward;
 export const ITEM_FIELDS = fieldsForReward;

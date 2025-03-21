@@ -1,17 +1,15 @@
-import { boolean, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
-import { defaultItemSchema } from "./itemSchema";
 
 export const fieldsForReminder: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'due',
 		label: 'Due',
@@ -24,7 +22,7 @@ export const fieldsForReminder: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'recurFrequency',
 		label: 'Recur Frequency (seconds)',
@@ -34,7 +32,7 @@ export const fieldsForReminder: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'acknowledgedAt',
 		label: 'Acknowledged',
@@ -44,7 +42,7 @@ export const fieldsForReminder: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'description',
 		label: 'Description',
@@ -57,7 +55,7 @@ export const fieldsForReminder: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'isActive',
 		label: 'Active',
@@ -76,18 +74,6 @@ export interface Reminder
 	description: Nullable<string>;
 	isActive: Nullable<boolean>;
 }
-
-export const remindersTable = pgTable('reminders_table', {
-	...defaultItemSchema,
-	due: integer('due').notNull(),
-	recurFrequency: integer('recur_frequency'),
-	acknowledgedAt: integer('acknowledged_at'),
-	description: text('description'),
-	isActive: boolean('is_active').notNull().default(false),
-}).enableRLS();
-
-export type InsertReminder = typeof remindersTable.$inferInsert;
-export type SelectReminder = typeof remindersTable.$inferSelect;
 
 export const ITEM_TYPE = ItemTypes.Reminder;
 export const ITEM_FIELDS = fieldsForReminder;

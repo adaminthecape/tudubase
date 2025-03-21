@@ -1,18 +1,16 @@
-import { boolean, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Utils, Uuid } from "../Utils";
 import { getItemHandler } from "./utils";
-import { defaultItemSchema } from "./itemSchema";
 
 export const fieldsForTask: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'title',
 		label: 'Title',
@@ -26,7 +24,7 @@ export const fieldsForTask: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'due',
 		label: 'Due',
@@ -36,7 +34,7 @@ export const fieldsForTask: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'priority',
 		label: 'Priority',
@@ -47,7 +45,7 @@ export const fieldsForTask: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'notes',
 		label: 'Notes',
@@ -60,7 +58,7 @@ export const fieldsForTask: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'completed',
 		label: 'Completed',
@@ -70,7 +68,7 @@ export const fieldsForTask: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'completedAt',
 		label: 'Completed At',
@@ -80,7 +78,7 @@ export const fieldsForTask: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'recurring',
 		label: 'Recurring',
@@ -90,7 +88,7 @@ export const fieldsForTask: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'tags',
 		label: 'Tags',
@@ -110,21 +108,6 @@ export interface Task
 	recurring: Nullable<boolean>;
 	tags: Nullable<string[]>;
 };
-
-export const tasksTable = pgTable('tasks_table', {
-	...defaultItemSchema,
-	title: text('title'),
-	due: integer('due'),
-	priority: text('priority'),
-	notes: text('notes'),
-	completed: boolean('completed'),
-	completedAt: integer('completedAt'),
-	recurring: boolean('recurring'),
-	tags: uuid('tags').array(),
-}).enableRLS();
-
-export type InsertTask = typeof tasksTable.$inferInsert;
-export type SelectTask = typeof tasksTable.$inferSelect;
 
 export const ITEM_TYPE = ItemTypes.Task;
 export const ITEM_FIELDS = fieldsForTask;

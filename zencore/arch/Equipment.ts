@@ -1,17 +1,15 @@
-import { boolean, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
-import { Utils, Uuid } from "../Utils";
-import { defaultItemSchema } from "./itemSchema";
+import { Uuid } from "../Utils";
 
 export const fieldsForEquipment: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'name',
 		label: 'Name',
@@ -25,7 +23,7 @@ export const fieldsForEquipment: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'description',
 		label: 'Description',
@@ -38,7 +36,7 @@ export const fieldsForEquipment: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'weight',
 		label: 'Weight',
@@ -52,7 +50,7 @@ export const fieldsForEquipment: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'value',
 		label: 'Value',
@@ -66,7 +64,7 @@ export const fieldsForEquipment: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'type',
 		label: 'Type',
@@ -77,18 +75,6 @@ export const fieldsForEquipment: FieldData[] = [
 		}
 	},
 ];
-
-export const equipmentsTable = pgTable('equipments_table', {
-	...defaultItemSchema,
-	name: text('name'),
-	description: text('description'),
-	weight: integer('weight'),
-	value: integer('value'),
-	type: text('type'),
-}).enableRLS();
-
-export type InsertEquipment = typeof equipmentsTable.$inferInsert;
-export type SelectEquipment = typeof equipmentsTable.$inferSelect;
 
 export interface Equipment
 {

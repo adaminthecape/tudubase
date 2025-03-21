@@ -1,5 +1,3 @@
-import { boolean, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
-
 // A TaskMaster periodically looks through existing Tasks, and picks one to
 // assign to the user.
 // In order to assign a Task, it needs to know which Tasks are available.
@@ -16,14 +14,13 @@ import { DbFilters } from "../Filters";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
-import { defaultItemSchema } from "./itemSchema";
 
 export const fieldsForTaskMaster: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'name',
 		label: 'Name',
@@ -37,7 +34,7 @@ export const fieldsForTaskMaster: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'description',
 		label: 'Description',
@@ -50,7 +47,7 @@ export const fieldsForTaskMaster: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'tasks',
 		label: 'Tasks',
@@ -61,7 +58,7 @@ export const fieldsForTaskMaster: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'isActive',
 		label: 'Active',
@@ -74,7 +71,7 @@ export const fieldsForTaskMaster: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'searchFilters',
 		label: 'Search Filters',
@@ -87,7 +84,7 @@ export const fieldsForTaskMaster: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'assignedTask',
 		label: 'Assigned Task',
@@ -101,7 +98,7 @@ export const fieldsForTaskMaster: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'assignedAt',
 		label: 'Assigned At',
@@ -114,7 +111,7 @@ export const fieldsForTaskMaster: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'progress',
 		label: 'Progress',
@@ -127,7 +124,7 @@ export const fieldsForTaskMaster: FieldData[] = [
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
-		createdBy: 1,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
 		key: 'feedback',
 		label: 'Feedback',
@@ -150,22 +147,6 @@ export interface TaskMaster
 	progress: Nullable<number>;
 	feedback: Nullable<string>;
 };
-
-export const taskMastersTable = pgTable('task_masters_table', {
-	...defaultItemSchema,
-	name: text('name'),
-	description: text('description'),
-	tasks: text('tasks'),
-	isActive: boolean('is_active'),
-	searchFilters: text('search_filters'),
-	assignedTask: uuid('assigned_task'),
-	assignedAt: integer('assigned_at'),
-	progress: integer('progress'),
-	feedback: text('feedback'),
-}).enableRLS();
-
-export type InsertTaskMaster = typeof taskMastersTable.$inferInsert;
-export type SelectTaskMaster = typeof taskMastersTable.$inferSelect;
 
 export const ITEM_TYPE = ItemTypes.TaskMaster;
 export const ITEM_FIELDS = fieldsForTaskMaster;
