@@ -1,6 +1,5 @@
 import { ItemTypes } from "@/zencore/ItemTypes";
 import { Utils, Uuid } from "@/zencore/Utils";
-import { sql } from "drizzle-orm";
 import { boolean, integer, pgRole, pgSchema, pgTable, PgTable, text, uuid } from "drizzle-orm/pg-core";
 
 const authSchema = pgSchema("auth");
@@ -21,6 +20,7 @@ export const defaultItemSchema = {
 	createdBy: uuid('created_by')
 		.default('00000000-0000-0000-0000-000000000000')
 		.references(() => Users.id, { onDelete: 'cascade' }),
+	// definitionId: uuid('definition_id'),
 };
 
 export const charactersTable = pgTable('characters_table', {
