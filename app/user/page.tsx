@@ -2,16 +2,15 @@ import { Test } from "@/components/test";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
-export default async function ProtectedPage() {
-	const supabase = await createClient();
+export default async function ProtectedPage()
+{
+	const supabase = await createClient()
 
-	const {
-		data: { user },
-	} = await supabase.auth.getUser();
+	const { data: { user } } = await supabase.auth.getUser();
 
-	if(!user) 
+	if(!user)
 	{
-		return redirect("/sign-in");
+		// redirect("/sign-in");
 	}
 
 	const basicFormStyles = {

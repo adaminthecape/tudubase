@@ -7,7 +7,7 @@
 
 import TaskMessagesView from "@/components/tasks/TaskMessagesView";
 
-export default function TasksPage()
+export default function CharacterPage()
 {
 	return (
 		<div className="w-full">
