@@ -1,10 +1,8 @@
 import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
-import { DrizzleHandler } from "../DrizzleInterface";
-import { DbFilterOperator } from "../Filters";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
-import { Utils, Uuid } from "../Utils";
+import { Uuid } from "../Utils";
 
 export const fieldsForInAppNotification: FieldData[] = [
 	{
@@ -134,59 +132,5 @@ export class InAppNotificationHandler
 	public setData(data: Partial<InAppNotification>): void
 	{
 		super.setData(data);
-	}
-
-	public static async createNotification(
-		data: Partial<InAppNotification>
-	): Promise<InAppNotificationHandler | undefined>
-	{
-		const handler = new InAppNotificationHandler({
-			id: Uuid.generateUuid(),
-			db: new DrizzleHandler({}),
-		});
-
-		handler.setData(data);
-
-		// validate that it is a valid notification
-		const notification = handler.getData();
-
-		if(
-			!notification.title ||
-			!notification.message ||
-			!notification.date
-		)
-		{
-			return undefined;
-		}
-
-		await handler.save();
-
-		return handler;
-	}
-
-	public static async getUnreadNotifications(): Promise<InAppNotificationHandler[]>
-	{
-		const db = new DrizzleHandler({});
-		const notifications = await db.selectMultiple({
-			itemType: ITEM_TYPE,
-			filters: [
-				{
-					key: 'readAt',
-					operator: DbFilterOperator.isEqual,
-					value: null,
-				}
-			],
-		});
-
-		return (notifications?.results || [])
-			.map((notification) => (
-				typeof notification.id === 'string' ?
-					new InAppNotificationHandler({
-						id: notification.id,
-						db,
-					}) :
-					undefined
-			))
-			.filter((handler) => handler) as InAppNotificationHandler[];
 	}
 }

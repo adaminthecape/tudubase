@@ -1,15 +1,15 @@
 import { tasksTable } from "@/src/db/schema";
 import { eq, not, gt, gte, lt, lte, arrayContains } from "drizzle-orm";
 import { PgTable, PgColumn } from "drizzle-orm/pg-core";
-import { fieldsForCollection } from "./arch/Collection";
-import { fieldsForReminder } from "./arch/Reminder";
-import { fieldsForReward } from "./arch/Reward";
-import { fieldsForTag } from "./arch/Tag";
-import { fieldsForTask } from "./arch/Task";
-import { fieldsForTaskMaster } from "./arch/TaskMaster";
-import { DbFilterOperator, DbFilter } from "./Filters";
-import { ItemTypes, FieldType, FieldData } from "./ItemTypes";
-import { Utils } from "./Utils";
+import { fieldsForCollection } from "@/zencore/arch/Collection";
+import { fieldsForReminder } from "@/zencore/arch/Reminder";
+import { fieldsForReward } from "@/zencore/arch/Reward";
+import { fieldsForTag } from "@/zencore/arch/Tag";
+import { fieldsForTask } from "@/zencore/arch/Task";
+import { fieldsForTaskMaster } from "@/zencore/arch/TaskMaster";
+import { DbFilterOperator, DbFilter } from "@/zencore/Filters";
+import { ItemTypes, FieldType, FieldData } from "@/zencore/ItemTypes";
+import { Utils } from "@/zencore/Utils";
 
 export function getTableForItemType(itemType: string): ({
 	table?: PgTable | undefined;

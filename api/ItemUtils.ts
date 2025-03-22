@@ -1,19 +1,19 @@
-import { DrizzleHandler } from "../DrizzleInterface";
-import { ItemTypes, CustomItemOpts } from "../ItemTypes";
-import { RamDatabase } from "../MemoryDatabase";
-import { Uuid } from "../Utils";
-import { CharacterArchetype, CharacterHandler } from "./Character";
-import { CollectionArchetype, CollectionHandler } from "./Collection";
-import { EquipmentArchetype, EquipmentHandler } from "./Equipment";
-import { EquipmentTypeArchetype, EquipmentTypeHandler } from "./EquipmentType";
-import { ImageAssetArchetype, ImageAssetHandler } from "./ImageAsset";
-import { InAppNotificationArchetype, InAppNotificationHandler } from "./InAppNotification";
-import { ProfileArchetype, ProfileHandler } from "./Profile";
-import { ReminderArchetype, ReminderHandler } from "./Reminder";
-import { RewardArchetype, RewardHandler } from "./Reward";
-import { TagArchetype, TagHandler } from "./Tag";
-import { TaskArchetype, TaskHandler } from "./Task";
-import { TaskMasterArchetype, TaskMasterHandler } from "./TaskMaster";
+import { DrizzleHandler } from "@/api/DrizzleInterface";
+import { ItemTypes, CustomItemOpts } from "@/zencore/ItemTypes";
+import { RamDatabase } from "@/zencore/MemoryDatabase";
+import { Uuid } from "@/zencore/Utils";
+import { CharacterArchetype, CharacterHandler } from "@/zencore/arch/Character";
+import { CollectionArchetype, CollectionHandler } from "@/zencore/arch/Collection";
+import { EquipmentArchetype, EquipmentHandler } from "@/zencore/arch/Equipment";
+import { EquipmentTypeArchetype, EquipmentTypeHandler } from "@/zencore/arch/EquipmentType";
+import { ImageAssetArchetype, ImageAssetHandler } from "@/zencore/arch/ImageAsset";
+import { InAppNotificationArchetype, InAppNotificationHandler } from "@/zencore/arch/InAppNotification";
+import { ProfileArchetype, ProfileHandler } from "@/zencore/arch/Profile";
+import { ReminderArchetype, ReminderHandler } from "@/zencore/arch/Reminder";
+import { RewardArchetype, RewardHandler } from "@/zencore/arch/Reward";
+import { TagArchetype, TagHandler } from "@/zencore/arch/Tag";
+import { TaskArchetype, TaskHandler } from "@/zencore/arch/Task";
+import { TaskMasterArchetype, TaskMasterHandler } from "@/zencore/arch/TaskMaster";
 
 const defaultArchetypeIds: Record<ItemTypes, string> = {
 	[ItemTypes.Archetype]: Uuid.generateUuid(),

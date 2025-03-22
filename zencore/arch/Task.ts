@@ -2,7 +2,7 @@ import { ArchetypeHandler } from "../Archetype";
 import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
-import { Utils, Uuid } from "../Utils";
+import { Uuid } from "../Utils";
 
 export const fieldsForTaskActivity: FieldData[] = [
 	{
