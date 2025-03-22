@@ -284,15 +284,15 @@ export class ItemHandler implements ItemData
 	{
 		return (['string', 'number'].includes(typeof this.data.createdBy)) ?
 			this.data.createdBy as string | number :
-			1;
+			'ca84b5a0-a0ae-425d-993a-4e63d235f222';
 	}
 
 	public set createdBy(value: string | number | null)
 	{
-		if(this.data.createdBy)
-		{
-			throw new Error(`Attempted to override createdBy for item ${this.id}`);
-		}
+		// if(this.data.createdBy)
+		// {
+		// 	throw new Error(`Attempted to override createdBy for item ${this.id}`);
+		// }
 
 		if(typeof value === 'string')
 		{
