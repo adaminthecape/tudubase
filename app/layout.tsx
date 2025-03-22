@@ -1,4 +1,3 @@
-import HeaderAuth from "@/components/header-auth";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
@@ -11,8 +10,8 @@ import '@fontsource/roboto/700.css';
 import '@fontsource/inter';
 import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
 import { Button, CssVarsProvider } from "@mui/joy";
-import UserControls from "@/components/user/UserControls";
-import { createClient } from "@/utils/supabase/server";
+import UserControlsContainer from "@/components/user/UserControlsContainer";
+import I18N from "@/components/ui/I18N";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -35,31 +34,16 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>)
 {
-	const supabase = await createClient();
-
-	const {
-		data: { user },
-	} = await supabase.auth.getUser();
-		
-	function trimEmail(email: string): string
-	{
-		const [name, domain] = email.split("@");
-		const trimmedName = name.length > 1 ? `${name.slice(0, 1)}_` : name;
-		const [domainName, domainTld] = domain.split(".");
-		const trimmedDomain = domainName.length > 1 ? `${domainName.slice(0, 1)}_` : domainName;
-		return `${trimmedName}@${trimmedDomain}.${domainTld}`;
-	}
-
 	return (
 		<html lang="en" className={geistSans.className} suppressHydrationWarning>
 		<body className="bg-background text-foreground">
 			<InitColorSchemeScript />
 			<CssVarsProvider>
 			<ThemeProvider
-			attribute="class"
-			defaultTheme="system"
-			enableSystem
-			disableTransitionOnChange
+				attribute="class"
+				defaultTheme="system"
+				enableSystem
+				disableTransitionOnChange
 			>
 			<main className="min-h-screen flex flex-col items-center">
 				<div className="flex-1 w-full flex flex-col items-center">
@@ -69,12 +53,20 @@ export default async function RootLayout({
 							<Link href={"/"}>tudu</Link>
 							<div />
 							<Button size="sm" color="neutral" variant="soft">
-								<Link href={"/user/tasks"}>Tasks</Link>
+								<Link href={"/user"}>
+									<I18N sid="nav.test.title" />
+								</Link>
+							</Button>
+							<Button size="sm" color="neutral" variant="soft">
+								<Link href={"/user/tasks"}>
+									<I18N sid="nav.tasks.title" />
+								</Link>
 							</Button>
 						</div>
 					</div>
 					<div className="flex justify-end items-center gap-2">
-						<UserControls userId={user?.id} userEmail={user?.email ? trimEmail(user.email) : ''} />
+						<UserControlsContainer />
+						{/* <HeaderAuth /> */}
 						<div />
 					</div>
 				</nav>
