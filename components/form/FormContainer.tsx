@@ -1,7 +1,7 @@
 'use client';
 
 import { FieldData, FieldType } from "@/zencore/ItemTypes";
-import { Input, Stack, Typography } from "@mui/joy";
+import { Input, Stack } from "@mui/joy";
 import { JSX, useState } from "react";
 import { Button } from "@/components/ui/button";
 import TextInput from "@/components/form/elements/TextInput";
@@ -89,11 +89,18 @@ export function FormContainer({
 	values,
 	updateValues,
 	updateErrors,
+	showSubmit,
+	submitFn,
 }: {
 	fields: (FieldData & { key: string; })[];
 	values: Record<string, unknown>;
 	updateValues: (values: Record<string, unknown>) => void;
 	updateErrors: (errors: Record<string, string | undefined>) => void;
+	showSubmit?: boolean;
+	submitFn?: (opts: {
+		values: Record<string, unknown>;
+		errors: Record<string, string | undefined>;
+	}) => void;
 })
 {
 	const [formValues, setFormValues] = useState<Record<string, unknown>>({});
@@ -136,9 +143,14 @@ export function FormContainer({
 						})
 					}</div>
 				))}
-				<div className="flex flex-col gap-2 items-end">
-					<Button type="submit">Submit</Button>
-				</div>
+				{(showSubmit && submitFn) && (
+					<div className="flex flex-col gap-2 items-end">
+						<Button type="submit" onClick={() => submitFn({
+							values: formValues,
+							errors: formErrors,
+						})}>Submit</Button>
+					</div>
+				)}
 			</Stack>
 		</div>
 	);
