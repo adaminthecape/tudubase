@@ -1,7 +1,9 @@
 // Zencore: CUSTOM ITEMS
 
+import { DbFilter, DbFilters } from "./Filters";
 import { ItemHandler } from "./Item";
 import { CustomItem, Nullable, CustomItemItem, FieldData, CustomItemOpts, Item } from "./ItemTypes";
+import { DbPaginationOpts } from "./Pagination";
 import { Utils } from "./Utils";
 import { FieldValidator } from "./Validation";
 
@@ -238,5 +240,30 @@ export class CustomItemHandler<T = CustomItemItem>
 		{
 			console.error(e, data);
 		}
+	}
+
+	public async search(opts: {
+		filters?: DbFilters;
+		pagination?: DbPaginationOpts;
+	}): Promise<Item<T>[]>
+	{
+		const itemType = this.typeId;
+
+		if(!('selectMultiple' in this.db && typeof this.db.selectMultiple === 'function'))
+		{
+			console.error('No selectMultiple method found on db');
+
+			return {} as any;
+		}
+
+		const searchResults = await this.db.selectMultiple({
+			itemType,
+			filters: opts.filters,
+			pagination: opts.pagination,
+		});
+
+		console.log('search:', this.typeId, searchResults);
+
+		return searchResults;
 	}
 }
