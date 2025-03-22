@@ -10,6 +10,14 @@ export const en = {
 			label: 'System'
 		},
 	},
+	nav: {
+		tasks: {
+			title: 'Tasks',
+		},
+		test: {
+			title: 'Testing'
+		}
+	},
 	fields: {
 		"Character": {
 			"name": {
