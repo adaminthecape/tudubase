@@ -8,6 +8,7 @@ import { PgTable } from "drizzle-orm/pg-core";
 import { applyFilter, getTableForItemType } from "./DrizzleUtils";
 import { eq } from "drizzle-orm";
 import { db as drizzleDb } from "@/src/db";
+import { getItemHandler } from "./ItemUtils";
 
 function applyFilters(
 	query: any,
@@ -72,7 +73,6 @@ export class DrizzleHandler
 		setUpdated?: boolean;
 	})
 	{
-		console.log('update:', opts);
 		if(!this.validateItemTypeAndId(opts))
 		{
 			return;
@@ -253,12 +253,12 @@ export class DrizzleHandler
 		applyPagination(query, pageNum, pageSizeNum);
 		applyFilters(query, table, fh.filters, itemType);
 
-		const results = [] as Array<IItemType>;
+		const results = ((await query.execute()) || []) as Array<IItemType>;
 
 		return {
 			results: results as Array<IItemType>,
 			// TODO: convert to count query
-			hasMore: results.length > (pageNum * pageSizeNum),
+			hasMore: results.length >= (pageNum * pageSizeNum),
 			totalItems: ph.pagination.totalRows ?? 0,
 			pagination: {
 				page: ph.pagination.page,
