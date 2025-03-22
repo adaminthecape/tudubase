@@ -6,6 +6,40 @@ import { ValidationResult } from "./Validation";
 
 export class Utils
 {
+	public static dotPick(obj: Record<string, unknown>, path: string)
+	{
+		if(!path || typeof path !== 'string') return undefined;
+
+		path = path.replaceAll('[', '.');
+		path = path.replaceAll(']', '.');
+		path = path.replaceAll('..', '.');
+
+		if(path.substring(path.length - 1, path.length) === '.')
+		{
+			path = path.substring(0, path.length - 1);
+		}
+
+		const arr = path.split('.');
+		let res: unknown = obj;
+
+		do
+		{
+			const nextKey = arr.shift();
+
+			if(nextKey)
+			{
+				res = (res as Record<string, unknown>)?.[nextKey];
+			}
+			else
+			{
+				break;
+			}
+		}
+		while(arr.length && Utils.isPopulatedObject(res));
+
+		return res;
+	}
+
 	public static isPopulatedObject(obj: unknown): obj is Record<string, unknown>
 	{
 		return !!(
@@ -114,12 +148,12 @@ export class Utils
 
 		if((Utils.isNumber(min) && (value.length < min)))
 		{
-			return `Must be greater than ${min} characters.`;
+			return `Must be ${min} characters or greater.`;
 		}
 
 		if((Utils.isNumber(max) && (value.length > max)))
 		{
-			return `Must be fewer than ${max} characters.`;
+			return `Must be ${max} characters or fewer.`;
 		}
 
 		return true;
@@ -141,12 +175,12 @@ export class Utils
 
 		if((Utils.isNumber(min) && (value < min)))
 		{
-			return `Must be greater than ${min}.`;
+			return `Must be ${min} or more.`;
 		}
 
 		if((Utils.isNumber(max) && (value > max)))
 		{
-			return `Must be less than ${max}.`;
+			return `Must be ${max} or less.`;
 		}
 
 		return true;

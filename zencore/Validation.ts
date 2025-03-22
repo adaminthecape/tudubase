@@ -124,7 +124,7 @@ const validators: Record<KnownValidationRules | string, ValidatorFunction> = {
 	{
 		const { val, field } = opts;
 
-		if(!Utils.toNumber(val))
+		if(!Utils.toNumber(val) && val !== 0)
 		{
 			return 'Must be a number';
 		}

@@ -3,7 +3,32 @@ import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Utils, Uuid } from "../Utils";
-import { getItemHandler } from "./utils";
+
+export const fieldsForTaskActivity: FieldData[] = [
+	{
+		id: Uuid.generateUuid(),
+		createdAt: 1742414442,
+		updatedAt: 1742414442,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
+		typeId: 'Field',
+		key: 'timestamp',
+		label: 'Timestamp',
+		fieldType: FieldType.timestamp,
+	},
+	{
+		id: Uuid.generateUuid(),
+		createdAt: 1742414442,
+		updatedAt: 1742414442,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
+		typeId: 'Field',
+		key: 'description',
+		label: 'Description',
+		fieldType: FieldType.text,
+		validation: {
+			between: { min: 0, max: 1000 }
+		}
+	},
+];
 
 export const fieldsForTask: FieldData[] = [
 	{
@@ -94,7 +119,18 @@ export const fieldsForTask: FieldData[] = [
 		label: 'Tags',
 		fieldType: FieldType.itemArray,
 		itemType: 'Tag',
-	}
+	},
+	{
+		id: Uuid.generateUuid(),
+		createdAt: 1742414442,
+		updatedAt: 1742414442,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
+		typeId: 'Field',
+		key: 'activity',
+		label: 'Activity',
+		fieldType: FieldType.repeater,
+		children: fieldsForTaskActivity.map((f) => f.id)
+	},
 ];
 
 export interface Task
@@ -166,39 +202,4 @@ export class TaskHandler
 	{
 		super.setData(data);
 	}
-}
-
-export async function testTaskHandler()
-{
-	const taskHandler = getItemHandler({
-		itemType: ITEM_TYPE,
-		id: Uuid.generateUuid(),
-	}) as TaskHandler | undefined;
-
-	if(!taskHandler)
-	{
-		return;
-	}
-
-	taskHandler.typeId = ITEM_TYPE;
-	taskHandler.createdBy = 1;
-
-	const task = {
-		title: 'Test Task',
-		due: Utils.getCurrentSecond() + 3600,
-		priority: 'high',
-		notes: 'This is a test task',
-		completed: false,
-		completedAt: null,
-		recurring: false,
-		tags: [],
-	};
-
-	taskHandler.setData(task);
-
-	await taskHandler.create();
-
-	const loaded = await taskHandler.load();
-
-	console.log('loaded', loaded);
 }

@@ -165,7 +165,7 @@ export class FieldHandler extends ItemHandler implements FieldData
 			updatedAt: this.updatedAt,
 			createdAt: this.createdAt,
 			createdBy: this.createdBy,
-			key: this.key,
+			key: this.key ?? '',
 			label: this.label,
 			icon: this.icon,
 			fieldType: this.fieldType,

@@ -113,7 +113,7 @@ export enum FieldType
 	repeater = 'repeater',
 };
 export type FieldItemData = ItemData & {
-	key: Nullable<string>;
+	key: string;
 	label?: Nullable<string>;
 	icon?: Nullable<string>;
 	/** Category of field to display in the UI, e.g. text, number, item */
