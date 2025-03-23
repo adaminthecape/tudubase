@@ -1,4 +1,3 @@
-import { tasksTable } from "@/src/db/schema";
 import { eq, not, gt, gte, lt, lte, arrayContains } from "drizzle-orm";
 import { PgTable, PgColumn } from "drizzle-orm/pg-core";
 import { fieldsForCollection } from "@/zencore/arch/Collection";
@@ -11,27 +10,6 @@ import { DbFilterOperator, DbFilter } from "@/zencore/Filters";
 import { ItemTypes, FieldType, FieldData } from "@/zencore/ItemTypes";
 import { Utils } from "@/zencore/Utils";
 
-export function getTableForItemType(itemType: string): ({
-	table?: PgTable | undefined;
-	idColumn?: PgColumn | undefined;
-})
-{
-	switch(itemType)
-	{
-		case ItemTypes.Task:
-			return { table: tasksTable, idColumn: tasksTable.id };
-		case ItemTypes.Collection:
-		case ItemTypes.Reminder:
-		case ItemTypes.Reward:
-		case ItemTypes.Tag:
-		case ItemTypes.TaskMaster:
-		case ItemTypes.Archetype:
-		case ItemTypes.CustomItem:
-		case ItemTypes.Field:
-		default:
-			return {};
-	}
-}
 export function getOperatorsForFieldType(fieldType: string): DbFilterOperator[]
 {
 	switch(fieldType)

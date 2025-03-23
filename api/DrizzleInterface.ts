@@ -5,10 +5,12 @@ import { DbPaginationOpts, PaginatedItemResponse, PaginationHandler } from "@/ze
 import { IItemType, ItemTypes } from "@/zencore/ItemTypes";
 import { Utils, Uuid } from "@/zencore/Utils";
 import { PgTable } from "drizzle-orm/pg-core";
-import { applyFilter, getTableForItemType } from "./DrizzleUtils";
+import { applyFilter } from "./DrizzleUtils";
 import { eq } from "drizzle-orm";
 import { db as drizzleDb } from "@/src/db";
 import { getItemHandler } from "./ItemUtils";
+import { getTableForItemType } from "@/src/db/schema";
+import { RamDatabase } from "@/zencore/MemoryDatabase";
 
 function applyFilters(
 	query: any,
@@ -122,6 +124,8 @@ export class DrizzleHandler
 		const handler = getItemHandler({
 			itemType: opts.itemType as ItemTypes,
 			id: opts.itemId,
+			// sandboxed validation
+			db: new RamDatabase({}),
 		});
 
 		if(!handler)

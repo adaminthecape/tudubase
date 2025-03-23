@@ -11,18 +11,21 @@ import { fieldsForReward } from "@/zencore/arch/Reward";
 import { fieldsForTag } from "@/zencore/arch/Tag";
 import { fieldsForTaskMaster } from "@/zencore/arch/TaskMaster";
 import { fieldsForEquipmentType } from "@/zencore/arch/EquipmentType";
-import { fieldsForTask, fieldsForTaskActivity } from "@/zencore/arch/Task";
+import { fieldsForTask } from "@/zencore/arch/Task";
+import { fieldsForTaskActivity } from "@/zencore/arch/TaskActivity";
 import { ItemTypes, FieldData } from "@/zencore/ItemTypes";
 import { Utils } from "@/zencore/Utils";
 
-export function getFieldsForItemType(
+export async function getFieldsForItemType(
 	itemType: ItemTypes
-): FieldData[] | undefined
+): Promise<FieldData[] | undefined>
 {
 	switch(itemType)
 	{
 		case ItemTypes.Task:
-			return [...fieldsForTask, ...fieldsForTaskActivity];
+			return fieldsForTask;
+		case ItemTypes.TaskActivity:
+			return fieldsForTaskActivity;
 		case ItemTypes.Archetype:
 			return undefined;
 		case ItemTypes.Character:
@@ -56,7 +59,7 @@ export function getFieldsForItemType(
 	}
 }
 
-export function getFieldsMap(itemType: ItemTypes): Record<string, FieldData>
+export async function getFieldsMap(itemType: ItemTypes): Promise<Record<string, FieldData>>
 {
 	const fields = getFieldsForItemType(itemType);
 

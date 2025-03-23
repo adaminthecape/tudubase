@@ -1,4 +1,3 @@
-import { DrizzleHandler } from "@/api/DrizzleInterface";
 import { ItemTypes, CustomItemOpts } from "@/zencore/ItemTypes";
 import { RamDatabase } from "@/zencore/MemoryDatabase";
 import { Uuid } from "@/zencore/Utils";
@@ -13,6 +12,7 @@ import { ReminderArchetype, ReminderHandler } from "@/zencore/arch/Reminder";
 import { RewardArchetype, RewardHandler } from "@/zencore/arch/Reward";
 import { TagArchetype, TagHandler } from "@/zencore/arch/Tag";
 import { TaskArchetype, TaskHandler } from "@/zencore/arch/Task";
+import { TaskActivityArchetype, TaskActivityHandler } from "@/zencore/arch/TaskActivity";
 import { TaskMasterArchetype, TaskMasterHandler } from "@/zencore/arch/TaskMaster";
 
 const defaultArchetypeIds: Record<ItemTypes, string> = {
@@ -30,6 +30,7 @@ const defaultArchetypeIds: Record<ItemTypes, string> = {
 	[ItemTypes.Reward]: Uuid.generateUuid(),
 	[ItemTypes.Tag]: Uuid.generateUuid(),
 	[ItemTypes.Task]: Uuid.generateUuid(),
+	[ItemTypes.TaskActivity]: Uuid.generateUuid(),
 	[ItemTypes.TaskMaster]: Uuid.generateUuid(),
 };
 
@@ -45,22 +46,8 @@ export type ArchetypeHandlerType = (
 	RewardArchetype |
 	TagArchetype |
 	TaskArchetype |
+	TaskActivityArchetype |
 	TaskMasterArchetype
-);
-
-export type ItemHandlerType = (
-	CharacterHandler |
-	CollectionHandler |
-	EquipmentHandler |
-	EquipmentTypeHandler |
-	ImageAssetHandler |
-	InAppNotificationHandler |
-	ProfileHandler |
-	ReminderHandler |
-	RewardHandler |
-	TagHandler |
-	TaskHandler |
-	TaskMasterHandler
 );
 
 export function getArchetypeForItemType(
@@ -102,6 +89,8 @@ export function getArchetypeForItemType(
 			return new TagArchetype(opts);
 		case ItemTypes.Task:
 			return new TaskArchetype(opts);
+		case ItemTypes.TaskActivity:
+			return new TaskActivityArchetype(opts);
 		case ItemTypes.TaskMaster:
 			return new TaskMasterArchetype(opts);
 		default:
@@ -109,48 +98,67 @@ export function getArchetypeForItemType(
 	}
 }
 
-export function getItemHandler(options: {
+export type ItemHandlerType = (
+	CharacterHandler |
+	CollectionHandler |
+	EquipmentHandler |
+	EquipmentTypeHandler |
+	ImageAssetHandler |
+	InAppNotificationHandler |
+	ProfileHandler |
+	ReminderHandler |
+	RewardHandler |
+	TagHandler |
+	TaskHandler |
+	TaskActivityHandler |
+	TaskMasterHandler
+);
+
+export function getItemHandler(opts: {
 	itemType: ItemTypes;
 	id: CustomItemOpts['id'];
+	db: any;
 }): ItemHandlerType | undefined
 {
-	const opts = {
-		id: options.id,
-		db: new DrizzleHandler({}),
+	const handlerOpts = {
+		id: opts.id,
+		db: opts.db,
 	};
 
-	switch(options.itemType)
+	switch(opts.itemType)
 	{
 		case ItemTypes.Archetype:
 			return undefined;
 		case ItemTypes.Character:
-			return new CharacterHandler(opts);
+			return new CharacterHandler(handlerOpts);
 		case ItemTypes.Collection:
-			return new CollectionHandler(opts);
+			return new CollectionHandler(handlerOpts);
 		case ItemTypes.CustomItem:
 			return undefined;
 		case ItemTypes.Equipment:
-			return new EquipmentHandler(opts);
+			return new EquipmentHandler(handlerOpts);
 		case ItemTypes.EquipmentType:
-			return new EquipmentTypeHandler(opts);
+			return new EquipmentTypeHandler(handlerOpts);
 		case ItemTypes.Field:
 			return undefined;
 		case ItemTypes.ImageAsset:
-			return new ImageAssetHandler(opts);
+			return new ImageAssetHandler(handlerOpts);
 		case ItemTypes.InAppNotification:
-			return new InAppNotificationHandler(opts);
+			return new InAppNotificationHandler(handlerOpts);
 		case ItemTypes.Profile:
-			return new ProfileHandler(opts);
+			return new ProfileHandler(handlerOpts);
 		case ItemTypes.Reminder:
-			return new ReminderHandler(opts);
+			return new ReminderHandler(handlerOpts);
 		case ItemTypes.Reward:
-			return new RewardHandler(opts);
+			return new RewardHandler(handlerOpts);
 		case ItemTypes.Tag:
-			return new TagHandler(opts);
+			return new TagHandler(handlerOpts);
 		case ItemTypes.Task:
-			return new TaskHandler(opts);
+			return new TaskHandler(handlerOpts);
+		case ItemTypes.Task:
+			return new TaskActivityHandler(handlerOpts);
 		case ItemTypes.TaskMaster:
-			return new TaskMasterHandler(opts);
+			return new TaskMasterHandler(handlerOpts);
 		default:
 			return undefined;
 	}
