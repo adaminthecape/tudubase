@@ -11,16 +11,16 @@ export default async function Login(props: { searchParams: Promise<Message>; })
 {
 	const supabase = await createClient()
 
-	const { data: { user } } = await supabase.auth.getUser();
-	console.log('Login: user', user?.aud === 'authenticated');
+	const { data: { session } } = await supabase.auth.getSession();
+	console.log('Login: session', session);
 
-	if(!user)
+	if(!session)
 	{
 		console.warn('Login: user not found');
 	}
 	else
 	{
-		console.log('Login: user found', user);
+		console.log('Login: user found', session);
 		redirect("/user/tasks"); // TODO: REMOVE WHEN CLOUDFLARE WORKS AGAIN
 	}
 
