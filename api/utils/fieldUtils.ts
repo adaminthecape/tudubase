@@ -1,5 +1,3 @@
-'use server';
-
 import { fieldsForEquipment } from "@/zencore/arch/Equipment";
 import { fieldsForCharacter } from "@/zencore/arch/Character";
 import { fieldsForCollection } from "@/zencore/arch/Collection";
