@@ -22,26 +22,38 @@ export const en = {
 		Archetype: {
 			plural: 'Archetypes',
 			singular: 'Archetype',
+			edit: 'Edit Archetype',
+			create: 'Create Archetype',
 		},
 		Collection: {
 			plural: 'Collections',
 			singular: 'Collection',
+			edit: 'Edit Collection',
+			create: 'Create Collection',
 		},
 		Character: {
 			plural: 'Characters',
 			singular: 'Character',
+			edit: 'Edit Character',
+			create: 'Create Character',
 		},
 		Equipment: {
 			plural: 'Equipment',
 			singular: 'Equipment',
+			edit: 'Edit Equipment',
+			create: 'Create Equipment',
 		},
 		EquipmentType: {
 			plural: 'Equipment Types',
 			singular: 'Equipment Type',
+			edit: 'Edit Equipment Type',
+			create: 'Create Equipment Type',
 		},
 		ImageAsset: {
-			plural: 'Image Assets',
-			singular: 'Image Asset',
+			plural: 'Images',
+			singular: 'Image',
+			edit: 'Edit Image',
+			create: 'Create Image',
 		},
 		InAppNotification: {
 			plural: 'In-App Notifications',
@@ -50,10 +62,14 @@ export const en = {
 		Profile: {
 			plural: 'Profiles',
 			singular: 'Profile',
+			edit: 'Edit Profile',
+			create: 'Create Profile',
 		},
 		Reminder: {
 			plural: 'Reminders',
 			singular: 'Reminder',
+			edit: 'Edit Reminder',
+			create: 'Create Reminder',
 		},
 		Reward: {
 			plural: 'Rewards',
@@ -62,19 +78,43 @@ export const en = {
 		Tag: {
 			plural: 'Tags',
 			singular: 'Tag',
+			edit: 'Edit Tag',
+			create: 'Create Tag',
 		},
 		Task: {
 			plural: 'Tasks',
 			singular: 'Task',
+			edit: 'Edit Task',
+			create: 'Create Task',
 		},
 		TaskMaster: {
 			plural: 'Wizards',
 			singular: 'Wizard',
+			edit: 'Edit Wizard',
+			create: 'Create Wizard',
 		},
 		TaskActivity: {
 			plural: 'Task Activities',
 			singular: 'Task Activity',
 		},
+	},
+	activityMessages: {
+		Created: 'This task was created',
+		Updated: 'This task was updated',
+		Deleted: 'This task was deleted',
+		Started: 'This task was started',
+		Completed: 'This task was completed',
+		Activated: 'This task was started',
+		Deactivated: 'This task was stopped',
+		MasterAssigned: 'The Master assigned this task',
+		MasterDropped: 'The Master abandoned this task',
+		MasterCheckedIn: 'The Master checked in on this task',
+		AcknowledgedMaster: 'The Master acknowledged your progress',
+		MasterCompleted: 'The Master accepted this task',
+		MasterFailed: 'The Master failed this task',
+		OfferedReward: 'A reward was offered for this task',
+		RerolledReward: 'This task\'s reward was rerolled',
+		AcceptedReward: 'This task\'s reward was accepted',
 	},
 	fields: {
 		"Character": {
