@@ -28,7 +28,7 @@ export enum DbFilterGroupType
 }
 export type DbFilterGroup = {
 	group: DbFilterGroupType;
-	children: DbFilter[];
+	children: DbFilters;
 };
 export type DbFilters = Array<DbFilter | DbFilterGroup>;
 export type DbFilterHandlerOpts = {

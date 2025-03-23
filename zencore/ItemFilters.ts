@@ -1,6 +1,6 @@
 import { getFieldsForItemType, getOperatorsForFieldType } from "./DrizzleUtils";
 import { DbFilterOperator, DbFilterHandler, DbFilters, DbFilter } from "./Filters";
-import { FieldData } from "./ItemTypes";
+import { FieldData, ItemTypes } from "./ItemTypes";
 
 type AvailableFilters = Array<{
 	key: string;
@@ -14,7 +14,7 @@ export class ItemSearchFilterHandler
 	public filters: DbFilterHandler;
 
 	constructor(opts: {
-		itemType: string;
+		itemType: ItemTypes;
 		filters?: DbFilters;
 	})
 	{

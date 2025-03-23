@@ -370,5 +370,33 @@ export const en = {
 			}
 
 		}
+	},
+	fieldOptions: {
+		'697971f8-fd3f-45ea-a2c5-038588985ef5': {
+			'low': 'Low',
+			'medium': 'Medium',
+			'high': 'High'
+		}
+	},
+	filters: {
+		operators: {
+			in: 'In',
+			notIn: 'Not In',
+			fuzzyEqual: 'Like',
+			isEqual: 'Equal',
+			isNotEqual: 'Not Equal',
+			greaterThan: 'Greater',
+			greaterThanOrEqualTo: 'Equal Or Greater',
+			lessThan: 'Less',
+			lessThanOrEqualTo: 'Equal Or Less',
+		},
+		group: {
+			addGroupFilter: 'Add Group',
+			removeGroupFilter: 'Remove Group',
+		},
+		single: {
+			addSingleFilter: 'Add Single Filter',
+			removeSingleFilter: 'Remove Single Filter',
+		}
 	}
 };

@@ -30,7 +30,7 @@ export const fieldsForTask: FieldData[] = [
 		fieldType: FieldType.timestamp,
 	},
 	{
-		id: Uuid.generateUuid(),
+		id: '697971f8-fd3f-45ea-a2c5-038588985ef5',
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
 		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',

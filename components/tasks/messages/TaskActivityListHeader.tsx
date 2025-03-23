@@ -78,10 +78,12 @@ export default function TaskActivityListHeader(props: TaskActivityListHeaderProp
 			<Stack spacing={1} direction="row" sx={{ alignItems: 'center' }}>
 			<ItemEditButton
 				itemType={ItemTypes.TaskMaster}
+				itemId={collection?.taskMaster?.id}
 				initialValues={collection?.taskMaster}
 			/>
 			<ItemEditButton
 				itemType={ItemTypes.Collection}
+				itemId={collection?.id}
 				initialValues={collection}
 			/>
 			<IconButton size="sm" variant="plain" color="neutral">
