@@ -18,6 +18,64 @@ export const en = {
 			title: 'Testing'
 		}
 	},
+	items: {
+		Archetype: {
+			plural: 'Archetypes',
+			singular: 'Archetype',
+		},
+		Collection: {
+			plural: 'Collections',
+			singular: 'Collection',
+		},
+		Character: {
+			plural: 'Characters',
+			singular: 'Character',
+		},
+		Equipment: {
+			plural: 'Equipment',
+			singular: 'Equipment',
+		},
+		EquipmentType: {
+			plural: 'Equipment Types',
+			singular: 'Equipment Type',
+		},
+		ImageAsset: {
+			plural: 'Image Assets',
+			singular: 'Image Asset',
+		},
+		InAppNotification: {
+			plural: 'In-App Notifications',
+			singular: 'In-App Notification',
+		},
+		Profile: {
+			plural: 'Profiles',
+			singular: 'Profile',
+		},
+		Reminder: {
+			plural: 'Reminders',
+			singular: 'Reminder',
+		},
+		Reward: {
+			plural: 'Rewards',
+			singular: 'Reward',
+		},
+		Tag: {
+			plural: 'Tags',
+			singular: 'Tag',
+		},
+		Task: {
+			plural: 'Tasks',
+			singular: 'Task',
+		},
+		TaskMaster: {
+			plural: 'Wizards',
+			singular: 'Wizard',
+		},
+		TaskActivity: {
+			plural: 'Task Activities',
+			singular: 'Task Activity',
+		},
+	},
 	fields: {
 		"Character": {
 			"name": {
