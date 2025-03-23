@@ -3,7 +3,7 @@
 import { DbFilter, DbFilters } from "./Filters";
 import { ItemHandler } from "./Item";
 import { CustomItem, Nullable, CustomItemItem, FieldData, CustomItemOpts, Item } from "./ItemTypes";
-import { DbPaginationOpts } from "./Pagination";
+import { DbPaginationOpts, PaginatedItemResponse } from "./Pagination";
 import { Utils } from "./Utils";
 import { FieldValidator } from "./Validation";
 
@@ -245,7 +245,7 @@ export class CustomItemHandler<T = CustomItemItem>
 	public async search(opts: {
 		filters?: DbFilters;
 		pagination?: DbPaginationOpts;
-	}): Promise<Item<T>[]>
+	}): Promise<PaginatedItemResponse<Item<T>>>
 	{
 		const itemType = this.typeId;
 
