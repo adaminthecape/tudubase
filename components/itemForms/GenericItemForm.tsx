@@ -1,9 +1,10 @@
 import { getFieldsForItemType } from "@/api/utils/fieldUtils";
-import { FieldData, Item, ItemTypes } from "@/zencore/ItemTypes";
 import { useEffect, useState } from "react";
 import { FormContainer } from "../form/FormContainer";
 import { LoaderPinwheel } from "lucide-react";
-import { loadItem } from "@/api/actions/Generic";
+import { createItem, loadItem, updateItem } from "@/api/actions/Generic";
+import { FieldData, Item, ItemTypes } from "@/zencore/ItemTypes";
+import { Utils, Uuid } from "@/zencore/Utils";
 
 export type GenericItemFormProps = {
 	isModalOpen: boolean;
@@ -11,6 +12,7 @@ export type GenericItemFormProps = {
 	onClose: () => void;
 	itemType: ItemTypes;
 	itemId?: string;
+	setItemId?: (id: string) => void;
 	fieldFilterFn?: (field: FieldData) => boolean;
 	initialValues: Partial<Item<Record<string, unknown>>>;
 };
@@ -19,18 +21,13 @@ export default function GenericItemForm(props: GenericItemFormProps)
 {
 	const {
 		itemId,
+		setItemId,
 		itemType,
 		initialValues,
-		isModalOpen,
-		setIsModalOpen,
-		onClose
 	} = props;
 
-	const [
-		formValues,
-		setFormValues
-	] = useState<Record<string, unknown>>(initialValues);
-
+	const [formValues, setFormValues] = useState(initialValues);
+	const [formErrors, setFormErrors] = useState<Record<string, string | undefined>>({});
 	const [fields, setFields] = useState<FieldData[] | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -38,7 +35,6 @@ export default function GenericItemForm(props: GenericItemFormProps)
 	{
 		setIsLoading(true);
 
-		const start = Date.now();
 		getFieldsForItemType(itemType).then((fieldsArray) =>
 		{
 			if(Array.isArray(fieldsArray))
@@ -50,7 +46,6 @@ export default function GenericItemForm(props: GenericItemFormProps)
 				console.error('Failed to get fields for item type:', itemType);
 			}
 
-			console.log('Fields loaded in', Date.now() - start, 'ms');
 			setIsLoading(false);
 		});
 	}, [itemType]);
@@ -64,11 +59,9 @@ export default function GenericItemForm(props: GenericItemFormProps)
 			return;
 		}
 
-		const start = Date.now();
-		loadItem({
-			id: itemId,
-			itemType
-		}).then((item) =>
+		setIsLoading(true);
+
+		loadItem({ id: itemId, itemType }).then((item) =>
 		{
 			if(item)
 			{
@@ -79,7 +72,6 @@ export default function GenericItemForm(props: GenericItemFormProps)
 				console.error('Failed to load item:', itemId);
 			}
 
-			console.log('Values loaded in', Date.now() - start, 'ms');
 			setIsLoading(false);
 		});
 	}, [itemId]);
@@ -87,15 +79,41 @@ export default function GenericItemForm(props: GenericItemFormProps)
 	function onSubmit({ values, errors }: {
 		values: Record<string, unknown>;
 		errors: Record<string, string | undefined>;
-	})
+	}): void
 	{
 		console.log('Submit:', values, errors);
-	}
+		if(Utils.isPopulatedObject(errors) && Object.keys(errors).length)
+		{
+			setFormErrors(errors);
+			return;
+		}
 
-	function close()
-	{
-		setIsModalOpen(false);
-		onClose?.();
+		if(!itemId)
+		{
+			const id = Uuid.generateUuid();
+
+			setItemId?.(id);
+
+			createItem({
+				id,
+				itemType,
+				data: values
+			}).then((response) =>
+			{
+				console.log('Create item response:', response);
+			});
+		}
+		else
+		{
+			updateItem({
+				id: itemId,
+				itemType,
+				data: values
+			}).then((response) =>
+			{
+				console.log('Update item response:', response);
+			});
+		}
 	}
 
 	if(isLoading || !itemType || !(Array.isArray(fields) && fields.length))
@@ -114,7 +132,7 @@ export default function GenericItemForm(props: GenericItemFormProps)
 			fields={fields}
 			values={formValues}
 			updateValues={setFormValues}
-			updateErrors={() => {}}
+			updateErrors={setFormErrors}
 			showSubmit
 			submitFn={onSubmit}
 		/>
