@@ -23,6 +23,7 @@ export enum ItemTypes
 	Reward = 'Reward',
 	Tag = 'Tag',
 	Task = 'Task',
+	TaskActivity = 'TaskActivity',
 	TaskMaster = 'TaskMaster',
 };
 
@@ -134,7 +135,11 @@ export interface RewardCategory
 {
 	name: Nullable<string>;
 	description: Nullable<string>;
-};
+}
+export interface TaskCategory
+{
+	name: Nullable<string>;
+}
 export interface Task
 {
 	name: Nullable<string>;
@@ -144,9 +149,47 @@ export interface Task
 	completed: Nullable<boolean>;
 	completedAt: Nullable<number>;
 	recurring: Nullable<boolean>;
-	category: Nullable<string>;
-};
-export interface TaskCategory
+	tags: Nullable<string[]>;
+	activity: Nullable<string[]>;
+}
+export enum TaskActivityType
 {
-	name: Nullable<string>;
+	// CRUD
+	Created = 'Created',
+	Updated = 'Updated',
+	Deleted = 'Deleted',
+
+	// Self handling
+	Started = 'Started',
+	Completed = 'Completed',
+	Activated = 'Activated',
+	Deactivated = 'Deactivated',
+
+	// Master handling
+	MasterAssigned = 'MasterAssigned',
+	MasterDropped = 'MasterDropped',
+	MasterCheckedIn = 'MasterCheckedIn',
+	AcknowledgedMaster = 'AcknowledgedMaster',
+	MasterCompleted = 'MasterCompleted',
+	MasterFailed = 'MasterFailed',
+
+	// Rewards
+	OfferedReward = 'OfferedReward',
+	RerolledReward = 'RerolledReward',
+	AcceptedReward = 'AcceptedReward',
+}
+export interface TaskActivity
+{
+	/** The Task to which this activity belongs */
+	taskId: Nullable<string>;
+	/** What happened */
+	activityType: Nullable<TaskActivityType>;
+	/**
+	 * A short blurb about what happened.
+	 * Regretfully not storing actual Item data here, for simplicity; also, this
+	 * will be in the user's target language at the time of generation.
+	 */
+	description?: Nullable<string>;
+	/** If not performed by the owner, the user to which this action applies */
+	targetUserId?: Nullable<string>;
 }

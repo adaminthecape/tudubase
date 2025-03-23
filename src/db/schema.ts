@@ -1,6 +1,6 @@
-import { ItemTypes } from "@/zencore/ItemTypes";
+import { ItemTypes, TaskActivity } from "@/zencore/ItemTypes";
 import { Utils, Uuid } from "@/zencore/Utils";
-import { boolean, integer, pgRole, pgSchema, pgTable, PgTable, text, uuid } from "drizzle-orm/pg-core";
+import { boolean, integer, PgColumn, pgRole, pgSchema, pgTable, PgTable, text, uuid } from "drizzle-orm/pg-core";
 
 const authSchema = pgSchema("auth");
 
@@ -183,6 +183,17 @@ export const taskMastersTable = pgTable('task_masters_table', {
 export type InsertTaskMaster = typeof taskMastersTable.$inferInsert;
 export type SelectTaskMaster = typeof taskMastersTable.$inferSelect;
 
+export const taskActivitiesTable = pgTable('task_activities_table', {
+	...defaultItemSchema,
+	taskId: text('task_id'),
+	activityType: text('activity_type'),
+	description: text('description'),
+	targetUserId: boolean('target_user_id'),
+}).enableRLS();
+
+export type InsertTaskActivity = typeof taskActivitiesTable.$inferInsert;
+export type SelectTaskActivity = typeof taskActivitiesTable.$inferSelect;
+
 // ROLES
 
 export const admin = pgRole('admin', {
@@ -195,41 +206,46 @@ export const user = pgRole('user', {
 	inherit: true,
 });
 
-export function getTableForItemType(itemType: string): PgTable | undefined
+export function getTableForItemType(itemType: string): ({
+	table?: PgTable | undefined;
+	idColumn?: PgColumn | undefined;
+})
 {
 	switch(itemType)
 	{
 		case ItemTypes.Archetype:
-			return undefined;
+			return { table: undefined, idColumn: undefined };
 		case ItemTypes.Character:
-			return charactersTable;
+			return { table: charactersTable, idColumn: charactersTable.id };
 		case ItemTypes.Collection:
-			return collectionsTable;
+			return { table: collectionsTable, idColumn: collectionsTable.id };
 		case ItemTypes.CustomItem:
-			return undefined;
+			return { table: undefined, idColumn: undefined };
 		case ItemTypes.Equipment:
-			return equipmentsTable;
+			return { table: equipmentsTable, idColumn: equipmentsTable.id };
 		case ItemTypes.EquipmentType:
-			return equipmentTypesTable;
+			return { table: equipmentTypesTable, idColumn: equipmentTypesTable.id };
 		case ItemTypes.Field:
-			return undefined;
+			return { table: undefined, idColumn: undefined };
 		case ItemTypes.InAppNotification:
-			return inAppNotificationsTable;
+			return { table: inAppNotificationsTable, idColumn: inAppNotificationsTable.id };
 		case ItemTypes.ImageAsset:
-			return imageAssetsTable;
+			return { table: imageAssetsTable, idColumn: imageAssetsTable.id };
 		case ItemTypes.Profile:
-			return profilesTable;
+			return { table: profilesTable, idColumn: profilesTable.id };
 		case ItemTypes.Reminder:
-			return remindersTable;
+			return { table: remindersTable, idColumn: remindersTable.id };
 		case ItemTypes.Reward:
-			return rewardsTable;
+			return { table: rewardsTable, idColumn: rewardsTable.id };
 		case ItemTypes.Tag:
-			return tagsTable;
+			return { table: tagsTable, idColumn: tagsTable.id };
 		case ItemTypes.Task:
-			return tasksTable;
+			return { table: tasksTable, idColumn: tasksTable.id };
+		case ItemTypes.TaskActivity:
+			return { table: taskActivitiesTable, idColumn: taskActivitiesTable.id };
 		case ItemTypes.TaskMaster:
-			return taskMastersTable;
+			return { table: taskMastersTable, idColumn: taskMastersTable.id };
 		default:
-			return undefined;
+			return { table: undefined, idColumn: undefined };
 	}
 }

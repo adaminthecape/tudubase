@@ -4,32 +4,6 @@ import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler,
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
 
-export const fieldsForTaskActivity: FieldData[] = [
-	{
-		id: Uuid.generateUuid(),
-		createdAt: 1742414442,
-		updatedAt: 1742414442,
-		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
-		typeId: 'Field',
-		key: 'timestamp',
-		label: 'Timestamp',
-		fieldType: FieldType.timestamp,
-	},
-	{
-		id: Uuid.generateUuid(),
-		createdAt: 1742414442,
-		updatedAt: 1742414442,
-		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
-		typeId: 'Field',
-		key: 'description',
-		label: 'Description',
-		fieldType: FieldType.text,
-		validation: {
-			between: { min: 0, max: 1000 }
-		}
-	},
-];
-
 export const fieldsForTask: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
@@ -128,8 +102,8 @@ export const fieldsForTask: FieldData[] = [
 		typeId: 'Field',
 		key: 'activity',
 		label: 'Activity',
-		fieldType: FieldType.repeater,
-		children: fieldsForTaskActivity.map((f) => f.id)
+		fieldType: FieldType.itemArray,
+		itemType: ItemTypes.TaskActivity,
 	},
 ];
 

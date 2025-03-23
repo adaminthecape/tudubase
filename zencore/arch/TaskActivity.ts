@@ -4,15 +4,15 @@ import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler,
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
 
-export const fieldsForCollection: FieldData[] = [
+export const fieldsForTaskActivity: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
 		createdAt: 1742414442,
 		updatedAt: 1742414442,
 		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
-		key: 'name',
-		label: 'Name',
+		key: 'taskId',
+		label: 'Task ID',
 		fieldType: FieldType.text,
 		validation: {
 			required: true,
@@ -25,10 +25,27 @@ export const fieldsForCollection: FieldData[] = [
 		updatedAt: 1742414442,
 		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
-		key: 'description',
-		label: 'Description',
-		fieldType: FieldType.textarea,
-		validation: { between: { max: 1000 } }
+		key: 'activityType',
+		label: 'Activity Type',
+		fieldType: FieldType.dropdown,
+		options: [
+			'Created',
+			'Updated',
+			'Deleted',
+			'Started',
+			'Completed',
+			'Activated',
+			'Deactivated',
+			'MasterAssigned',
+			'MasterDropped',
+			'MasterCheckedIn',
+			'AcknowledgedMaster',
+			'MasterCompleted',
+			'MasterFailed',
+			'OfferedReward',
+			'RerolledReward',
+			'AcceptedReward',
+		],
 	},
 	{
 		id: Uuid.generateUuid(),
@@ -36,28 +53,33 @@ export const fieldsForCollection: FieldData[] = [
 		updatedAt: 1742414442,
 		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
 		typeId: 'Field',
-		key: 'items',
-		label: 'Items',
-		fieldType: FieldType.itemArray,
-		itemType: ItemTypes.Task,
+		key: 'description',
+		label: 'Description',
+		fieldType: FieldType.textarea,
+		validation: {
+			between: { min: 0, max: 1000 }
+		}
 	},
+	{
+		id: Uuid.generateUuid(),
+		createdAt: 1742414442,
+		updatedAt: 1742414442,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
+		typeId: 'Field',
+		key: 'targetUserId',
+		label: 'Target User ID',
+		fieldType: FieldType.text,
+	}
 ];
 
-export interface Collection
-{
-	name: Nullable<string>;
-	description: Nullable<string>;
-	items: Nullable<string[]>;
-};
-
-export const ITEM_TYPE = ItemTypes.Collection;
-export const ITEM_FIELDS = fieldsForCollection;
+export const ITEM_TYPE = ItemTypes.TaskActivity;
+export const ITEM_FIELDS = fieldsForTaskActivity;
 
 // Archetypes are fixed definitions for item types, used for validation, so we
 // are not allowing any changes to them, nor to their fields.
 const dummyDatabase = new RamDatabase({});
 
-export class CollectionArchetype extends ArchetypeHandler
+export class TaskActivityArchetype extends ArchetypeHandler
 {
 	constructor(opts: ArchetypeOpts)
 	{
@@ -74,9 +96,9 @@ export class CollectionArchetype extends ArchetypeHandler
 	}
 }
 
-export class CollectionHandler
-	extends CustomItemHandler<Collection>
-	implements ItemHandler<Collection>
+export class TaskActivityHandler
+	extends CustomItemHandler<TaskActivity>
+	implements ItemHandler<TaskActivity>
 {
 	public typeId: string = ITEM_TYPE;
 
@@ -97,13 +119,13 @@ export class CollectionHandler
 			itemType: ITEM_TYPE,
 		});
 	}
-	
-	public getData(): Item<Collection>
+
+	public getData(): Item<TaskActivity>
 	{
 		return super.getData();
 	}
 
-	public setData(data: Partial<Collection>): void
+	public setData(data: Partial<TaskActivity>): void
 	{
 		super.setData(data);
 	}
