@@ -1,20 +1,17 @@
 'use server';
 
-import { fieldsForTask, fieldsForTaskActivity, Task, TaskHandler } from "@/zencore/arch/Task";
+import { fieldsForTask, Task, TaskHandler } from "@/zencore/arch/Task";
 import { ActionResponse } from "./types";
 import { FieldData, Item } from "@/zencore/ItemTypes";
 import { Utils, Uuid } from "@/zencore/Utils";
 import { DrizzleHandler } from "../DrizzleInterface";
-import { DbFilterOperator, DbFilters } from "@/zencore/Filters";
-import { DbPaginationOpts } from "@/zencore/Pagination";
+import { DbFilters } from "@/zencore/Filters";
+import { DbPaginationOpts, PaginatedItemResponse } from "@/zencore/Pagination";
 import { createClient } from "@/utils/supabase/server";
 
 export async function getTaskFields(): Promise<FieldData[]>
 {
-	return [
-		...fieldsForTask,
-		...fieldsForTaskActivity,
-	];
+	return fieldsForTask;
 }
 
 export async function getORM()
@@ -200,7 +197,7 @@ export async function loadTask(opts: {
 export async function loadTasks(opts?: {
 	filters?: DbFilters;
 	pagination?: DbPaginationOpts;
-}): Promise<ActionResponse<Item<Task>[]>>
+}): Promise<ActionResponse<PaginatedItemResponse<Item<Task>>>>
 {
 	const handler = await getTaskHandler();
 
