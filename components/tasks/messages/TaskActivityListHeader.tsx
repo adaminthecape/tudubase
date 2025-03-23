@@ -12,6 +12,8 @@ import { TaskActivityListHeaderProps } from '@/components/tasks/types';
 import { useToggleMessagesPane } from '@/hooks/useToggleMessagesPane';
 import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 import I18N from '@/components/ui/I18N';
+import { ItemTypes } from '@/zencore/ItemTypes';
+import ItemEditButton from '@/components/itemForms/ItemEditButton';
 
 export default function TaskActivityListHeader(props: TaskActivityListHeaderProps) 
 {
@@ -74,24 +76,14 @@ export default function TaskActivityListHeader(props: TaskActivityListHeaderProp
 			</div>
 		</Stack>
 		<Stack spacing={1} direction="row" sx={{ alignItems: 'center' }}>
-			<Button
-				color="neutral"
-				variant="soft"
-				size="sm"
-				sx={{ display: { xs: 'none', md: 'inline-flex' } }}
-			>
-				<EditNoteRoundedIcon sx={{ mr: 0.25 }} />
-				<I18N sid="items.TaskMaster.singular" />
-			</Button>
-			<Button
-				color="neutral"
-				variant="soft"
-				size="sm"
-				sx={{ display: { xs: 'none', md: 'inline-flex' } }}
-			>
-				<EditNoteRoundedIcon sx={{ mr: 0.25 }} />
-				<I18N sid="items.Collection.singular" />
-			</Button>
+			<ItemEditButton
+				itemType={ItemTypes.TaskMaster}
+				initialValues={collection?.taskMaster}
+			/>
+			<ItemEditButton
+				itemType={ItemTypes.Collection}
+				initialValues={collection}
+			/>
 			<IconButton size="sm" variant="plain" color="neutral">
 				<MoreVertRoundedIcon />
 			</IconButton>

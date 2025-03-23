@@ -52,12 +52,20 @@ export default async function RootLayout({
 						<div className="flex gap-2 items-start font-semibold" style={{alignItems: 'center'}}>
 							<Link href={"/"}>tudu</Link>
 							<div />
-							<Button size="sm" color="neutral" variant="soft">
+							<Button
+								size="sm"
+								color="neutral"
+								variant="soft"
+							>
 								<Link href={"/user"}>
 									<I18N sid="nav.test.title" />
 								</Link>
 							</Button>
-							<Button size="sm" color="neutral" variant="soft">
+							<Button
+								size="sm"
+								color="neutral"
+								variant="soft"
+							>
 								<Link href={"/user/tasks"}>
 									<I18N sid="nav.tasks.title" />
 								</Link>
