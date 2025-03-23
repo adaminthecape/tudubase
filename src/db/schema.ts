@@ -162,6 +162,7 @@ export const tasksTable = pgTable('tasks_table', {
 	completedAt: integer('completedAt'),
 	recurring: boolean('recurring'),
 	tags: uuid('tags').array(),
+	activity: uuid('activity').array(),
 }).enableRLS();
 
 export type InsertTask = typeof tasksTable.$inferInsert;

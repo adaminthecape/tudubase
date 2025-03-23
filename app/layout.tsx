@@ -99,7 +99,7 @@ export default async function RootLayout({
 				</div>
 			</main>
 			</ThemeProvider>
-				</CssVarsProvider>
+			</CssVarsProvider>
 			</body>
 		</html>
 	);

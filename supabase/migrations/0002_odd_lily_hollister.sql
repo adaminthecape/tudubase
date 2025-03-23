@@ -1,0 +1,1 @@
+ALTER TABLE "tasks_table" ADD COLUMN "activity" uuid[];

@@ -142,7 +142,7 @@ export interface TaskCategory
 }
 export interface Task
 {
-	name: Nullable<string>;
+	title: Nullable<string>;
 	due: Nullable<number>;
 	priority: Nullable<string>;
 	notes: Nullable<string>;

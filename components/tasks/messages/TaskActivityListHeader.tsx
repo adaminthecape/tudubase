@@ -75,7 +75,7 @@ export default function TaskActivityListHeader(props: TaskActivityListHeaderProp
 			)}
 			</div>
 		</Stack>
-		<Stack spacing={1} direction="row" sx={{ alignItems: 'center' }}>
+			<Stack spacing={1} direction="row" sx={{ alignItems: 'center' }}>
 			<ItemEditButton
 				itemType={ItemTypes.TaskMaster}
 				initialValues={collection?.taskMaster}
