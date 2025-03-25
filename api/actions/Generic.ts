@@ -3,13 +3,13 @@
 import { ActionResponse } from "./types";
 import { FieldData, Item, ItemTypes } from "@/zencore/ItemTypes";
 import { Utils, Uuid } from "@/zencore/Utils";
-import { DrizzleHandler } from "../DrizzleInterface";
+import { getDrizzleHandler } from "../DrizzleInterface";
 import { DbFilters } from "@/zencore/Filters";
 import { DbPaginationOpts, PaginatedItemResponse } from "@/zencore/Pagination";
 import { createClient } from "@/utils/supabase/server";
 import { CustomItemHandler } from "@/zencore/CustomItem";
 import { getArchetypeForItemType } from "../ItemUtils";
-import { getFieldsForItemType } from "../utils/fieldUtils";
+import { getFieldsForItemType } from "@/apiUtils/fieldUtils";
 
 export async function getItemFields(
 	itemType: ItemTypes
@@ -20,7 +20,7 @@ export async function getItemFields(
 
 export async function getORM()
 {
-	return new DrizzleHandler({});
+	return getDrizzleHandler({});
 }
 
 export async function getItemHandler(opts: {
@@ -245,7 +245,10 @@ export async function searchItems(opts: {
 	pagination?: DbPaginationOpts;
 }): Promise<ActionResponse<PaginatedItemResponse<Item<Record<string, unknown>>>>>
 {
-	const { itemType, filters, pagination } = opts;
+	const { itemType, pagination } = opts;
+	let { filters } = opts;
+
+	if(!Array.isArray(filters)) filters = [];
 
 	const handler = await getItemHandler({ itemType });
 

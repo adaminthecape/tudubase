@@ -4,7 +4,7 @@ import { fieldsForTask, Task, TaskHandler } from "@/zencore/arch/Task";
 import { ActionResponse } from "./types";
 import { FieldData, Item } from "@/zencore/ItemTypes";
 import { Utils, Uuid } from "@/zencore/Utils";
-import { DrizzleHandler } from "../DrizzleInterface";
+import { getDrizzleHandler } from "../DrizzleInterface";
 import { DbFilters } from "@/zencore/Filters";
 import { DbPaginationOpts, PaginatedItemResponse } from "@/zencore/Pagination";
 import { createClient } from "@/utils/supabase/server";
@@ -16,7 +16,7 @@ export async function getTaskFields(): Promise<FieldData[]>
 
 export async function getORM()
 {
-	return new DrizzleHandler({});
+	return getDrizzleHandler({});
 }
 
 export async function getTaskHandler(opts?: {

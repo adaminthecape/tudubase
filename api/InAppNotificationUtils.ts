@@ -1,11 +1,13 @@
+'use server';
+
 import {
 	ITEM_TYPE,
 	InAppNotification,
 	InAppNotificationHandler
 } from "@/zencore/arch/InAppNotification";
-import { DrizzleHandler } from "@/api/DrizzleInterface";
 import { DbFilterOperator } from "@/zencore/Filters";
 import { Uuid } from "@/zencore/Utils";
+import { getDrizzleHandler } from "./DrizzleInterface";
 
 
 export async function createNotification(
@@ -14,7 +16,7 @@ export async function createNotification(
 {
 	const handler = new InAppNotificationHandler({
 		id: Uuid.generateUuid(),
-		db: new DrizzleHandler({}),
+		db: await getDrizzleHandler({}),
 	});
 
 	handler.setData(data);
@@ -38,7 +40,7 @@ export async function createNotification(
 
 export async function getUnreadNotifications(): Promise<InAppNotificationHandler[]>
 {
-	const db = new DrizzleHandler({});
+	const db = await getDrizzleHandler({});
 	const notifications = await db.selectMultiple({
 		itemType: ITEM_TYPE,
 		filters: [

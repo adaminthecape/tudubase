@@ -1,73 +1,9 @@
 import { eq, not, gt, gte, lt, lte, arrayContains } from "drizzle-orm";
 import { PgTable, PgColumn } from "drizzle-orm/pg-core";
-import { fieldsForCollection } from "@/zencore/arch/Collection";
-import { fieldsForReminder } from "@/zencore/arch/Reminder";
-import { fieldsForReward } from "@/zencore/arch/Reward";
-import { fieldsForTag } from "@/zencore/arch/Tag";
-import { fieldsForTask } from "@/zencore/arch/Task";
-import { fieldsForTaskMaster } from "@/zencore/arch/TaskMaster";
 import { DbFilterOperator, DbFilter } from "@/zencore/Filters";
-import { ItemTypes, FieldType, FieldData } from "@/zencore/ItemTypes";
+import { FieldType, ItemTypes } from "@/zencore/ItemTypes";
 import { Utils } from "@/zencore/Utils";
-
-export function getOperatorsForFieldType(fieldType: string): DbFilterOperator[]
-{
-	switch(fieldType)
-	{
-		case FieldType.fieldType:
-		case FieldType.item:
-		case FieldType.toggle:
-		case FieldType.itemType:
-		case FieldType.radio:
-		case FieldType.text:
-		case FieldType.textarea:
-			return stringOperators;
-		case FieldType.itemArray:
-		case FieldType.checkbox:
-		case FieldType.dropdown:
-			return arrayOperators;
-		case FieldType.timestamp:
-		case FieldType.number:
-			return numberOperators;
-		case FieldType.itemFilters:
-		case FieldType.repeater:
-		case FieldType.readonly:
-		default:
-			return [];
-	}
-}
-export function getFieldsForItemType(itemType: string): FieldData[] | undefined
-{
-	switch(itemType)
-	{
-		case ItemTypes.Collection:
-			return fieldsForCollection;
-		case ItemTypes.Reminder:
-			return fieldsForReminder;
-		case ItemTypes.Reward:
-			return fieldsForReward;
-		case ItemTypes.Tag:
-			return fieldsForTag;
-		case ItemTypes.Task:
-			return fieldsForTask;
-		case ItemTypes.TaskMaster:
-			return fieldsForTaskMaster;
-		case ItemTypes.Archetype:
-		case ItemTypes.CustomItem:
-		case ItemTypes.Field:
-		default:
-			return undefined;
-	}
-}
-export function getFieldTypeForColumn(
-	fieldKey: string,
-	itemType: string
-): FieldType | undefined
-{
-	const fields = getFieldsForItemType(itemType);
-
-	return fields?.find((f) => f.key === fieldKey)?.fieldType ?? undefined;
-}
+import { getFieldTypeForColumn, getOperatorsForFieldType } from "@/apiUtils/fieldUtils";
 
 // Filter validation
 type ValidFilter<T> = {
@@ -106,7 +42,7 @@ export function validateFilter<T = unknown>(
 		DbFilterOperator.lessThanOrEqualTo,
 	].includes(filter.operator))
 	{
-		return Utils.isNumber(Utils.toNumber(filter.value));
+		return (filter.value == 0) ||  Utils.isNumber(Utils.toNumber(filter.value));
 	}
 
 	return true;
@@ -226,26 +162,6 @@ export function applyArrayFilter(
 	}
 }
 
-// Operators which can be used with different field types
-const numberOperators = [
-	DbFilterOperator.isEqual,
-	DbFilterOperator.isNotEqual,
-	DbFilterOperator.greaterThan,
-	DbFilterOperator.greaterThanOrEqualTo,
-	DbFilterOperator.lessThan,
-	DbFilterOperator.lessThanOrEqualTo,
-];
-const stringOperators = [
-	DbFilterOperator.isEqual,
-	DbFilterOperator.isNotEqual,
-];
-const arrayOperators = [
-	DbFilterOperator.in,
-	DbFilterOperator.arrayContains,
-	DbFilterOperator.arrayContainsAny,
-	DbFilterOperator.notIn,
-]
-
 /**
  * General function to determine the type of field, and apply the
  * appropriate filter, if the filter data is valid.
@@ -259,15 +175,31 @@ export function applyFilter(
 	query: any,
 	table: PgTable,
 	filter: DbFilter,
-	itemType: string
+	itemType: ItemTypes
 ): void
 {
+	if(filter.key === 'typeId')
+	{
+		if(filter.value == itemType)
+		{
+			applyStringFilter(query, table, filter);
+		}
+		else
+		{
+			// not sure what's going on here, but it's wrong
+			console.warn('Filter value does not match item type', filter, itemType);
+		}
+
+		return;
+	}
+
 	const fieldType = getFieldTypeForColumn(filter.key, itemType);
 
-	const validOperators = getOperatorsForFieldType(filter.key);
+	const validOperators = fieldType && getOperatorsForFieldType(fieldType);
 
-	if(!validOperators.includes(filter.operator))
+	if(!validOperators?.includes(filter.operator))
 	{
+		console.warn(`Invalid operator for field type: ${fieldType}`, itemType, filter);
 		return;
 	}
 

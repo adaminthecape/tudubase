@@ -1,3 +1,5 @@
+'use server';
+
 // Zencore: GenericDatabase handler that sends data to Drizzle ORM
 
 import { DbFilters, DbFilterHandler, DbFilterOperator } from "@/zencore/Filters";
@@ -40,7 +42,7 @@ export type DrizzleHandlerOpts = {
 	isDebugMode?: boolean;
 };
 
-export class DrizzleHandler
+class DrizzleHandler
 {
 	public db = drizzleDb;
 
@@ -304,4 +306,11 @@ export class DrizzleHandler
 			});
 		}
 	}
+}
+
+export async function getDrizzleHandler(opts: {
+	user?: any;
+})
+{
+	return new DrizzleHandler({});
 }
