@@ -391,12 +391,15 @@ export const en = {
 			lessThanOrEqualTo: 'Equal Or Less',
 		},
 		group: {
+			title: 'Group',
 			addGroupFilter: 'Add Group',
 			removeGroupFilter: 'Remove Group',
+			groupType: 'Group Type',
 		},
 		single: {
-			addSingleFilter: 'Add Single Filter',
-			removeSingleFilter: 'Remove Single Filter',
+			title: 'Filter',
+			addSingleFilter: 'Add Single',
+			removeSingleFilter: 'Remove',
 		}
 	}
 };
