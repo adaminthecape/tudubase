@@ -1,4 +1,4 @@
-import { eq, not, gt, gte, lt, lte, arrayContains } from "drizzle-orm";
+import { eq, not, gt, gte, lt, lte, arrayContains, like } from "drizzle-orm";
 import { PgTable, PgColumn } from "drizzle-orm/pg-core";
 import { DbFilterOperator, DbFilter } from "@/zencore/Filters";
 import { FieldType, ItemTypes } from "@/zencore/ItemTypes";
@@ -84,6 +84,9 @@ export function applyStringFilter(
 			break;
 		case DbFilterOperator.isNotEqual:
 			query.where(not(eq(col, filter.value)));
+			break;
+		case DbFilterOperator.fuzzyEqual:
+			query.where(like(col, `%${filter.value}%`));
 			break;
 		default:
 			break;
