@@ -1,22 +1,27 @@
-import { DbFilter, DbFilterGroup, DbFilterGroupType, DbFilterOperator, DbFilters } from "@/zencore/Filters";
-import { Nullable } from "@/zencore/ItemTypes";
+import { DbFilter, DbFilterGroup, DbFilters } from "@/zencore/Filters";
+import { ItemTypes, Nullable } from "@/zencore/ItemTypes";
 import { Utils } from "@/zencore/Utils";
 import ItemFilterGroupItem from "./ItemFilterGroupItem";
 import ItemFilterListItem from "./ItemFilterListItem";
 import { useState } from "react";
 import { Button, Stack } from "@mui/joy";
 import { getDefaultGroupFilter, getDefaultFilter } from "./utils";
+import I18N from "@/components/ui/I18N";
+import AddIcon from '@mui/icons-material/Add';
 
 export default function ItemFilterList({
 	itemType,
 	value,
 	setValue,
+	dense,
 }: {
-	itemType: string;
+	itemType: ItemTypes;
 	value: DbFilters;
 	setValue: (value: Nullable<DbFilters>) => void;
+	dense?: boolean;
 })
 {
+	const isDense = dense ?? true;
 	const [inputValue, setInputValue] = useState(value || []);
 
 	function addGroupFilter()
@@ -57,43 +62,67 @@ export default function ItemFilterList({
 					return (
 						<ItemFilterGroupItem
 							key={`group-${index}`}
-							item={item}
+							group={item}
 							itemType={itemType}
 							updateItem={(newItem) => updateItem(index, newItem)}
 							removeItem={() => removeItem(index)}
-						/>
-					);
-				}
-				else if(Utils.isSingleFilter(item))
-				{
-					return (
-						<ItemFilterListItem
-							key={`single-${index}`}
-							item={item}
-							itemType={itemType}
-							updateItem={(newItem) => updateItem(index, newItem)}
-							removeItem={() => removeItem(index)}
+							dense={isDense}
 						/>
 					);
 				}
 				else
 				{
-					return (<div>Unknown</div>);
+					return (
+						<ItemFilterListItem
+							key={`single-${index}`}
+							filter={item}
+							itemType={itemType}
+							updateItem={(newItem) => updateItem(index, newItem)}
+							removeItem={() => removeItem(index)}
+							dense={isDense}
+						/>
+					);
 				}
+				// else
+				// {
+				// 	return (<div>Unknown</div>);
+				// }
 			})}
 			<Stack spacing={1} direction="row" sx={{ justifyContent: 'center' }}>
-				<Button
-					size="sm"
-					onClick={addGroupFilter}
-				>
-					Add Group
-				</Button>
-				<Button
-					size="sm"
-					onClick={addSingleFilter}
-				>
-					Add Single Filter
-				</Button>
+				{dense ?
+					<Button
+						variant="soft"
+						size="sm"
+						onClick={addGroupFilter}
+					>
+						<AddIcon />
+						<I18N sid="filters.group.title" fontSize={12} />
+					</Button> :
+					<Button
+						variant="soft"
+						size="sm"
+						onClick={addGroupFilter}
+					>
+						<I18N sid="filters.group.addGroupFilter" />
+					</Button>
+				}
+				{dense ?
+					<Button
+						variant="soft"
+						size="sm"
+						onClick={addSingleFilter}
+					>
+						<AddIcon />
+						<I18N sid="filters.single.title" fontSize={12} />
+					</Button> :
+					<Button
+						variant="soft"
+						size="sm"
+						onClick={addSingleFilter}
+					>
+						<I18N sid="filters.single.addSingleFilter" />
+					</Button>
+				}
 			</Stack>
 		</Stack>
 	);

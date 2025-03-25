@@ -1,28 +1,31 @@
-import { FieldData, ItemTypes } from "@/zencore/ItemTypes";
-import { FormContainer } from "../FormContainer";
-import { useState } from "react";
+import { FieldData } from "@/zencore/ItemTypes";
+import TextInput from "../elements/TextInput";
 
 export default function FilterValueInput({
 	field,
-	itemType,
 	value,
 	updateValue,
 }: {
 	field?: FieldData;
-	itemType: ItemTypes;
 	value: unknown;
 	updateValue: (newValue: unknown) => void;
 })
 {
-	const [values, setValues] = useState({});
-	const [errors, setErrors] = useState({});
+	if(!field)
+	{
+		return (<div>No field</div>);
+	}
 
 	return (
-		<FormContainer
-			fields={field ? [field] : []}
-			values={values}
-			updateValues={setValues}
-			updateErrors={setErrors}
+		<TextInput
+			key={field.id}
+			field={field}
+			value={value}
+			updateValue={({ field, value, event }) =>
+			{
+				updateValue(value);
+			}}
+			updateError={() => {}}
 		/>
 	);
 }

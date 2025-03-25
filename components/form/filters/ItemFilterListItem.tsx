@@ -4,19 +4,23 @@ import { Button, Input, Select, Stack } from "@mui/joy";
 import { useEffect, useState } from "react";
 import FilterKeyInput from "./FilterKeyInput";
 import FilterOperatorInput from "./FilterOperatorInput";
-import { getFieldsForItemType } from "@/api/utils/fieldUtils";
+import { getFieldsForItemType } from "@/apiUtils/fieldUtils";
 import FilterValueInput from "./FilterValueInput";
+import I18N from "@/components/ui/I18N";
+import RemoveIcon from '@mui/icons-material/Remove';
 
 export default function ItemFilterListItem({
-	item,
+	filter: item,
 	itemType,
 	updateItem,
 	removeItem,
+	dense,
 }: {
-	item: DbFilter;
+	filter: DbFilter;
 	itemType: ItemTypes;
 	updateItem: (newItem: Nullable<DbFilter>) => void;
 	removeItem: () => void;
+	dense?: boolean;
 })
 {
 	const [inputVal, setInputVal] = useState(item || {});
@@ -32,7 +36,6 @@ export default function ItemFilterListItem({
 
 	function update(newValue: Nullable<DbFilter>)
 	{
-		console.log('update: filter:', newValue);
 		updateItem(newValue);
 	}
 
@@ -72,7 +75,7 @@ export default function ItemFilterListItem({
 			<FilterOperatorInput
 				value={filterOperator}
 				field={selectedField}
-				itemType={ItemTypes.Task}
+				itemType={itemType}
 				updateValue={(newValue) =>
 				{
 					setFilterOperator(newValue);
@@ -81,9 +84,8 @@ export default function ItemFilterListItem({
 			/>
 			{/* value input */}
 			<FilterValueInput
-				value={filterOperator}
+				value={filterValue}
 				field={selectedField}
-				itemType={ItemTypes.Task}
 				updateValue={(newValue) =>
 				{
 					setFilterValue(newValue);
@@ -92,7 +94,9 @@ export default function ItemFilterListItem({
 			/>
 			<div className="flex-1" />
 			{/* remove button */}
-			<Button size="sm" onClick={removeItem}>Remove</Button>
+			<Button variant="soft" size="sm" onClick={removeItem}>
+				{dense ? <RemoveIcon /> : <I18N sid="filters.single.removeSingleFilter" />}
+			</Button>
 		</Stack>
 	);
 }

@@ -1,6 +1,8 @@
+import { getOperatorsForFieldType } from "@/apiUtils/fieldUtils";
 import { DbFilterOperator } from "@/zencore/Filters";
 import { FieldData, ItemTypes } from "@/zencore/ItemTypes";
 import { Select, Option } from "@mui/joy";
+import { useEffect, useState } from "react";
 
 export default function FilterOperatorInput({
 	field,
@@ -15,14 +17,35 @@ export default function FilterOperatorInput({
 })
 {
 	// determine operators allowed for this field type
-	const allowedOperators = [];
+	const [operators, setOperators] = useState<DbFilterOperator[]>([]);
+	const [selectedOperator, setSelectedOperator] = useState<DbFilterOperator>();
 
-	// show a dropdown with the allowed operators
+	function init()
+	{
+		if(field?.fieldType)
+		{
+			const operators = getOperatorsForFieldType(field.fieldType);
+
+			if(Array.isArray(operators))
+			{
+				setOperators(operators);
+				setSelectedOperator(operators[0]);
+			}
+		}
+	}
+
+	useEffect(init, [field]);
 
 	return (
-		<Select>
-			<Option value="key1">Key 1</Option>
-			<Option value="key2">Key 2</Option>
+		<Select
+			value={value}
+			onChange={(e, newVal) => updateValue(newVal as DbFilterOperator)}
+		>
+			{operators.map((operator) => (
+				<Option key={operator} value={operator}>
+					{operator}
+				</Option>
+			))}
 		</Select>
 	);
 }
