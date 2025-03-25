@@ -4,6 +4,7 @@ import I18N from '@/components/ui/I18N';
 import GenericItemForm, { GenericItemFormProps } from "./GenericItemForm";
 import { JSX, useState } from "react";
 import { Modal, ModalClose, ModalDialog, Typography } from "@mui/joy";
+import React from "react";
 
 export type ItemEditButtonProps = {
 	icon?: JSX.Element;
@@ -14,12 +15,12 @@ export default function ItemEditButton(props: GenericItemFormProps & ItemEditBut
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	return (
-		<>
+		<React.Fragment>
 			<Button
 				color="primary"
 				variant="soft"
 				size="sm"
-				sx={{ display: { xs: 'none', md: 'inline-flex' } }}
+				sx={{ display: { xs: 'inline-flex', md: 'inline-flex' } }}
 				onClick={() => setIsModalOpen(true)}
 			>
 				{props.icon || <EditNoteRoundedIcon sx={{ mr: 0.25 }} />}
@@ -43,6 +44,6 @@ export default function ItemEditButton(props: GenericItemFormProps & ItemEditBut
 					</Stack>
 				</ModalDialog>
 			</Modal>
-		</>
+		</React.Fragment>
 	);
 }

@@ -1,4 +1,4 @@
-import { getFieldsForItemType } from "@/api/utils/fieldUtils";
+import { getFieldsForItemType } from "@/apiUtils/fieldUtils";
 import { useEffect, useState } from "react";
 import { FormContainer } from "../form/FormContainer";
 import { LoaderPinwheel } from "lucide-react";
@@ -31,7 +31,7 @@ export default function GenericItemForm(props: GenericItemFormProps)
 	const [fields, setFields] = useState<FieldData[] | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 
-	useEffect(() =>
+	function getFields()
 	{
 		setIsLoading(true);
 
@@ -48,11 +48,11 @@ export default function GenericItemForm(props: GenericItemFormProps)
 
 			setIsLoading(false);
 		});
-	}, [itemType]);
+	}
 
-	useEffect(() =>
+	function loadTargetItem()
 	{
-		if(!itemId)
+		if(!Uuid.isUuid(itemId))
 		{
 			setFormValues(initialValues);
 			setIsLoading(false);
@@ -74,7 +74,10 @@ export default function GenericItemForm(props: GenericItemFormProps)
 
 			setIsLoading(false);
 		});
-	}, [itemId]);
+	}
+
+	useEffect(getFields, []);
+	useEffect(loadTargetItem, []);
 
 	function onSubmit({ values, errors }: {
 		values: Record<string, unknown>;
@@ -82,7 +85,11 @@ export default function GenericItemForm(props: GenericItemFormProps)
 	}): void
 	{
 		console.log('Submit:', values, errors);
-		if(Utils.isPopulatedObject(errors) && Object.keys(errors).length)
+		if(
+			Utils.isPopulatedObject(errors) &&
+			Object.keys(errors).length &&
+			Object.values(errors).some((v) => !!v)
+		)
 		{
 			setFormErrors(errors);
 			return;
@@ -94,25 +101,27 @@ export default function GenericItemForm(props: GenericItemFormProps)
 
 			setItemId?.(id);
 
-			createItem({
-				id,
-				itemType,
-				data: values
-			}).then((response) =>
-			{
-				console.log('Create item response:', response);
-			});
+			console.log('DUMMY CREATE', itemType, itemId, values);
+			// createItem({
+			// 	id,
+			// 	itemType,
+			// 	data: values
+			// }).then((response) =>
+			// {
+			// 	console.log('Create item response:', response);
+			// });
 		}
 		else
 		{
-			updateItem({
-				id: itemId,
-				itemType,
-				data: values
-			}).then((response) =>
-			{
-				console.log('Update item response:', response);
-			});
+			console.log('DUMMY UPDATE', itemType, itemId, values);
+			// updateItem({
+			// 	id: itemId,
+			// 	itemType,
+			// 	data: values
+			// }).then((response) =>
+			// {
+			// 	console.log('Update item response:', response);
+			// });
 		}
 	}
 
@@ -128,13 +137,15 @@ export default function GenericItemForm(props: GenericItemFormProps)
 	}
 
 	return (
-		<FormContainer
-			fields={fields}
-			values={formValues}
-			updateValues={setFormValues}
-			updateErrors={setFormErrors}
-			showSubmit
-			submitFn={onSubmit}
-		/>
+		<>
+			<FormContainer
+				fields={fields}
+				values={formValues}
+				updateValues={setFormValues}
+				updateErrors={setFormErrors}
+				showSubmit
+				submitFn={onSubmit}
+			/>
+		</>
 	);
 }
