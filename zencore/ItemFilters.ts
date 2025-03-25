@@ -1,4 +1,4 @@
-import { getFieldsForItemType, getOperatorsForFieldType } from "./DrizzleUtils";
+import { getFieldsForItemTypeSync, getOperatorsForFieldType } from "@/apiUtils/fieldUtils";
 import { DbFilterOperator, DbFilterHandler, DbFilters, DbFilter } from "./Filters";
 import { FieldData, ItemTypes } from "./ItemTypes";
 
@@ -18,7 +18,7 @@ export class ItemSearchFilterHandler
 		filters?: DbFilters;
 	})
 	{
-		this.fields = getFieldsForItemType(opts.itemType) || [];
+		this.fields = getFieldsForItemTypeSync(opts.itemType) || [];
 		this.filters = new DbFilterHandler({ filters: opts.filters });
 	}
 

@@ -248,6 +248,7 @@ export class CustomItemHandler<T = CustomItemItem>
 	}): Promise<PaginatedItemResponse<Item<T>>>
 	{
 		const itemType = this.typeId;
+		const { filters, pagination } = opts;
 
 		if(!('selectMultiple' in this.db && typeof this.db.selectMultiple === 'function'))
 		{
@@ -258,11 +259,9 @@ export class CustomItemHandler<T = CustomItemItem>
 
 		const searchResults = await this.db.selectMultiple({
 			itemType,
-			filters: opts.filters,
-			pagination: opts.pagination,
+			filters,
+			pagination,
 		});
-
-		console.log('search:', this.typeId, searchResults);
 
 		return searchResults;
 	}
