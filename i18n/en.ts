@@ -16,7 +16,10 @@ export const en = {
 		},
 		test: {
 			title: 'Testing'
-		}
+		},
+		quests: {
+			title: 'Quests'
+		},
 	},
 	items: {
 		Archetype: {
@@ -400,6 +403,25 @@ export const en = {
 			title: 'Filter',
 			addSingleFilter: 'Add Single',
 			removeSingleFilter: 'Remove',
+		}
+	},
+	character: {
+		stats: {
+			Health: {
+				title: 'Health'
+			},
+			Mana: {
+				title: 'Mana'
+			},
+			Strength: {
+				title: 'Strength'
+			},
+			Agility: {
+				title: 'Agility'
+			},
+			Intelligence: {
+				title: 'Intelligence'
+			}
 		}
 	}
 };
