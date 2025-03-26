@@ -13,7 +13,7 @@ import { fieldsForTask } from "@/zencore/arch/Task";
 import { fieldsForTaskActivity } from "@/zencore/arch/TaskActivity";
 import { ItemTypes, FieldData, FieldType } from "@/zencore/ItemTypes";
 import { Utils } from "@/zencore/Utils";
-import { DbFilterOperator } from "@/zencore/Filters";
+import { DbFilter, DbFilterHandler, DbFilterOperator } from "@/zencore/Filters";
 
 /**
  * Yes, async - this is intentional. This is to allow for the possibility of
@@ -183,4 +183,21 @@ export function getFieldTypeForColumn(
 	const fields = getFieldsForItemTypeSync(itemType as ItemTypes);
 
 	return fields?.find((f) => f.key === fieldKey)?.fieldType ?? undefined;
+}
+
+export function addFilterForItemType(opts: {
+	itemType: ItemTypes;
+	handler: DbFilterHandler;
+	filter: DbFilter;
+}): DbFilterHandler
+{
+	const fields = getFieldsForItemTypeSync(opts.itemType);
+	const keys = fields?.map((f) => f.key);
+
+	if(keys?.includes(opts.filter.key))
+	{
+		opts.handler.updateFilter(opts.filter);
+	}
+
+	return opts.handler;
 }
