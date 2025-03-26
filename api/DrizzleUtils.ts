@@ -1,9 +1,9 @@
-import { eq, not, gt, gte, lt, lte, arrayContains, like } from "drizzle-orm";
+import { eq, not, gt, gte, lt, lte, arrayContains, like, arrayOverlaps, sql, inArray } from "drizzle-orm";
 import { PgTable, PgColumn } from "drizzle-orm/pg-core";
 import { DbFilterOperator, DbFilter } from "@/zencore/Filters";
 import { FieldType, ItemTypes } from "@/zencore/ItemTypes";
 import { Utils } from "@/zencore/Utils";
-import { getFieldTypeForColumn, getOperatorsForFieldType } from "@/apiUtils/fieldUtils";
+import { arrayOperators, getFieldTypeForColumn, getOperatorsForFieldType, stringOperators } from "@/apiUtils/fieldUtils";
 
 // Filter validation
 type ValidFilter<T> = {
@@ -153,12 +153,22 @@ export function applyArrayFilter(
 	switch(filter.operator)
 	{
 		case DbFilterOperator.in:
-		case DbFilterOperator.arrayContains:
-		case DbFilterOperator.arrayContainsAny:
-			query.where(arrayContains(col, filter.value));
+			query.where(inArray(col, filter.value));
 			break;
 		case DbFilterOperator.notIn:
+			query.where(not(inArray(col, filter.value)));
+			break;
+		case DbFilterOperator.arrayContains:
+			query.where(arrayContains(col, filter.value));
+			break;
+		case DbFilterOperator.notArrayContains:
 			query.where(not(arrayContains(col, filter.value)));
+			break;
+		case DbFilterOperator.arrayContainsAny:
+			query.where(arrayOverlaps(col, filter.value));
+			break;
+		case DbFilterOperator.notArrayContainsAny:
+			query.where(not(arrayOverlaps(col, filter.value)));
 			break;
 		default:
 			break;
@@ -183,7 +193,32 @@ export function applyFilter(
 {
 	if(filter.key === 'typeId')
 	{
-		if(filter.value == itemType)
+		// if(filter.value == itemType)
+		// {
+		// 	applyStringFilter(query, table, filter);
+		// }
+		// else if(arrayOperators.includes(filter.operator))
+		// {
+		// 	applyArrayFilter(query, table, filter);
+		// }
+		// else
+		// {
+		// 	// not sure what's going on here, but it's wrong
+		// 	console.warn('Filter value does not match item type', filter, itemType);
+		// }
+
+		// Item types are separated by table, so this is not necessary
+		return;
+	}
+
+
+	if(filter.key === 'id')
+	{
+		if(arrayOperators.includes(filter.operator))
+		{
+			applyArrayFilter(query, table, filter);
+		}
+		else if(stringOperators.includes(filter.operator))
 		{
 			applyStringFilter(query, table, filter);
 		}
@@ -195,7 +230,6 @@ export function applyFilter(
 
 		return;
 	}
-
 	const fieldType = getFieldTypeForColumn(filter.key, itemType);
 
 	const validOperators = fieldType && getOperatorsForFieldType(fieldType);

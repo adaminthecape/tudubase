@@ -342,6 +342,8 @@ export class ItemHandler implements ItemData
 				itemType: this.typeId,
 				data: this.getData(),
 			});
+
+			console.log(`Created item ${this.typeId} ${this.id}`);
 		}
 		catch(e)
 		{

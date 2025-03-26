@@ -186,10 +186,10 @@ export type SelectTaskMaster = typeof taskMastersTable.$inferSelect;
 
 export const taskActivitiesTable = pgTable('task_activities_table', {
 	...defaultItemSchema,
-	taskId: text('task_id'),
+	taskId: uuid('task_id'),
 	activityType: text('activity_type'),
 	description: text('description'),
-	targetUserId: boolean('target_user_id'),
+	targetUserId: text('target_user_id'),
 }).enableRLS();
 
 export type InsertTaskActivity = typeof taskActivitiesTable.$inferInsert;

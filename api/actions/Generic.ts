@@ -52,11 +52,11 @@ export async function getItemHandler(opts: {
 	return handler;
 }
 
-export async function createItem<T = Partial<Item<Record<string, unknown>>>>(opts: {
+export async function createItem<T = Record<string, unknown>>(opts: {
 	itemType: ItemTypes;
 	id: string;
-	data: T;
-}): Promise<ActionResponse>
+	data: Partial<Item<T>>;
+}): Promise<ActionResponse<Item<T>>>
 {
 	const { id, itemType, data } = opts;
 	console.log('createItem:', opts);
@@ -118,14 +118,15 @@ export async function createItem<T = Partial<Item<Record<string, unknown>>>>(opt
 
 	return {
 		success: true,
+		data: handler.getData() as Item<T>,
 	};
 }
 
-export async function updateItem(opts: {
+export async function updateItem<T = Record<string, unknown>>(opts: {
 	itemType: ItemTypes;
 	id: string;
-	data: Partial<Item<Record<string, unknown>>>;
-}): Promise<ActionResponse<Item<Record<string, unknown>>>>
+	data: Partial<Item<T>>;
+}): Promise<ActionResponse<Item<T>>>
 {
 	const { id, itemType } = opts;
 
@@ -171,7 +172,7 @@ export async function updateItem(opts: {
 		// nothing to change
 		return {
 			success: true,
-			data: handler.getData(),
+			data: handler.getData() as Item<T>,
 		};
 	}
 
@@ -193,16 +194,15 @@ export async function updateItem(opts: {
 
 	return {
 		success: true,
-		data: handler.getData(),
+		data: handler.getData() as Item<T>,
 	};
 }
 
-export async function loadItem(opts: {
+export async function loadItem<T = Record<string, unknown>>(opts: {
 	itemType: ItemTypes;
 	id: string;
-}): Promise<ActionResponse<Item<Record<string, unknown>> | undefined>>
+}): Promise<ActionResponse<Item<T> | undefined>>
 {
-	console.log('loadItem:', opts);
 	if(!opts?.id)
 	{
 		return {
@@ -214,7 +214,6 @@ export async function loadItem(opts: {
 	const { id, itemType } = opts;
 
 	const handler = await getItemHandler({ id, itemType });
-	console.log('loadItem: handler', handler);
 
 	if(!handler)
 	{
@@ -225,8 +224,6 @@ export async function loadItem(opts: {
 	}
 
 	const loadedItem = await handler.load();
-
-	console.log('loadItem:', loadedItem);
 
 	if(!loadedItem)
 	{
@@ -239,15 +236,15 @@ export async function loadItem(opts: {
 
 	return {
 		success: true,
-		data: handler.getData(),
+		data: handler.getData() as Item<T>,
 	};
 }
 
-export async function searchItems(opts: {
+export async function searchItems<T = Record<string, unknown>>(opts: {
 	itemType: ItemTypes;
 	filters?: DbFilters;
 	pagination?: DbPaginationOpts;
-}): Promise<ActionResponse<PaginatedItemResponse<Item<Record<string, unknown>>>>>
+}): Promise<ActionResponse<PaginatedItemResponse<Item<T>>>>
 {
 	const { itemType, pagination } = opts;
 	let { filters } = opts;
@@ -274,7 +271,7 @@ export async function searchItems(opts: {
 
 	return {
 		success: true,
-		data: response,
+		data: response as PaginatedItemResponse<Item<T>>,
 	};
 }
 

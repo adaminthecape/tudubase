@@ -29,7 +29,7 @@ function applyFilters(
 			continue;
 		}
 
-		applyFilter(query, table, filter, itemType);
+		applyFilter(query, table, filter, itemType as ItemTypes);
 	}
 }
 
@@ -144,7 +144,9 @@ class DrizzleHandler
 			return;
 		}
 
-		await this.db.insert(table).values(handler.getData());
+		const values = handler.getData();
+
+		await this.db.insert(table).values(values);
 	}
 
 	public async insertMultiple(opts: {

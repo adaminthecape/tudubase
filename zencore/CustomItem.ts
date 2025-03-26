@@ -71,17 +71,17 @@ export class CustomItemHandler<T = CustomItemItem>
 	{
 		const { key, value, field } = opts;
 
-		console.log('FAILED (c):', key, value);
-		// console.log('FAILED (c):', {
-		// 	key,
-		// 	value,
-		// 	type: typeof value,
-		// 	field: field.key,
-		// 	message: this.validator.validateField({
-		// 		field,
-		// 		value
-		// 	}).message
-		// });
+		// console.log('FAILED (c):', key, value);
+		console.log('FAILED (c):', {
+			key,
+			value,
+			type: typeof value,
+			field: field.key,
+			message: this.validator.validateField({
+				field,
+				value
+			}).message
+		});
 	}
 
 	protected override setIfValid<T = unknown>(opts: {

@@ -155,7 +155,7 @@ export function getItemHandler(opts: {
 			return new TagHandler(handlerOpts);
 		case ItemTypes.Task:
 			return new TaskHandler(handlerOpts);
-		case ItemTypes.Task:
+		case ItemTypes.TaskActivity:
 			return new TaskActivityHandler(handlerOpts);
 		case ItemTypes.TaskMaster:
 			return new TaskMasterHandler(handlerOpts);

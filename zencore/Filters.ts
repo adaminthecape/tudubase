@@ -11,8 +11,10 @@ export enum DbFilterOperator
 	fuzzyEqual = '~',
 	isEqual = '==',
 	isNotEqual = '!=',
-	arrayContains = 'array-contains',
-	arrayContainsAny = 'array-contains-any',
+	arrayContains = 'ac',
+	notArrayContains = 'nac',
+	arrayContainsAny = 'aca',
+	notArrayContainsAny = 'naca',
 	in = 'in',
 	notIn = 'not-in'
 };
@@ -349,6 +351,19 @@ export class DbFilterHandler
 		return filters.every((filter) => (
 			DbFilterHandler.processFilterOrGroup(filter, item)
 		));
+	}
+
+	public static create(
+		key: string,
+		operator: `${DbFilterOperator}`,
+		value: unknown
+	): DbFilter
+	{
+		return {
+			key,
+			operator,
+			value,
+		};
 	}
 
 	public applyFiltersToItem(item: unknown): boolean
