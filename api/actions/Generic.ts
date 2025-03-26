@@ -52,10 +52,10 @@ export async function getItemHandler(opts: {
 	return handler;
 }
 
-export async function createItem(opts: {
+export async function createItem<T = Partial<Item<Record<string, unknown>>>>(opts: {
 	itemType: ItemTypes;
 	id: string;
-	data: Partial<Item<Record<string, unknown>>>;
+	data: T;
 }): Promise<ActionResponse>
 {
 	const { id, itemType, data } = opts;
@@ -202,6 +202,7 @@ export async function loadItem(opts: {
 	id: string;
 }): Promise<ActionResponse<Item<Record<string, unknown>> | undefined>>
 {
+	console.log('loadItem:', opts);
 	if(!opts?.id)
 	{
 		return {
@@ -213,6 +214,7 @@ export async function loadItem(opts: {
 	const { id, itemType } = opts;
 
 	const handler = await getItemHandler({ id, itemType });
+	console.log('loadItem: handler', handler);
 
 	if(!handler)
 	{
@@ -222,11 +224,13 @@ export async function loadItem(opts: {
 		};
 	}
 
-	const task = await handler.load();
+	const loadedItem = await handler.load();
 
-	if(!task)
+	console.log('loadItem:', loadedItem);
+
+	if(!loadedItem)
 	{
-		// task does not exist
+		// item does not exist
 		return {
 			success: false,
 			message: `Item with ID ${opts.id} not found`,
