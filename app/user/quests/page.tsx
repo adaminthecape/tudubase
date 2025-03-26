@@ -18,11 +18,11 @@ export default function QuestPage()
 	useInitJoyTheme();
 
 	return (
-		<Stack spacing={0.5} sx={{}}>
+		<Stack spacing={0.5} direction={'column'}>
 			<CharacterView>
-				<CharacterEquipment />
-				<CharacterInventory />
 				<CharacterStats />
+				<CharacterInventory />
+				<CharacterEquipment />
 			</CharacterView>
 		</Stack>
 	);
