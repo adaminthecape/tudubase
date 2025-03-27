@@ -65,7 +65,7 @@ export const fieldsForEquipmentType: FieldData[] = [
 		typeId: 'Field',
 		key: 'slots',
 		label: 'Slots',
-		fieldType: FieldType.dropdown,
+		fieldType: FieldType.multiSelect,
 		options: Object.values(EquipmentSlotType)
 	},
 	{
@@ -141,6 +141,11 @@ export interface EquipmentType
 	description: Nullable<string>;
 	icon: Nullable<string>;
 	slots: Nullable<string[]>;
+	healthModifier: Nullable<number>;
+	manaModifier: Nullable<number>;
+	strengthModifier: Nullable<number>;
+	agilityModifier: Nullable<number>;
+	intelligenceModifier: Nullable<number>;
 }
 
 export const ITEM_TYPE = ItemTypes.EquipmentType;
