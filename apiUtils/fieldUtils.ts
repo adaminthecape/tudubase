@@ -141,12 +141,16 @@ export const stringOperators = [
 	DbFilterOperator.isEqual,
 	DbFilterOperator.isNotEqual,
 	DbFilterOperator.fuzzyEqual,
+	DbFilterOperator.in,
+	DbFilterOperator.notIn,
 ];
 export const arrayOperators = [
 	DbFilterOperator.in,
-	DbFilterOperator.arrayContains,
-	DbFilterOperator.arrayContainsAny,
 	DbFilterOperator.notIn,
+	DbFilterOperator.arrayContains,
+	DbFilterOperator.notArrayContains,
+	DbFilterOperator.arrayContainsAny,
+	DbFilterOperator.notArrayContainsAny,
 ]
 
 export function getOperatorsForFieldType(fieldType: string): DbFilterOperator[]
