@@ -9,15 +9,20 @@ import { Button, Stack } from "@mui/joy";
 import { JSX, useState } from "react";
 import ItemFiltersInput from "../form/elements/ItemFiltersInput";
 import Pagination from "./Pagination";
+import { SxProps } from "@mui/material";
 
 export type ItemSearchContainerProps = {
 	itemType: ItemTypes;
 	renderResult?: (item: Item<Record<string, unknown>>) => JSX.Element;
+	renderResults?: (items: Item<Record<string, unknown>>[]) => JSX.Element;
+	sx?: SxProps;
 };
 
 export default function ItemSearchContainer({
 	itemType,
 	renderResult,
+	renderResults,
+	sx,
 }: ItemSearchContainerProps)
 {
 	// Function:
@@ -100,7 +105,13 @@ export default function ItemSearchContainer({
 	}
 
 	return (
-		<Stack direction={'column'} spacing={1} sx={{ width: '50vw' }}>
+		<Stack direction={'column'} spacing={1} sx={{
+			width: {
+				xs: 'calc(100vw - 3rem)',
+				sm: 'calc(100vw - 3rem)',
+				md: '50vw',
+				lg: '50vw',
+		}, ...sx }}>
 			{/* Search Filters */}
 			<ItemFiltersInput
 				itemType={itemType}
@@ -116,7 +127,9 @@ export default function ItemSearchContainer({
 				updateError={() => {}}
 			/>
 			{/* Search Results */}
-			{results.map((result) => (renderResult ? renderResult(result) : JSON.stringify(result)))}
+			{renderResults ? (renderResults(results)) : null}
+			{/* Search Results */}
+			{renderResult ? results.map((result) => (renderResult(result))) : null}
 			{/* Pagination */}
 			<Pagination
 				{...pagination}
