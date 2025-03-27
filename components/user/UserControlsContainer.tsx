@@ -1,5 +1,7 @@
 import UserControls from "@/components/user/UserControls";
 import { createClient } from "@/utils/supabase/server";
+import { CssVarsProvider } from "@mui/joy";
+import { ThemeProvider } from "next-themes";
 
 export default async function UserControlsContainer()
 {
@@ -20,9 +22,18 @@ export default async function UserControlsContainer()
 
 	return (
 		
-		<UserControls
-			userId={user?.id}
-			userEmail={user?.email ? trimEmail(user.email) : ''}
-		/>
+		<ThemeProvider
+			attribute="class"
+			defaultTheme="system"
+			enableSystem
+			disableTransitionOnChange
+		>
+			<CssVarsProvider>
+				<UserControls
+					userId={user?.id}
+					userEmail={user?.email ? trimEmail(user.email) : ''}
+				/>
+			</CssVarsProvider>
+		</ThemeProvider>
 	);
 }
