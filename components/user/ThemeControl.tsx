@@ -5,10 +5,13 @@ import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import I18N from "../ui/I18N";
+import { useInitJoyTheme } from "@/hooks/useInitJoyTheme";
 
 const ThemeControl = () => {
 	const [mounted, setMounted] = useState(false);
-	const { theme, setTheme } = useTheme();
+	const { theme, setTheme: setBaseTheme } = useTheme();
+
+	const { setJoyTheme } = useInitJoyTheme();
 
 	useEffect(() =>
 	{
@@ -18,6 +21,12 @@ const ThemeControl = () => {
 	if(!mounted) 
 	{
 		return null;
+	}
+
+	function setTheme(theme: string)
+	{
+		setJoyTheme(theme);
+		setBaseTheme(theme);
 	}
 
 	const ICON_SIZE = 16;
