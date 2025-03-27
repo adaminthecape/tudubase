@@ -6,6 +6,7 @@ import { CharacterEquipment } from "@/components/character/CharacterEquipment";
 import { CharacterInventory } from "@/components/character/CharacterInventory";
 import { CharacterStats } from "@/components/character/CharacterStats";
 import { CharacterView } from "@/components/character/CharacterView";
+import { SxProps } from "@mui/material";
 
 /**
  * Main Character Page
@@ -16,6 +17,10 @@ import { CharacterView } from "@/components/character/CharacterView";
 export default function QuestPage()
 {
 	useInitJoyTheme();
+
+	const sxStackProps: SxProps = {
+		maxHeight: '800px',
+	};
 
 	return (
 		<Stack
@@ -29,8 +34,10 @@ export default function QuestPage()
 					spacing={4}
 					padding={2}
 				>
-					<CharacterEquipment />
-					<CharacterInventory />
+					<CharacterEquipment sx={sxStackProps} />
+					<CharacterInventory sx={{
+						maxHeight: '600px',
+					}} />
 				</Stack>
 			</CharacterView>
 		</Stack>

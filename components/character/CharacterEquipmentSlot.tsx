@@ -1,5 +1,5 @@
-import { EquipmentType } from "@/zencore/arch/EquipmentType";
-import { Box, Stack } from "@mui/joy";
+import { EquipmentSlotType, EquipmentType } from "@/zencore/arch/EquipmentType";
+import { Stack } from "@mui/joy";
 import bg from './char_bg_c.png'
 import { Item } from "@/zencore/ItemTypes";
 
@@ -9,10 +9,12 @@ import { Item } from "@/zencore/ItemTypes";
  */
 
 export type CharacterEquipmentSlotProps = {
+	slotName: EquipmentSlotType;
 	equipmentType: Item<EquipmentType>;
 };
 
 export function CharacterEquipmentSlot({
+	slotName,
 	equipmentType,
 }:  CharacterEquipmentSlotProps)
 {
@@ -41,4 +43,13 @@ export function CharacterEquipmentSlot({
 			{equipmentType ? JSON.stringify(equipmentType) : undefined}
 		</Stack>
 	);
+}
+
+async function generateEquipment(): Promise<Item<EquipmentType>>
+{
+	const baseData: EquipmentType = {
+		name: 'Test Equipment',
+		armor: 10,
+		damage: 5,
+	};
 }

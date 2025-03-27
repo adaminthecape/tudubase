@@ -26,7 +26,7 @@ export function CharacterEquipment(props: CharacterEquipmentProps)
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: '100%',
 				width: width,
-				maxWidth: { xs: '200px', sm: '300px', md: '400px', lg: '540px' },
+				maxWidth: { xs: 'calc(100dvw - 4rem)', sm: 'calc(100dvw - 4rem)', md: '525px', lg: '525px' },
 				height: `calc(${width} * 1.25)`,
 				flexWrap: 'wrap',
 				justifyContent: 'center',
@@ -40,7 +40,7 @@ export function CharacterEquipment(props: CharacterEquipmentProps)
 			</Stack>
 			<Stack spacing={2} direction="row">
 				<CharacterEquipmentSlot equipmentType="MainHand" />
-				<CharacterEquipmentSlot equipmentType="MainArmor" />
+				<CharacterEquipmentSlot equipmentType="Armor" />
 				<CharacterEquipmentSlot equipmentType="OffHand" />
 			</Stack>
 			<Stack spacing={6} direction="row">
