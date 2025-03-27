@@ -4,10 +4,14 @@ import Sheet from '@mui/joy/Sheet';
 import TaskActivityList from '@/components/tasks/messages/TaskActivityList';
 import TaskCollectionList from '@/components/tasks/collections/TaskCollectionList';
 import { useInitJoyTheme } from '@/hooks/useInitJoyTheme';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CollectionListItem } from '@/components/tasks/types';
 import { Utils } from '@/zencore/Utils';
 import { ItemTypes, TaskActivityType } from '@/zencore/ItemTypes';
+import { searchItems } from '@/api/actions/Generic';
+import { Collection } from '@/zencore/arch/Collection';
+import { useTheme } from 'next-themes';
+import { getCollectionAndTaskAndActivityData } from './utils';
 
 /**
  * TaskMessagesView component
@@ -37,9 +41,9 @@ const dummyTask = {
 };
 const dummyItems: CollectionListItem[] = [
 	{
-		id: 'col1',
+		id: 'cb189579-0698-479b-b14f-d1e86f162d23',
 		typeId: ItemTypes.Collection,
-		collectionId: '1',
+		collectionId: 'cb189579-0698-479b-b14f-d1e86f162d23',
 		name: 'Collection 1',
 		description: 'Collection 1',
 		items: [dummyTask.id],
@@ -64,9 +68,9 @@ const dummyItems: CollectionListItem[] = [
 		} as any,
 	},
 	{
-		id: 'col2',
+		id: 'cb189579-0698-479b-b14f-d1e86f162d27',
 		typeId: ItemTypes.Collection,
-		collectionId: '2',
+		collectionId: 'cb189579-0698-479b-b14f-d1e86f162d27',
 		name: 'Collection 2',
 		description: 'Collection 2',
 		items: [dummyTask.id],
@@ -94,16 +98,48 @@ const dummyItems: CollectionListItem[] = [
 
 export default function TaskMessagesView() 
 {
-	useInitJoyTheme();
+	const { baseTheme, setBaseTheme, joyTheme, setJoyTheme } = useInitJoyTheme();
 
 	const [
 		items,
 		setItems
-	] = useState<CollectionListItem[]>(dummyItems as any);
+	] = useState<CollectionListItem[]>([]);
 	const [
 		selectedItem,
 		setSelectedItem
 	] = useState<CollectionListItem>(items[0]);
+
+	async function getCollections()
+	{
+		const collections = await searchItems<Collection>({
+			itemType: ItemTypes.Collection,
+			filters: [],
+		})
+
+		console.log('getCollections:', collections.data?.results);
+
+		return collections.data?.results || [];
+	}
+
+	useEffect(() =>
+	{
+		getCollections().then((collections) =>
+		{
+			const mappedCollections = collections.map((collection) =>
+			{
+				return {
+					...collection,
+					collectionId: collection.id,
+					hasActiveTasks: false,
+					hasDueTasks: false,
+					lastActivity: undefined,
+					taskMaster: undefined,
+				};
+			});
+			setItems(mappedCollections);
+			setSelectedItem(mappedCollections[0]);
+		});
+	}, []);
 
 	return (
 		<Sheet
@@ -129,12 +165,13 @@ export default function TaskMessagesView()
 					transition: 'transform 0.4s, width 0.4s',
 					zIndex: 100,
 					width: '100%',
+					height: '100dvh',
 					top: 52,
 				}}
 			>
 				<TaskCollectionList
 					listItems={items}
-					selectedItemId={selectedItem.id}
+					selectedItemId={selectedItem?.id}
 					setSelectedItem={setSelectedItem}
 				/>
 			</Sheet>
