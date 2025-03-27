@@ -44,12 +44,3 @@ export function CharacterEquipmentSlot({
 		</Stack>
 	);
 }
-
-async function generateEquipment(): Promise<Item<EquipmentType>>
-{
-	const baseData: EquipmentType = {
-		name: 'Test Equipment',
-		armor: 10,
-		damage: 5,
-	};
-}
