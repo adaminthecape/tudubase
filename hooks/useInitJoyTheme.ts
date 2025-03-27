@@ -4,8 +4,8 @@ import { useEffect } from "react";
 
 export function useInitJoyTheme()
 {
-	const { setMode } = useColorScheme();
-	const { theme } = useTheme();
+	const { mode, setMode } = useColorScheme();
+	const { theme, setTheme } = useTheme();
 
 	function setJoyTheme(t: unknown)
 	{
@@ -22,4 +22,11 @@ export function useInitJoyTheme()
 	{
 		setJoyTheme(theme);
 	}, [theme]);
+
+	return {
+		joyTheme: mode,
+		setJoyTheme,
+		baseTheme: theme,
+		setBaseTheme: setTheme,
+	};
 }
