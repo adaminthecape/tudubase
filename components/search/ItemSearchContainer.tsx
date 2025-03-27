@@ -5,18 +5,19 @@ import { DbFilterHandler, DbFilters } from "@/zencore/Filters";
 import { FieldData, FieldType, Item, ItemTypes, Nullable } from "@/zencore/ItemTypes";
 import { DbPaginationOpts, PaginationHandler } from "@/zencore/Pagination";
 import { Utils, Uuid } from "@/zencore/Utils";
-import { Button } from "@mui/joy";
-import { useState } from "react";
-import ItemSearchFilters from "./ItemSearchFilters";
+import { Button, Stack } from "@mui/joy";
+import { JSX, useState } from "react";
 import ItemFiltersInput from "../form/elements/ItemFiltersInput";
-import { GenericInputProps } from "../form/elements/GenericInput";
+import Pagination from "./Pagination";
 
 export type ItemSearchContainerProps = {
 	itemType: ItemTypes;
+	renderResult?: (item: Item<Record<string, unknown>>) => JSX.Element;
 };
 
 export default function ItemSearchContainer({
 	itemType,
+	renderResult,
 }: ItemSearchContainerProps)
 {
 	// Function:
@@ -25,56 +26,30 @@ export default function ItemSearchContainer({
 	// 3. Renders the search results
 	// 4. Handles the search results pagination
 
+	const [filters, setFilters] = useState<DbFilters>([]);
+	const [pagination, setPagination] = useState<DbPaginationOpts>({});
+	const [results, setResults] = useState<Item<Record<string, unknown>>[]>([]);
+
 	const pag = new PaginationHandler({});
 	const fil = new DbFilterHandler({});
 
-	const [filters, setFilters] = useState<DbFilters>({});
-	const [pagination, setPagination] = useState<DbPaginationOpts>({});
+	pag.setPageSize(5);
 
 	function updatePagination(newPagination: DbPaginationOpts): void
 	{
-		if(!newPagination)
-		{
-			return;
-		}
-
-		if(newPagination.page)
-		{
-			pag.setPage(newPagination.page);
-		}
-
-		if(newPagination.pageSize)
-		{
-			pag.setPageSize(newPagination.pageSize);
-		}
-
-		if(newPagination.sortBy)
-		{
-			pag.setSort(newPagination.sortBy);
-		}
-
-		if(newPagination.sortOrder)
-		{
-			pag.setSortDirection(newPagination.sortOrder === 'asc' ? 'asc' : 'desc');
-		}
-
-		if(newPagination.totalRows)
-		{
-			pag.setTotal(newPagination.totalRows);
-		}
-
+		pag.updatePagination(newPagination);
 		setPagination(pag.pagination);
-	}
 
-	const [results, setResults] = useState<Item<Record<string, unknown>>[]>([]);
+		console.log('newPagination:', newPagination?.page, pag.pagination?.page);
+	}
 
 	// call to server function for search
 	async function executeSearch()
 	{
 		const searchOpts: Parameters<typeof searchItems>[0] = {
 			itemType,
-			filters,
-			pagination,
+			filters: fil.filters,
+			pagination: pag.pagination,
 		};
 
 		const { success, data } = await searchItems(searchOpts);
@@ -117,13 +92,15 @@ export default function ItemSearchContainer({
 		value: Nullable<DbFilters>;
 	}): void
 	{
-		console.log('updateSelectedFilters:', field, value);
-		if(value) fil.updateFilters(value);
-		setFilters(fil.filters);
+		if(value)
+		{
+			fil.updateFilters(value);
+			setFilters(fil.filters);
+		}
 	}
 
 	return (
-		<>
+		<Stack direction={'column'} spacing={1} sx={{ width: '50vw' }}>
 			{/* Search Filters */}
 			<ItemFiltersInput
 				itemType={itemType}
@@ -139,11 +116,18 @@ export default function ItemSearchContainer({
 				updateError={() => {}}
 			/>
 			{/* Search Results */}
-			<pre>{JSON.stringify(results || {}, undefined, 4)}</pre>
+			{results.map((result) => (renderResult ? renderResult(result) : JSON.stringify(result)))}
 			{/* Pagination */}
-			{JSON.stringify(pagination || {})}
+			<Pagination
+				{...pagination}
+				setPage={(page) =>
+				{
+					updatePagination({ ...pagination, page });
+					executeSearch();
+				}}
+			/>
 			{/* Search button */}
 			<Button onClick={executeSearch}>Search</Button>
-		</>
+		</Stack>
 	);
 }
