@@ -3,12 +3,15 @@ import { getFieldsForItemTypeSync } from "@/apiUtils/fieldUtils";
 import { DbFilter, DbFilterHandler, DbFilters } from "@/zencore/Filters";
 import { ItemTypes } from "@/zencore/ItemTypes";
 import { Stack } from "@mui/joy";
+import { SxProps } from "@mui/material";
 import { useEffect } from "react";
 
 export function CharacterView({
 	children,
+	sx,
 }: {
 	children: React.ReactNode;
+	sx?: SxProps;
 })
 {
 	// get the character stats from the db
@@ -31,7 +34,11 @@ export function CharacterView({
 	useEffect(getCharacterDetails, []);
 
 	return (
-		<Stack spacing={1} direction="column">
+		<Stack
+			spacing={1}
+			direction="column"
+			sx={sx}
+		>
 			{children}
 		</Stack>
 	);
