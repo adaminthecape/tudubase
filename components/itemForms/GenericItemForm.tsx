@@ -7,11 +7,12 @@ import { FieldData, Item, ItemTypes } from "@/zencore/ItemTypes";
 import { Utils, Uuid } from "@/zencore/Utils";
 
 export type GenericItemFormProps = {
-	isModalOpen: boolean;
-	setIsModalOpen: (isOpen: boolean) => void;
-	onClose: () => void;
+	isModalOpen?: boolean;
+	setIsModalOpen?: (isOpen: boolean) => void;
+	onClose?: () => void;
 	itemType: ItemTypes;
 	itemId?: string;
+	isNew?: boolean;
 	setItemId?: (id: string) => void;
 	fieldFilterFn?: (field: FieldData) => boolean;
 	initialValues: Partial<Item<Record<string, unknown>>>;
@@ -95,33 +96,31 @@ export default function GenericItemForm(props: GenericItemFormProps)
 			return;
 		}
 
-		if(!itemId)
+		if(!itemId || props.isNew)
 		{
 			const id = Uuid.generateUuid();
 
 			setItemId?.(id);
 
-			console.log('DUMMY CREATE', itemType, itemId, values);
-			// createItem({
-			// 	id,
-			// 	itemType,
-			// 	data: values
-			// }).then((response) =>
-			// {
-			// 	console.log('Create item response:', response);
-			// });
+			createItem({
+				id,
+				itemType,
+				data: values
+			}).then((response) =>
+			{
+				console.log('Create item response:', response);
+			});
 		}
 		else
 		{
-			console.log('DUMMY UPDATE', itemType, itemId, values);
-			// updateItem({
-			// 	id: itemId,
-			// 	itemType,
-			// 	data: values
-			// }).then((response) =>
-			// {
-			// 	console.log('Update item response:', response);
-			// });
+			updateItem({
+				id: itemId,
+				itemType,
+				data: values
+			}).then((response) =>
+			{
+				console.log('Update item response:', response);
+			});
 		}
 	}
 
