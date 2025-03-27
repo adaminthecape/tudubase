@@ -1,93 +1,56 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import FormControl from '@mui/joy/FormControl';
-import Textarea from '@mui/joy/Textarea';
-import { IconButton, Stack } from '@mui/joy';
-import FormatBoldRoundedIcon from '@mui/icons-material/FormatBoldRounded';
-import FormatItalicRoundedIcon from '@mui/icons-material/FormatItalicRounded';
-import StrikethroughSRoundedIcon from '@mui/icons-material/StrikethroughSRounded';
-import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBulletedRounded';
+import { Stack } from '@mui/joy';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import { FormContainer } from '@/components/form/FormContainer';
+import { fieldsForTask } from '@/zencore/arch/Task';
+import { Item, Task } from '@/zencore/ItemTypes';
 
 export type MessageInputProps = {
-  textAreaValue: string;
-  setTextAreaValue: (value: string) => void;
-  onSubmit: () => void;
+	values: Partial<Item<Task>>;
+	setValues: (value: Partial<Item<Task>>) => void;
+	onSubmit: (value: Partial<Item<Task>>) => Promise<void> | void;
 };
 
-export default function MessageInput(props: MessageInputProps) {
-  const { textAreaValue, setTextAreaValue, onSubmit } = props;
-  const textAreaRef = React.useRef<HTMLDivElement>(null);
-  const handleClick = () => {
-    if (textAreaValue.trim() !== '') {
-      onSubmit();
-      setTextAreaValue('');
-    }
-  };
-  return (
-    <Box sx={{ px: 2, pb: 3 }}>
-      <FormControl>
-        <Textarea
-          placeholder="Type something here…"
-          aria-label="Message"
-          ref={textAreaRef}
-          onChange={(event) => {
-            setTextAreaValue(event.target.value);
-          }}
-          value={textAreaValue}
-          minRows={3}
-          maxRows={10}
-          endDecorator={
-            <Stack
-              direction="row"
-              sx={{
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexGrow: 1,
-                py: 1,
-                pr: 1,
-                borderTop: '1px solid',
-                borderColor: 'divider',
-              }}
-            >
-              <div>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <FormatBoldRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <FormatItalicRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <StrikethroughSRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <FormatListBulletedRoundedIcon />
-                </IconButton>
-              </div>
-              <Button
-                size="sm"
-                color="primary"
-                sx={{ alignSelf: 'center', borderRadius: 'sm' }}
-                endDecorator={<SendRoundedIcon />}
-                onClick={handleClick}
-              >
-                Send
-              </Button>
-            </Stack>
-          }
-          onKeyDown={(event) => {
-            if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
-              handleClick();
-            }
-          }}
-          sx={{
-            '& textarea:first-of-type': {
-              minHeight: 72,
-            },
-          }}
-        />
-      </FormControl>
-    </Box>
-  );
+type FormErrors = Partial<Record<keyof Item<Task>, string | undefined>>;
+
+export default function MessageInput(props: MessageInputProps) 
+{
+	const { values, setValues, onSubmit } = props;
+	const fieldsToShow = fieldsForTask.filter((f) => f.validation?.required);
+
+	function updateValues(values: Partial<Item<Task>>)
+	{
+		setValues(values);
+	}
+
+	function submit()
+	{
+		console.log('submit', values);
+		onSubmit(values);
+	}
+
+	return (
+		<Box sx={{ px: 2, pb: 2 }}>
+			<FormContainer
+				fields={fieldsToShow}
+				values={values}
+				updateValues={updateValues}
+				updateErrors={() => {}}
+			/>
+			<Stack direction="row" spacing={2} sx={{ mt: 1 }}>
+				<div className="flex-1" />
+				<Button
+					size="sm"
+					color="primary"
+					sx={{ alignSelf: 'center', borderRadius: 'sm' }}
+					endDecorator={<SendRoundedIcon />}
+					onClick={submit}
+				>
+					Add
+				</Button>
+			</Stack>
+		</Box>
+	);
 }
