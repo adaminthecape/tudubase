@@ -25,7 +25,7 @@ export function FormContainer({
 	}) => void;
 })
 {
-	const [formValues, setFormValues] = useState<Record<string, unknown>>(values);
+	const [formValues, setFormValues] = useState<Record<string, unknown>>(values || {});
 	const [formErrors, setFormErrors] = useState<Record<string, string | undefined>>({});
 
 	function updateFormValue(key: string, value: unknown): void
