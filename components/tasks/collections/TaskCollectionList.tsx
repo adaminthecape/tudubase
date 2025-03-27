@@ -2,25 +2,29 @@ import * as React from 'react';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
-import { Box, Chip, IconButton, Input } from '@mui/joy';
+import { Box, IconButton, Input } from '@mui/joy';
 import List from '@mui/joy/List';
-import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import TaskCollectionListItem from './TaskCollectionListItem';
 import { useToggleMessagesPane } from '@/hooks/useToggleMessagesPane';
 import { TaskCollectionListProps } from '@/components/tasks/types';
+import { ItemTypes } from '@/zencore/ItemTypes';
+import ItemEditButton from '@/components/itemForms/ItemEditButton';
+import { Uuid } from '@/zencore/Utils';
+import Parchment from '@/components/character/Parchment';
 
 export default function TaskCollectionList(props: TaskCollectionListProps) 
 {
 	const { toggleMessagesPane } = useToggleMessagesPane();
 	const { listItems, setSelectedItem, selectedItemId } = props;
+
 	return (
 		<Sheet
 			sx={{
 				borderRight: '1px solid',
 				borderColor: 'divider',
-				height: { sm: 'calc(100dvh - var(--Header-height))', md: '100dvh' },
+				height: { sm: '100dvh', md: '100dvh' },
 				overflowY: 'auto',
 			}}
 		>
@@ -30,30 +34,16 @@ export default function TaskCollectionList(props: TaskCollectionListProps)
 				sx={{ alignItems: 'center', justifyContent: 'space-between', p: 2, pb: 1.5 }}
 			>
 				<Typography
-					component="h1"
-					// endDecorator={
-					// 	<Chip
-					// 		variant="soft"
-					// 		color="primary"
-					// 		size="md"
-					// 		slotProps={{ root: { component: 'span' } }}
-					// 	>
-					// 	4
-					// 	</Chip>
-					// }
 					sx={{ fontSize: { xs: 'md', md: 'lg' }, fontWeight: 'lg', mr: 'auto' }}
 				>
-					Tasks
+					Collections
 				</Typography>
-				<IconButton
-					variant="plain"
-					aria-label="edit"
-					color="neutral"
-					size="sm"
-					sx={{ display: { xs: 'none', sm: 'unset' } }}
-				>
-					<EditNoteRoundedIcon />
-				</IconButton>
+				<ItemEditButton
+					itemType={ItemTypes.Collection}
+					itemId={Uuid.generateUuid()}
+					initialValues={{}}
+					isNew={true}
+				/>
 				<IconButton
 					variant="plain"
 					aria-label="edit"
@@ -77,15 +67,16 @@ export default function TaskCollectionList(props: TaskCollectionListProps)
 				/>
 			</Box>
 			<List
+				className="my-list"
 				sx={{
 					py: 0,
 					'--ListItem-paddingY': '0.75rem',
 					'--ListItem-paddingX': '1rem',
 				}}
 			>
-				{listItems.map((collection) => (
+				{listItems.map((collection, c) => (
 					<TaskCollectionListItem
-						key={collection.id}
+						key={`collection-${collection.collectionId}-${c}`}
 						{...collection}
 						setSelectedItem={setSelectedItem}
 						selectedItemId={selectedItemId}
