@@ -1,0 +1,2 @@
+ALTER TABLE "task_activities_table" ALTER COLUMN "task_id" SET DATA TYPE uuid;--> statement-breakpoint
+ALTER TABLE "task_activities_table" ALTER COLUMN "target_user_id" SET DATA TYPE text;--> statement-breakpoint

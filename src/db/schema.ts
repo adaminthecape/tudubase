@@ -1,4 +1,4 @@
-import { ItemTypes, TaskActivity } from "@/zencore/ItemTypes";
+import { ItemTypes } from "@/zencore/ItemTypes";
 import { Utils, Uuid } from "@/zencore/Utils";
 import { boolean, integer, PgColumn, pgRole, pgSchema, pgTable, PgTable, text, uuid } from "drizzle-orm/pg-core";
 
@@ -79,6 +79,11 @@ export const equipmentTypesTable = pgTable('equipment_types_table', {
 	description: text('description'),
 	icon: uuid('icon'),
 	slots: text('slots'),
+	healthModifier: integer('health_modifier'),
+	manaModifier: integer('mana_modifier'),
+	strengthModifier: integer('strength_modifier'),
+	agilityModifier: integer('agility_modifier'),
+	intelligenceModifier: integer('intelligence_modifier'),
 }).enableRLS();
 
 export type InsertEquipmentType = typeof equipmentTypesTable.$inferInsert;

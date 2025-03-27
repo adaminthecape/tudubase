@@ -4,6 +4,20 @@ import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler,
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
 
+export enum EquipmentSlotType
+{
+	Helmet = 'Helmet',
+	Armor = 'Armor',
+	MainHand = 'MainHand',
+	OffHand = 'OffHand',
+	Gloves = 'Gloves',
+	Belt = 'Belt',
+	Boots = 'Boots',
+	Necklace = 'Necklace',
+	Cloak = 'Cloak',
+	Ring = 'Ring',
+}
+
 export const fieldsForEquipmentType: FieldData[] = [
 	{
 		id: Uuid.generateUuid(),
@@ -52,8 +66,73 @@ export const fieldsForEquipmentType: FieldData[] = [
 		key: 'slots',
 		label: 'Slots',
 		fieldType: FieldType.dropdown,
-		itemType: 'EquipmentSlot',
-	}
+		options: Object.values(EquipmentSlotType)
+	},
+	{
+		id: Uuid.generateUuid(),
+		createdAt: 1742414442,
+		updatedAt: 1742414442,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
+		typeId: 'Field',
+		key: 'healthModifier',
+		label: 'Health',
+		fieldType: FieldType.number,
+		validation: {
+			between: { min: -10, max: 20 }
+		}
+	},
+	{
+		id: Uuid.generateUuid(),
+		createdAt: 1742414442,
+		updatedAt: 1742414442,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
+		typeId: 'Field',
+		key: 'manaModifier',
+		label: 'Mana',
+		fieldType: FieldType.number,
+		validation: {
+			between: { min: -10, max: 20 }
+		}
+	},
+	{
+		id: Uuid.generateUuid(),
+		createdAt: 1742414442,
+		updatedAt: 1742414442,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
+		typeId: 'Field',
+		key: 'strengthModifier',
+		label: 'Strength',
+		fieldType: FieldType.number,
+		validation: {
+			between: { min: -10, max: 20 }
+		}
+	},
+	{
+		id: Uuid.generateUuid(),
+		createdAt: 1742414442,
+		updatedAt: 1742414442,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
+		typeId: 'Field',
+		key: 'agilityModifier',
+		label: 'Agility',
+		fieldType: FieldType.number,
+		validation: {
+			between: { min: -10, max: 20 }
+		}
+	},
+	{
+		id: Uuid.generateUuid(),
+		createdAt: 1742414442,
+		updatedAt: 1742414442,
+		createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
+		typeId: 'Field',
+		key: 'intelligenceModifier',
+		label: 'Intelligence',
+		fieldType: FieldType.number,
+		validation: {
+			between: { min: -10, max: 20 }
+		}
+	},
 ];
 
 export interface EquipmentType
