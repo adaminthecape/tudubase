@@ -6,12 +6,9 @@ import TaskCollectionList from '@/components/tasks/collections/TaskCollectionLis
 import { useInitJoyTheme } from '@/hooks/useInitJoyTheme';
 import { useEffect, useState } from 'react';
 import { CollectionListItem } from '@/components/tasks/types';
-import { Utils } from '@/zencore/Utils';
-import { ItemTypes, TaskActivityType } from '@/zencore/ItemTypes';
-import { searchItems } from '@/api/actions/Generic';
+import { ItemTypes } from '@/zencore/ItemTypes';
+import { searchItems } from '@/cache/actions/Generic';
 import { Collection } from '@/zencore/arch/Collection';
-import { useTheme } from 'next-themes';
-import { getCollectionAndTaskAndActivityData } from './utils';
 
 /**
  * TaskMessagesView component
@@ -24,77 +21,6 @@ import { getCollectionAndTaskAndActivityData } from './utils';
  * 
  * Needs to fetch paginated Collections and Tasks.
  */
-
-const dummyTask = {
-	id: 'fb528522-e713-4407-98e7-83b01acfbc1c',
-	createdAt: 1742674692,
-	updatedAt: 1742674692,
-	createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
-	title: 'asdf',
-	due: null,
-	priority: null,
-	notes: 'asdf',
-	completed: null,
-	completedAt: null,
-	recurring: null,
-	tags: null
-};
-const dummyItems: CollectionListItem[] = [
-	{
-		id: 'cb189579-0698-479b-b14f-d1e86f162d23',
-		typeId: ItemTypes.Collection,
-		collectionId: 'cb189579-0698-479b-b14f-d1e86f162d23',
-		name: 'Collection 1',
-		description: 'Collection 1',
-		items: [dummyTask.id],
-		hasActiveTasks: false,
-		hasDueTasks: false,
-		lastActivity: {
-			id: '1',
-			description: 'Task 1',
-			createdAt: Utils.getCurrentSecond() - 7200,
-			typeId: ItemTypes.TaskActivity,
-			taskId: dummyTask.id,
-			activityType: TaskActivityType.Created,
-			createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
-		},
-		taskMaster: {
-			id: '2',
-			typeId: ItemTypes.TaskMaster,
-			name: 'TaskMaster 2',
-			description: 'TaskMaster 2',
-			isActive: true,
-			createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
-		} as any,
-	},
-	{
-		id: 'cb189579-0698-479b-b14f-d1e86f162d27',
-		typeId: ItemTypes.Collection,
-		collectionId: 'cb189579-0698-479b-b14f-d1e86f162d27',
-		name: 'Collection 2',
-		description: 'Collection 2',
-		items: [dummyTask.id],
-		hasActiveTasks: false,
-		hasDueTasks: false,
-		lastActivity: {
-			id: '2',
-			description: 'Task 2',
-			createdAt: Utils.getCurrentSecond() - 3600,
-			typeId: ItemTypes.TaskActivity,
-			taskId: dummyTask.id,
-			activityType: TaskActivityType.Created,
-			createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
-		},
-		taskMaster: {
-			id: '2',
-			typeId: ItemTypes.TaskMaster,
-			name: 'TaskMaster 2',
-			description: 'TaskMaster 2',
-			isActive: true,
-			createdBy: 'ca84b5a0-a0ae-425d-993a-4e63d235f222',
-		} as any,
-	},
-];
 
 export default function TaskMessagesView() 
 {

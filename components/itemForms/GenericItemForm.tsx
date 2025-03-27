@@ -2,7 +2,7 @@ import { getFieldsForItemType } from "@/apiUtils/fieldUtils";
 import { useEffect, useState } from "react";
 import { FormContainer } from "../form/FormContainer";
 import { LoaderPinwheel } from "lucide-react";
-import { createItem, loadItem, updateItem } from "@/api/actions/Generic";
+import { createItem, loadItem, updateItem } from "@/cache/actions/Generic";
 import { FieldData, Item, ItemTypes } from "@/zencore/ItemTypes";
 import { Utils, Uuid } from "@/zencore/Utils";
 

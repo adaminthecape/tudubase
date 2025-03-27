@@ -1,4 +1,4 @@
-import { searchItems } from "@/api/actions/Generic";
+import { searchItems } from "@/cache/actions/Generic";
 import { ItemTypes } from "@/zencore/ItemTypes";
 
 export function rollForRarity(opts: {

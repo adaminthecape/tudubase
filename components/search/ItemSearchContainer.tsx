@@ -1,6 +1,6 @@
 'use client';
 
-import { searchItems } from "@/api/actions/Generic";
+import { searchItems } from "@/cache/actions/Generic";
 import { DbFilterHandler, DbFilters } from "@/zencore/Filters";
 import { FieldData, FieldType, Item, ItemTypes, Nullable } from "@/zencore/ItemTypes";
 import { DbPaginationOpts, PaginationHandler } from "@/zencore/Pagination";
@@ -44,8 +44,6 @@ export default function ItemSearchContainer({
 	{
 		pag.updatePagination(newPagination);
 		setPagination(pag.pagination);
-
-		console.log('newPagination:', newPagination?.page, pag.pagination?.page);
 	}
 
 	// call to server function for search
