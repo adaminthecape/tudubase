@@ -47,6 +47,39 @@ export class PaginationHandler
 		}
 	}
 
+	public updatePagination(newPagination: DbPaginationOpts): void
+	{
+		if(!newPagination)
+		{
+			return;
+		}
+
+		if(newPagination.page)
+		{
+			this.setPage(newPagination.page);
+		}
+
+		if(newPagination.pageSize)
+		{
+			this.setPageSize(newPagination.pageSize);
+		}
+
+		if(newPagination.sortBy)
+		{
+			this.setSort(newPagination.sortBy);
+		}
+
+		if(newPagination.sortOrder)
+		{
+			this.setSortDirection(newPagination.sortOrder === 'asc' ? 'asc' : 'desc');
+		}
+
+		if(newPagination.totalRows)
+		{
+			this.setTotal(newPagination.totalRows);
+		}
+	}
+
 	public incrementPage()
 	{
 		if(!this.isDone)
