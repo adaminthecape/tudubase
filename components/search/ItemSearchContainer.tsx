@@ -16,6 +16,15 @@ export type ItemSearchContainerProps = {
 	renderResult?: (item: Item<Record<string, unknown>>) => JSX.Element;
 	renderResults?: (items: Item<Record<string, unknown>>[]) => JSX.Element;
 	sx?: SxProps;
+	hideFilters?: boolean;
+	renderFilters?: (
+		filters: DbFilters,
+		updateFilters: ((opts: {
+			field: FieldData;
+			value: Nullable<DbFilters>;
+			event?: any;
+		}) => void)
+	) => JSX.Element;
 };
 
 export default function ItemSearchContainer({
@@ -23,6 +32,8 @@ export default function ItemSearchContainer({
 	renderResult,
 	renderResults,
 	sx,
+	hideFilters,
+	renderFilters,
 }: ItemSearchContainerProps)
 {
 	// Function:
@@ -111,7 +122,7 @@ export default function ItemSearchContainer({
 				lg: '50vw',
 		}, ...sx }}>
 			{/* Search Filters */}
-			<ItemFiltersInput
+			{!hideFilters && <ItemFiltersInput
 				itemType={itemType}
 				field={{
 					id: Uuid.generateUuid(),
@@ -123,7 +134,8 @@ export default function ItemSearchContainer({
 				value={fil.filters}
 				updateValue={updateSelectedFilters}
 				updateError={() => {}}
-			/>
+			/>}
+			{renderFilters && (renderFilters(filters, updateSelectedFilters))}
 			{/* Search Results */}
 			{renderResults ? (renderResults(results)) : null}
 			{/* Search Results */}
