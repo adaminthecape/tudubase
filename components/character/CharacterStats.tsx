@@ -2,8 +2,11 @@ import { Stack } from "@mui/joy";
 import { CharacterStat } from "./CharacterStat";
 import CharacterName from "./CharacterName";
 import CharacterAvatar from "./CharacterAvatar";
+import { Item } from "@/zencore/ItemTypes";
+import { Character } from "@/zencore/arch/Character";
 
 export type CharacterStatsProps = {
+	character: Item<Character>;
 };
 
 export function CharacterStats(props: CharacterStatsProps)
@@ -27,16 +30,36 @@ export function CharacterStats(props: CharacterStatsProps)
 			</Stack>
 			<Stack spacing={1} direction="column">
 				<CharacterName
-					character={{ name: "Character Name" }}
+					character={props.character}
 					variant="h4"
 				/>
-				<CharacterStat statType="health" width={statWidth} />
-				<CharacterStat statType="mana" width={statWidth} />
+				<CharacterStat
+					character={props.character}
+					statType="health"
+					width={statWidth}
+				/>
+				<CharacterStat
+					character={props.character}
+					statType="mana"
+					width={statWidth}
+				/>
 			</Stack>
 			<Stack spacing={1} direction="column">
-				<CharacterStat statType="agility" width={statWidth} />
-				<CharacterStat statType="strength" width={statWidth} />
-				<CharacterStat statType="intelligence" width={statWidth} />
+				<CharacterStat
+					character={props.character}
+					statType="agility"
+					width={statWidth}
+				/>
+				<CharacterStat
+					character={props.character}
+					statType="strength"
+					width={statWidth}
+				/>
+				<CharacterStat
+					character={props.character}
+					statType="intelligence"
+					width={statWidth}
+				/>
 			</Stack>
 		</Stack>
 	);
