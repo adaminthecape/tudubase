@@ -11,7 +11,11 @@ export const Users = authSchema.table("users", {
 export const defaultItemSchema = {
 	id: uuid('id')
 		.primaryKey()
-		.$defaultFn(() => Uuid.generateUuid()),
+		.$default(() => Uuid.generateUuid()),
+	// TODO: enable & migrate this later
+	// typeId: uuid('type_id')
+	// 	.primaryKey()
+	// 	.$default(() => 'Item'),
 	createdAt: integer('created_at')
 		.default(Utils.getCurrentSecond()),
 	updatedAt: integer('updated_at')

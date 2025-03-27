@@ -269,6 +269,21 @@ export async function searchItems<T = Record<string, unknown>>(opts: {
 		}
 	});
 
+	const resultsMapped = [];
+
+	for await(const result of response.results)
+	{
+		const h = await getItemHandler({ itemType, id: result.id });
+
+		if(h)
+		{
+			h.setData(result);
+			resultsMapped.push(h.getData());
+		}
+	}
+
+	response.results = resultsMapped;
+
 	return {
 		success: true,
 		data: response as PaginatedItemResponse<Item<T>>,
