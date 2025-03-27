@@ -1,6 +1,6 @@
 import { DbFilter, DbFilterOperator } from "@/zencore/Filters";
 import { FieldData, ItemTypes, Nullable } from "@/zencore/ItemTypes";
-import { Button, Input, Select, Stack } from "@mui/joy";
+import { Button, Stack } from "@mui/joy";
 import { useEffect, useState } from "react";
 import FilterKeyInput from "./FilterKeyInput";
 import FilterOperatorInput from "./FilterOperatorInput";
