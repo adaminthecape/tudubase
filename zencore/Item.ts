@@ -447,11 +447,6 @@ export class ItemHandler implements ItemData
 		return {
 			...this.data,
 			...this.getBaseData(),
-			id: this.id,
-			typeId: this.typeId,
-			updatedAt: this.updatedAt,
-			createdAt: this.createdAt,
-			createdBy: this.createdBy,
 		} as Item<IItemType>;
 	}
 
