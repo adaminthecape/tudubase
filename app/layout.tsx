@@ -1,6 +1,4 @@
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Geist } from "next/font/google";
-import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import "./globals.css";
 import '@fontsource/roboto/300.css';
@@ -8,10 +6,9 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import '@fontsource/inter';
-import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
-import { Button, CssVarsProvider } from "@mui/joy";
+import { CssVarsProvider } from "@mui/joy";
 import UserControlsContainer from "@/components/user/UserControlsContainer";
-import I18N from "@/components/ui/I18N";
+import BasicI18N from "@/components/ui/BasicI18N";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -37,56 +34,48 @@ export default async function RootLayout({
 	return (
 		<html lang="en" className={geistSans.className} suppressHydrationWarning>
 		<body className="bg-background text-foreground">
-			<InitColorSchemeScript />
 			<main className="min-h-screen flex flex-col items-center">
 				<div className="flex-1 w-full flex flex-col items-center">
-			<CssVarsProvider>
-			<ThemeProvider
-				attribute="class"
-				defaultTheme="system"
-				enableSystem
-				disableTransitionOnChange
-			>
 				<nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
 					<div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
 						<div className="flex gap-2 items-start font-semibold" style={{alignItems: 'center'}}>
 							<Link href={"/"}>tudu</Link>
 							<div />
 							<Link href={"/user"}>
-								<Button
+								<button
 									size="sm"
 									color="neutral"
 									variant="soft"
 								>
-										<I18N sid="nav.test.title" />
-								</Button>
+										<BasicI18N sid="nav.test.title" />
+								</button>
 							</Link>
 							<Link href={"/user/tasks"}>
-								<Button
+								<button
 									size="sm"
 									color="neutral"
 									variant="soft"
 								>
-									<I18N sid="nav.tasks.title" />
-								</Button>
+									<BasicI18N sid="nav.tasks.title" />
+								</button>
 							</Link>
 							<Link href={"/user/quests"}>
-								<Button
+								<button
 									size="sm"
 									color="neutral"
 									variant="soft"
 								>
-									<I18N sid="nav.quests.title" />
-								</Button>
+									<BasicI18N sid="nav.quests.title" />
+								</button>
 							</Link>
 							<Link href={"/cache"}>
-								<Button
+								<button
 									size="sm"
 									color="neutral"
 									variant="soft"
 								>
 									Cache
-								</Button>
+								</button>
 							</Link>
 						</div>
 					</div>
@@ -97,7 +86,9 @@ export default async function RootLayout({
 					</div>
 				</nav>
 				<div className="flex flex-col w-full">
+			<CssVarsProvider>
 					{children}
+			</CssVarsProvider>
 				</div>
 
 				<footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
@@ -114,8 +105,6 @@ export default async function RootLayout({
 					</p>
 					{/* <ThemeSwitcher /> */}
 				</footer>
-			</ThemeProvider>
-			</CssVarsProvider>
 				</div>
 			</main>
 			</body>
