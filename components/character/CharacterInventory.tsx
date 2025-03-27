@@ -1,7 +1,10 @@
-import { ItemTypes } from "@/zencore/ItemTypes";
+import { Item, ItemTypes } from "@/zencore/ItemTypes";
 import { Stack } from "@mui/joy";
 import { SxProps } from "@mui/material";
 import ItemSearchContainer from "../search/ItemSearchContainer";
+import { createItem } from "@/cache/actions/Generic";
+import { EquipmentType, EquipmentSlotType } from "@/zencore/arch/EquipmentType";
+import { Uuid } from "@/zencore/Utils";
 
 export type CharacterInventoryProps = {
 	sx?: SxProps;
@@ -20,7 +23,7 @@ export function CharacterInventory(props: CharacterInventoryProps)
 			}}
 		>
 			<ItemSearchContainer
-				itemType={ItemTypes.Task}
+				itemType={ItemTypes.EquipmentType}
 				renderResults={(results) => (
 					<Stack spacing={1} sx={{ 
 						maxHeight: '500px',
