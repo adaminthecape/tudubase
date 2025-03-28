@@ -8,13 +8,13 @@ import { DbPaginationOpts, PaginatedItemResponse } from "@/zencore/Pagination";
 import { CustomItemHandler } from "@/zencore/CustomItem";
 import { getFieldsForItemType } from "@/apiUtils/fieldUtils";
 import { RamDatabase } from "@/zencore/MemoryDatabase";
-import { getArchetypeForItemType } from "@/api/ItemUtils";
 import {
 	createItem as createItemOnServer,
 	loadItem as loadItemOnServer,
 	updateItem as updateItemOnServer,
 	searchItems as searchItemsOnServer,
 } from "@/api/actions/Generic";
+import { getArchetypeForItemType } from "@/apiUtils/itemUtils";
 
 export const cache: RamDatabase = new RamDatabase({});
 
@@ -187,6 +187,19 @@ class SearchCache<T = Record<string, unknown>>
 	private timeout: number = swrTimeout;
 	private lastFetchMs: Record<string, number> = {};
 
+	public getKey(opts: {
+		itemType: ItemTypes;
+		filters?: DbFilters;
+		pagination?: DbPaginationOpts;
+	}): string
+	{
+		return JSON.stringify({
+			itemType: opts.itemType,
+			filters: opts.filters,
+			pagination: opts.pagination,
+		});
+	}
+
 	public isStale(key: string): boolean
 	{
 		if(!this.cache[key])
@@ -221,19 +234,40 @@ class SearchCache<T = Record<string, unknown>>
 	{
 		this.cache[key] = data;
 	}
+
+	public unset(key: string): void
+	{
+		delete this.cache[key];
+	}
 }
 
 const searchCache = new SearchCache();
 
+export function clearFromCache(itemType: ItemTypes, id: string)
+{
+	delete lastFetchedMs[`${itemType}:${id}`];
+	cache.remove({ itemId: id, itemType });
+}
+
+export function clearFromSearchCache(opts: {
+	itemType: ItemTypes;
+	filters?: DbFilters;
+	pagination?: DbPaginationOpts;
+})
+{
+	searchCache.unset(searchCache.getKey(opts));
+}
+
 export async function searchItems<T = Record<string, unknown>>(opts: {
+	ignoreCache?: boolean;
 	itemType: ItemTypes;
 	filters?: DbFilters;
 	pagination?: DbPaginationOpts;
 }): Promise<ActionResponse<PaginatedItemResponse<Item<T>>>>
 {
-	const key = JSON.stringify(opts);
+	const key = searchCache.getKey(opts);
 
-	if(!searchCache.isStale(key))
+	if(!opts.ignoreCache && !searchCache.isStale(key))
 	{
 		return {
 			success: true,
@@ -243,7 +277,7 @@ export async function searchItems<T = Record<string, unknown>>(opts: {
 
 	const res = await searchItemsOnServer(opts);
 
-	if(res.success)
+	if(res.success && !opts.ignoreCache)
 	{
 		searchCache.set(key, res.data as any);
 	}
