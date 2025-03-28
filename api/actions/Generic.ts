@@ -8,8 +8,8 @@ import { DbFilters } from "@/zencore/Filters";
 import { DbPaginationOpts, PaginatedItemResponse } from "@/zencore/Pagination";
 import { createClient } from "@/utils/supabase/server";
 import { CustomItemHandler } from "@/zencore/CustomItem";
-import { getArchetypeForItemType } from "../ItemUtils";
 import { getFieldsForItemType } from "@/apiUtils/fieldUtils";
+import { getArchetypeForItemType } from "@/apiUtils/itemUtils";
 
 export async function getItemFields(
 	itemType: ItemTypes
@@ -289,4 +289,3 @@ export async function searchItems<T = Record<string, unknown>>(opts: {
 		data: response as PaginatedItemResponse<Item<T>>,
 	};
 }
-

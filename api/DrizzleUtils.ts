@@ -42,7 +42,7 @@ export function validateFilter<T = unknown>(
 		DbFilterOperator.lessThanOrEqualTo,
 	].includes(filter.operator))
 	{
-		return (filter.value == 0) ||  Utils.isNumber(Utils.toNumber(filter.value));
+		return (filter.value == 0) || Utils.isNumber(Utils.toNumber(filter.value));
 	}
 
 	return true;
