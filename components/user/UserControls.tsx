@@ -1,7 +1,7 @@
 'use client';
 
-import { Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, Typography } from "@mui/joy";
-import { useEffect, useState } from "react";
+import { Box, Divider, Drawer, IconButton, List, ListItem, ListItemButton, Typography } from "@mui/joy";
+import { useState } from "react";
 import SettingsIcon from '@mui/icons-material/Settings';
 import { ThemeControl } from "./ThemeControl";
 
