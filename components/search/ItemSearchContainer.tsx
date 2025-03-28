@@ -6,7 +6,7 @@ import { FieldData, FieldType, Item, ItemTypes, Nullable } from "@/zencore/ItemT
 import { DbPaginationOpts, PaginationHandler } from "@/zencore/Pagination";
 import { Utils, Uuid } from "@/zencore/Utils";
 import { Button, Stack } from "@mui/joy";
-import { JSX, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import ItemFiltersInput from "../form/elements/ItemFiltersInput";
 import Pagination from "./Pagination";
 import { SxProps } from "@mui/material";
@@ -23,8 +23,12 @@ export type ItemSearchContainerProps = {
 			field: FieldData;
 			value: Nullable<DbFilters>;
 			event?: any;
-		}) => void)
+		}) => void),
+		search: () => void,
 	) => JSX.Element;
+	initialFilters?: DbFilters;
+	initialPagination?: DbPaginationOpts;
+	showSearchButton?: boolean;
 };
 
 export default function ItemSearchContainer({
@@ -34,6 +38,9 @@ export default function ItemSearchContainer({
 	sx,
 	hideFilters,
 	renderFilters,
+	initialFilters,
+	initialPagination,
+	showSearchButton,
 }: ItemSearchContainerProps)
 {
 	// Function:
@@ -46,8 +53,17 @@ export default function ItemSearchContainer({
 	const [pagination, setPagination] = useState<DbPaginationOpts>({});
 	const [results, setResults] = useState<Item<Record<string, unknown>>[]>([]);
 
-	const pag = new PaginationHandler({});
+	const pag = new PaginationHandler({ initialValue: initialPagination });
 	const fil = new DbFilterHandler({});
+
+	useEffect(() =>
+	{
+		if(initialFilters)
+		{
+			fil.updateFilters(initialFilters);
+			setFilters(initialFilters);
+		}
+	}, []);
 
 	pag.setPageSize(5);
 
@@ -60,6 +76,11 @@ export default function ItemSearchContainer({
 	// call to server function for search
 	async function executeSearch()
 	{
+		if(initialFilters)
+		{
+			fil.updateFilters(initialFilters);
+		}
+
 		const searchOpts: Parameters<typeof searchItems>[0] = {
 			itemType,
 			filters: fil.filters,
@@ -113,6 +134,11 @@ export default function ItemSearchContainer({
 		}
 	}
 
+	useEffect(() =>
+	{
+		executeSearch();
+	}, []);
+
 	return (
 		<Stack direction={'column'} spacing={1} sx={{
 			width: {
@@ -120,7 +146,8 @@ export default function ItemSearchContainer({
 				sm: 'calc(100vw - 3rem)',
 				md: '50vw',
 				lg: '50vw',
-		}, ...sx }}>
+			}, ...sx
+		}}>
 			{/* Search Filters */}
 			{!hideFilters && <ItemFiltersInput
 				itemType={itemType}
@@ -135,22 +162,28 @@ export default function ItemSearchContainer({
 				updateValue={updateSelectedFilters}
 				updateError={() => {}}
 			/>}
-			{renderFilters && (renderFilters(filters, updateSelectedFilters))}
+			{renderFilters && (renderFilters(filters, updateSelectedFilters, executeSearch))}
 			{/* Search Results */}
 			{renderResults ? (renderResults(results)) : null}
 			{/* Search Results */}
 			{renderResult ? results.map((result) => (renderResult(result))) : null}
 			{/* Pagination */}
-			<Pagination
-				{...pagination}
-				setPage={(page) =>
-				{
-					updatePagination({ ...pagination, page });
-					executeSearch();
-				}}
-			/>
+			<Stack direction="row" sx={{
+				justifyContent: 'center',
+				alignContent: 'center',
+				alignItems: 'center',
+			}}>
+				<Pagination
+					{...pagination}
+					setPage={(page) =>
+					{
+						updatePagination({ ...pagination, page });
+						executeSearch();
+					}}
+				/>
+			</Stack>
 			{/* Search button */}
-			<Button onClick={executeSearch}>Search</Button>
+			{showSearchButton && <Button onClick={executeSearch}>Search</Button>}
 		</Stack>
 	);
 }
