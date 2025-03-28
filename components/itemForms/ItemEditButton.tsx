@@ -3,11 +3,14 @@ import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 import I18N from '@/components/ui/I18N';
 import GenericItemForm, { GenericItemFormProps } from "./GenericItemForm";
 import { JSX, useState } from "react";
-import { Modal, ModalClose, ModalDialog, Typography } from "@mui/joy";
+import { Modal, ModalClose, ModalDialog } from "@mui/joy";
 import React from "react";
+import { Item } from "@/zencore/ItemTypes";
 
 export type ItemEditButtonProps = {
+	label?: string | null;
 	icon?: JSX.Element;
+	onItemAdded?: (item: Item<any>) => void;
 };
 
 export default function ItemEditButton(props: GenericItemFormProps & ItemEditButtonProps)
@@ -23,8 +26,13 @@ export default function ItemEditButton(props: GenericItemFormProps & ItemEditBut
 				sx={{ display: { xs: 'inline-flex', md: 'inline-flex' } }}
 				onClick={() => setIsModalOpen(true)}
 			>
-				{props.icon || <EditNoteRoundedIcon sx={{ mr: 0.25 }} />}
-				<I18N sid={`items.${props.itemType}.edit`} />
+				{props.icon || <EditNoteRoundedIcon sx={
+					props.label === null ? {} : { mr: 0.25 }
+				} />}
+				{(props.label || (props.label === null)) ?
+					props.label && (<span>{props.label}</span>) :
+					<I18N sid={`items.${props.itemType}.edit`} />
+				}
 			</Button>
 			<Modal
 				open={isModalOpen}
