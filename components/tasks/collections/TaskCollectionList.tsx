@@ -12,7 +12,7 @@ import { TaskCollectionListProps } from '@/components/tasks/types';
 import { ItemTypes } from '@/zencore/ItemTypes';
 import ItemEditButton from '@/components/itemForms/ItemEditButton';
 import { Uuid } from '@/zencore/Utils';
-import Parchment from '@/components/character/Parchment';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function TaskCollectionList(props: TaskCollectionListProps) 
 {
@@ -43,6 +43,15 @@ export default function TaskCollectionList(props: TaskCollectionListProps)
 					itemId={Uuid.generateUuid()}
 					initialValues={{}}
 					isNew={true}
+					label={null}
+					icon={<AddIcon />}
+					onItemAdded={(col) =>
+					{
+						if(col)
+						{
+							setSelectedItem(col);
+						}
+					}}
 				/>
 				<IconButton
 					variant="plain"
