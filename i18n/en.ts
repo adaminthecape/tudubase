@@ -14,9 +14,6 @@ export const en = {
 		tasks: {
 			title: 'Tasks',
 		},
-		test: {
-			title: 'Testing'
-		},
 		quests: {
 			title: 'Quests'
 		},
