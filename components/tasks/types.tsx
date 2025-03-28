@@ -44,6 +44,7 @@ export type TaskActivityListItem = (
 
 export type TaskActivityListProps = {
 	collection: CollectionListItem | undefined;
+	onTaskAdded: (taskId: string, task: Item<Task> | undefined) => void;
 };
 
 export type TaskActivityListHeaderProps = {

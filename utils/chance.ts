@@ -1,5 +1,13 @@
 import { searchItems } from "@/cache/actions/Generic";
-import { ItemTypes } from "@/zencore/ItemTypes";
+import { DbFilterHandler, DbFilters } from "@/zencore/Filters";
+import { Item, ItemTypes } from "@/zencore/ItemTypes";
+
+export enum EquipmentRarity {
+	common = 'common',
+	rare = 'rare',
+	epic = 'epic',
+	legendary = 'legendary',
+};
 
 export function rollForRarity(opts: {
 	chanceMultipliers?: {
@@ -12,15 +20,15 @@ export function rollForRarity(opts: {
 	itemTypesToUse?: ItemTypes[];
 }): ({
 	roll: number;
-	rarity: 'common' | 'rare' | 'epic' | 'legendary';
+	rarity: EquipmentRarity;
 })
 {
 	// first roll for a rare
 	const baseChances = {
-		common: 0.8,
-		rare: 0.15,
-		epic: 0.04,
-		legendary: 0.01,
+		common: 0.45,
+		rare: 0.3,
+		epic: 0.2,
+		legendary: 0.05,
 	};
 
 	const chances = {
@@ -34,49 +42,43 @@ export function rollForRarity(opts: {
 
 	if(roll < chances.legendary)
 	{
-		return { roll, rarity: 'legendary' };
+		return { roll, rarity: EquipmentRarity.legendary };
 	}
 	else if(roll < chances.epic)
 	{
-		return { roll, rarity: 'epic' };
+		return { roll, rarity: EquipmentRarity.epic };
 	}
 	else if(roll < chances.rare)
 	{
-		return { roll, rarity: 'rare' };
+		return { roll, rarity: EquipmentRarity.rare };
 	}
 
-	return { roll, rarity: 'common' };
+	return { roll, rarity: EquipmentRarity.common };
 }
 
-export function rollForItem(opts: {
+export async function rollForItem<T = any>(opts: {
 	itemType: ItemTypes;
-}): Promise<string>
+	rarity: EquipmentRarity;
+	filters?: DbFilters;
+}): Promise<Item<T> | undefined>
 {
-	return new Promise((resolve) =>
-	{
-		// get all items of the given types
-		searchItems({
-			itemType: opts.itemType,
-			filters: [
-				{
-					key: 'rarity',
-					operator: '==',
-					value: 'common',
-				}
-			],
-			pagination: { page: 1, pageSize: 1 }
-		}).then(({ success, data }) =>
-		{
-			if(!success)
-			{
-				resolve('');
-				return;
-			}
-
-			const items = data?.results ?? [];
-			const item = items[Math.floor(Math.random() * items.length)];
-
-			resolve(item.id);
-		});
+	// get all items of the given types
+	const { success, data } = await searchItems({
+		itemType: opts.itemType,
+		filters: [
+			// DbFilterHandler.create('rarity', '==', opts.rarity),
+			...(opts.filters || [])
+		],
+		pagination: { page: 1, pageSize: 100 }
 	});
+
+	if(!success)
+	{
+		return undefined;
+	}
+
+	const items = data?.results ?? [];
+	const item = items[Math.floor(Math.random() * items.length)];
+
+	return item as Item<T>;
 }
