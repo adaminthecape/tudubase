@@ -6,7 +6,7 @@ import TaskCollectionList from '@/components/tasks/collections/TaskCollectionLis
 import { useInitJoyTheme } from '@/hooks/useInitJoyTheme';
 import { useEffect, useState } from 'react';
 import { CollectionListItem } from '@/components/tasks/types';
-import { ItemTypes } from '@/zencore/ItemTypes';
+import { Item, ItemTypes, Task } from '@/zencore/ItemTypes';
 import { searchItems } from '@/cache/actions/Generic';
 import { Collection } from '@/zencore/arch/Collection';
 
@@ -40,7 +40,7 @@ export default function TaskMessagesView()
 		const collections = await searchItems<Collection>({
 			itemType: ItemTypes.Collection,
 			filters: [],
-		})
+		});
 
 		console.log('getCollections:', collections.data?.results);
 
@@ -66,6 +66,41 @@ export default function TaskMessagesView()
 			setSelectedItem(mappedCollections[0]);
 		});
 	}, []);
+
+	function setSelectedCollection(collection: Item<Collection>)
+	{
+		// it might not exist in the list, so we need to find it
+		const foundCollection = items.find((item) => item.id === collection.id);
+
+		if(foundCollection)
+		{
+			setSelectedItem(foundCollection);
+		}
+		// if not found, add it
+		else
+		{
+			console.log('adding collection:', collection);
+			setItems([
+				...items,
+				{
+					...collection,
+					collectionId: collection.id,
+					hasActiveTasks: false,
+					hasDueTasks: false,
+					lastActivity: undefined,
+					taskMaster: undefined,
+				}
+			]);
+			setSelectedItem(items[items.length - 1]);
+		}
+	}
+
+	function onTaskAdded(taskId: string, task: Item<Task> | undefined)
+	{
+		console.log('task added:', taskId, task);
+	}
+
+	const [taskActivityListKey, setTaskActivityListKey] = useState(0);
 
 	return (
 		<Sheet
@@ -98,10 +133,14 @@ export default function TaskMessagesView()
 				<TaskCollectionList
 					listItems={items}
 					selectedItemId={selectedItem?.id}
-					setSelectedItem={setSelectedItem}
+					setSelectedItem={setSelectedCollection}
 				/>
 			</Sheet>
-			<TaskActivityList collection={selectedItem} />
+			<TaskActivityList
+				key={`task-activity-list-${taskActivityListKey}`}
+				collection={selectedItem}
+				onTaskAdded={onTaskAdded}
+			/>
 		</Sheet>
 	);
 }
