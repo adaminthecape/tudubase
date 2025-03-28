@@ -8,9 +8,9 @@ import { Utils, Uuid } from "./Utils";
 export type RamDatabaseOpts = {
 	isDebugMode?: boolean;
 };
-export class RamDatabase
+export class RamDatabase<T = IItemType>
 {
-	public cacheByType: Record<string, Record<string, IItemType>> = {};
+	public cacheByType: Record<string, Record<string, T>> = {};
 
 	constructor(opts: RamDatabaseOpts)
 	{
@@ -43,10 +43,10 @@ export class RamDatabase
 		return `${opts.itemType}:${opts.itemId}`;
 	}
 
-	public cacheItem(opts: {
+	public cacheItem<T = IItemType>(opts: {
 		itemType: string;
 		itemId: string;
-		itemData: IItemType;
+		itemData: T;
 	})
 	{
 		if(!this.cacheByType[opts.itemType])
@@ -57,24 +57,24 @@ export class RamDatabase
 		this.cacheByType[opts.itemType][opts.itemId] = opts.itemData;
 	}
 
-	public getCachedItem(opts: {
+	public getCachedItem<T = IItemType>(opts: {
 		itemType: string;
 		itemId: string;
-	}): IItemType | undefined
+	}): T | undefined
 	{
 		return this.cacheByType[opts.itemType]?.[opts.itemId];
 	}
 
-	public getCachedItemsOfType(itemType: string): Record<string, IItemType> | undefined
+	public getCachedItemsOfType(itemType: string): Record<string, T> | undefined
 	{
 		return this.cacheByType[itemType];
 	}
 
-	public async update(opts: {
+	public async update<T = IItemType>(opts: {
 		itemId: string;
 		itemType: string;
 		path?: string | undefined;
-		data: IItemType;
+		data: T;
 		setUpdated?: boolean;
 	})
 	{
@@ -95,8 +95,8 @@ export class RamDatabase
 		}
 	}
 
-	public async updateMultiple(opts: {
-		items: Record<string, IItemType>;
+	public async updateMultiple<T = IItemType>(opts: {
+		items: Record<string, T>;
 		itemType: string;
 	})
 	{
@@ -113,10 +113,10 @@ export class RamDatabase
 		}
 	}
 
-	public async insert(opts: {
+	public async insert<T = IItemType>(opts: {
 		itemId: string;
 		itemType: string;
-		data: IItemType;
+		data: T;
 	}): Promise<void>
 	{
 		if(!this.validateItemTypeAndId(opts))
@@ -131,9 +131,9 @@ export class RamDatabase
 		});
 	}
 
-	public async insertMultiple(opts: {
+	public async insertMultiple<T = IItemType>(opts: {
 		itemType: string;
-		items: Record<string, IItemType>;
+		items: Record<string, T>;
 	}): Promise<void>
 	{
 		for(const itemId in opts.items)
@@ -145,15 +145,15 @@ export class RamDatabase
 				data: item
 			};
 
-			await this.insert(itemOpts);
+			await this.insert<T>(itemOpts);
 		}
 	}
 
-	public async select(opts: {
+	public async select<T = IItemType>(opts: {
 		itemId: string;
 		itemType: string;
 		filters?: DbFilters;
-	}): Promise<IItemType | undefined>
+	}): Promise<T | undefined>
 	{
 		if(!this.validateItemTypeAndId(opts)) return;
 
@@ -171,9 +171,9 @@ export class RamDatabase
 		return result;
 	}
 
-	protected slowFilter(filters: DbFilters): IItemType[]
+	protected slowFilter<T = IItemType>(filters: DbFilters): T[]
 	{
-		const result: IItemType[] = [];
+		const result: T[] = [];
 
 		Object.values(this.cacheByType).forEach((items) =>
 		{
@@ -188,7 +188,7 @@ export class RamDatabase
 		return result;
 	}
 
-	protected filterByIdAndType(filters: DbFilters): IItemType[]
+	protected filterByIdAndType<T = IItemType>(filters: DbFilters): T[]
 	{
 		const itemType = (filters.find((f) => (
 			Utils.isSingleFilter(f) &&
@@ -243,12 +243,12 @@ export class RamDatabase
 		return result;
 	}
 
-	public async selectMultiple(opts: {
+	public async selectMultiple<T = IItemType>(opts: {
 		itemType: string;
 		itemIds?: string[] | undefined;
 		filters?: DbFilters;
 		pagination?: DbPaginationOpts;
-	}): Promise<PaginatedItemResponse<IItemType>>
+	}): Promise<PaginatedItemResponse<T>>
 	{
 		const { itemType, itemIds, filters, pagination } = opts;
 
@@ -273,9 +273,20 @@ export class RamDatabase
 			fh.filters.every((f) => 'key' in f && ['typeId', 'id'].includes(f.key))
 		);
 
-		const filteredData = onlyCheckingIdsAndTypes ?
-			this.filterByIdAndType(fh.filters) :
-			this.slowFilter(fh.filters);
+		let filteredData;
+
+		if(fh.filters.length > 1)
+		{
+			filteredData = onlyCheckingIdsAndTypes ?
+				this.filterByIdAndType(fh.filters) :
+				this.slowFilter(fh.filters);
+		}
+		else
+		{
+			filteredData = this.cacheByType[itemType] ?
+				Object.values(this.cacheByType[itemType]) :
+				[];
+		}
 
 		const ph = new PaginationHandler({
 			initialValue: pagination,
@@ -295,7 +306,7 @@ export class RamDatabase
 					.slice((pageNum - 1) * pageSizeNum, pageNum * pageSizeNum);
 
 				return {
-					results: results as Array<IItemType>,
+					results: results as Array<T>,
 					hasMore: results.length > (pageNum * pageSizeNum),
 					totalItems: ph.pagination.totalRows ?? 0,
 					pagination: {
@@ -310,7 +321,7 @@ export class RamDatabase
 		}
 
 		return {
-			results: (filteredData || []) as Array<IItemType>,
+			results: (filteredData || []) as Array<T>,
 			hasMore: false,
 			totalItems: ph.pagination.totalRows ?? 0,
 			pagination: {
