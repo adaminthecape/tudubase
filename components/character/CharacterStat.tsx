@@ -111,7 +111,7 @@ export function CharacterStat(props: CharacterStatProps)
 					color={vars?.color || 'neutral'}
 					determinate
 				>
-					<Chip sx={{ padding: 0.25, margin: 0.25 }}>
+					<Chip sx={{ padding: 0.25, margin: 0.25, paddingLeft: 1, paddingRight: 1 }}>
 						{statValue} / 100
 					</Chip>
 				</LinearProgress>
