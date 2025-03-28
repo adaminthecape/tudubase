@@ -80,9 +80,19 @@ function parseActivityListItem(listItem: TaskActivityListItem, index: number)
 
 export default function TaskActivityList(props: TaskActivityListProps)
 {
-	const { collection } = props;
+	const { collection, onTaskAdded } = props;
 	const [activityMessages, setActivityMessages] = useState<TaskActivityListItem[]>([]);
 	const [inputValues, setInputValues] = useState<Partial<Item<Task>>>({});
+
+	function getSortedActivityList(messages: TaskActivityListItem[]): TaskActivityListItem[]
+	{
+		const activities = messages.filter((m) => m.typeId === ItemTypes.TaskActivity);
+		const tasks = messages.filter((m) => m.typeId === ItemTypes.Task);
+
+		console.log({ tasks, activities });
+
+		return messages;
+	}
 
 	async function selectCollection({ collectionId }: { collectionId: string })
 	{
@@ -90,9 +100,19 @@ export default function TaskActivityList(props: TaskActivityListProps)
 			collectionIds: [collectionId],
 		});
 
-		setActivityMessages([...res.activity, ...res.tasks].sort(
-			(a, b) => (a.createdAt ?? a.updatedAt ?? 0) - (b.createdAt ?? b.updatedAt ?? 0)
-		));
+		const messages = [...res.activity, ...res.tasks];
+
+		// console.log('unsorted\n', JSON.stringify(messages.map((m) => m.id), null, 4));
+		
+		// messages.sort(
+		// 	(a, b) => (a.createdAt ?? a.updatedAt ?? 0) - (b.createdAt ?? b.updatedAt ?? 0)
+		// );
+
+		// console.log('sorted\n', JSON.stringify(messages.map((m) => m.id), null, 4));
+
+		const sorted = getSortedActivityList(messages);
+
+		setActivityMessages(messages);
 	}
 
 	useEffect(() => 
@@ -121,12 +141,22 @@ export default function TaskActivityList(props: TaskActivityListProps)
 			collectionId: collection?.collectionId,
 			baseData: inputValues,
 		});
+
+		if(addTaskRes.success)
+		{
+			onTaskAdded(addTaskRes.taskId, addTaskRes.taskData);
+			setInputValues({});
+		}
+		else
+		{
+			console.warn('Failed to add task:', addTaskRes.taskId);
+		}
 	}
 
 	return (
 		<Sheet
 			sx={{
-				height: { xs: 'calc(80dvh - var(--Header-height))', md: '80dvh' },
+				height: { xs: 'calc(100dvh - var(--Header-height))', md: '100dvh' },
 				display: 'flex',
 				flexDirection: 'column',
 				backgroundColor: 'background.level1',
