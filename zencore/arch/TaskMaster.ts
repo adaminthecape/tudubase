@@ -14,6 +14,7 @@ import { DbFilters } from "../Filters";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
+import { ArchetypeUtils } from "./ArchetypeUtils";
 
 export const fieldsForTaskMaster: FieldData[] = [
 	{
@@ -184,14 +185,7 @@ export class TaskMasterHandler
 			id: opts.id,
 			db: opts.db,
 			fieldDataArray: ITEM_FIELDS,
-			definition: {
-				id: Uuid.generateUuid(),
-				typeId: ItemTypes.Archetype,
-				name: ITEM_TYPE,
-				itemType: ITEM_TYPE,
-				attachedFields: ITEM_FIELDS.map((field) => field.id),
-				scopeId: null,
-			},
+			definition: ArchetypeUtils.getDummyArchetype(ITEM_TYPE, ITEM_FIELDS),
 			itemType: ITEM_TYPE,
 		});
 	}

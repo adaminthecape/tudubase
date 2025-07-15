@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 export type IItemType = Record<string, unknown>;
 export type Nullable<T> = T | null | undefined;
 export type Item<T> = T & ItemData;
@@ -73,6 +75,7 @@ export type CustomItemOpts = ItemOpts & {
 	definition: ArchetypeData;
 	fieldDataArray?: FieldData[];
 	itemType?: string;
+	zodSchema?: z.ZodTypeAny;
 };
 export type CustomItemItem = Record<string, unknown>;
 export type CustomItem = ItemData;

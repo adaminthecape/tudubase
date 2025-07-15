@@ -1,0 +1,1753 @@
+{
+	"Character": {
+		"ba810ee8-c2fe-4e77-b9f2-4bd713d92d16": {
+			"name": "Test Character",
+			"level": 1,
+			"health": 100,
+			"mana": 100,
+			"strength": 10,
+			"intelligence": 10,
+			"agility": 10
+		}
+	},
+	"Task": {
+		"8e733e8e-83b5-4c9c-8d6a-2b5f5bc6f4c9": {
+			"id": "8e733e8e-83b5-4c9c-8d6a-2b5f5bc6f4c9",
+			"typeId": "Character",
+			"createdAt": 1743163121,
+			"updatedAt": 1743163121,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"title": "Task 1",
+			"notes": "This is a task",
+			"due": 1743249521,
+			"priority": "low",
+			"recurring": false,
+			"tags": [],
+			"activity": [],
+			"completed": null,
+			"completedAt": null
+		},
+		"49f5727e-16c1-4f33-a4c9-96a88a2f0834": {
+			"title": "a task",
+			"id": "49f5727e-16c1-4f33-a4c9-96a88a2f0834",
+			"typeId": "Task",
+			"createdAt": 1743154156,
+			"updatedAt": 1743154156,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "36b2fb19-b7b5-49f4-894e-ef1d1ec748ad",
+			"due": 1743870900,
+			"priority": "medium",
+			"notes": "it's whatever"
+		},
+		"e280a3e4-b550-4471-9482-71dac7748a02": {
+			"title": "asdfasdf",
+			"id": "e280a3e4-b550-4471-9482-71dac7748a02",
+			"typeId": "Task",
+			"createdAt": 1743153443,
+			"updatedAt": 1743153443,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "36b2fb19-b7b5-49f4-894e-ef1d1ec748ad"
+		},
+		"a5285be1-58e4-41b9-b84e-470180f178ac": {
+			"title": "some other task",
+			"id": "a5285be1-58e4-41b9-b84e-470180f178ac",
+			"typeId": "Task",
+			"createdAt": 1743154108,
+			"updatedAt": 1743154108,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "a7d06afe-a542-40c8-8b10-568e776fa9b5"
+		},
+		"a6301870-004f-40a3-b03f-acb701607f64": {
+			"title": "another task?",
+			"id": "a6301870-004f-40a3-b03f-acb701607f64",
+			"typeId": "Task",
+			"createdAt": 1743154182,
+			"updatedAt": 1743154182,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "a7d06afe-a542-40c8-8b10-568e776fa9b5"
+		}
+	},
+	"Collection": {
+		"c7630512-343d-4998-bae7-a8996bb07eec": {
+			"id": "c7630512-343d-4998-bae7-a8996bb07eec",
+			"typeId": "Character",
+			"createdAt": 1743163121,
+			"updatedAt": 1743163121,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"name": "Test Collection",
+			"description": "This is a test collection",
+			"items": [
+				"8e733e8e-83b5-4c9c-8d6a-2b5f5bc6f4c9"
+			]
+		},
+		"37c7aedc-c7d6-40cb-b893-cec6b9ee8294": {
+			"name": "let's try again",
+			"description": "asdfadsf",
+			"id": "37c7aedc-c7d6-40cb-b893-cec6b9ee8294",
+			"typeId": "Collection",
+			"createdAt": 1743154182,
+			"updatedAt": 1743154182,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "ffb30088-6b0a-4ab7-8ffd-d6dcad5b95b6",
+			"items": [
+				"49f5727e-16c1-4f33-a4c9-96a88a2f0834",
+				"a6301870-004f-40a3-b03f-acb701607f64"
+			]
+		},
+		"d6181cf1-b98b-4aaf-ab93-817697d15437": {
+			"name": "aSDfasdf",
+			"description": "asdfasdf",
+			"id": "d6181cf1-b98b-4aaf-ab93-817697d15437",
+			"typeId": "Collection",
+			"createdAt": 1743154109,
+			"updatedAt": 1743154109,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "b9cb6e22-004b-4440-855b-1eaac0b07915",
+			"items": [
+				"a5285be1-58e4-41b9-b84e-470180f178ac"
+			]
+		}
+	},
+	"TaskActivity": {
+		"84cc4271-4714-457c-b0ed-65f824a4dc1c": {
+			"taskId": "49f5727e-16c1-4f33-a4c9-96a88a2f0834",
+			"activityType": "Created",
+			"id": "84cc4271-4714-457c-b0ed-65f824a4dc1c",
+			"typeId": "TaskActivity",
+			"createdAt": 1743153432,
+			"updatedAt": 1743153432,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "45052236-db29-4fec-afa6-23e7317bbbc8"
+		},
+		"45c8badd-4ef4-4f45-b42b-f9ae75317867": {
+			"taskId": "e280a3e4-b550-4471-9482-71dac7748a02",
+			"activityType": "Created",
+			"id": "45c8badd-4ef4-4f45-b42b-f9ae75317867",
+			"typeId": "TaskActivity",
+			"createdAt": 1743153444,
+			"updatedAt": 1743153444,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "45052236-db29-4fec-afa6-23e7317bbbc8"
+		},
+		"61e12a06-8694-4dbb-9bf3-2b3c352e863a": {
+			"taskId": "a5285be1-58e4-41b9-b84e-470180f178ac",
+			"activityType": "Created",
+			"id": "61e12a06-8694-4dbb-9bf3-2b3c352e863a",
+			"typeId": "TaskActivity",
+			"createdAt": 1743154110,
+			"updatedAt": 1743154110,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "644d2795-a047-491e-87e0-322256bf8f4b"
+		},
+		"3fd87a7a-69a0-4898-b0f2-9e23fccbc037": {
+			"taskId": "a6301870-004f-40a3-b03f-acb701607f64",
+			"activityType": "Created",
+			"id": "3fd87a7a-69a0-4898-b0f2-9e23fccbc037",
+			"typeId": "TaskActivity",
+			"createdAt": 1743154183,
+			"updatedAt": 1743154183,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "644d2795-a047-491e-87e0-322256bf8f4b"
+		}
+	},
+	"EquipmentType": {
+		"204fece5-20ae-40ab-ab46-eea96aa17b41": {
+			"name": "Goblet of Loyalty",
+			"slots": [
+				"MainHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 9,
+			"agilityModifier": 9,
+			"intelligenceModifier": 8,
+			"id": "204fece5-20ae-40ab-ab46-eea96aa17b41",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161604,
+			"updatedAt": 1743161604,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"cca6a5ec-42c1-4135-aecc-0c67a6579b01": {
+			"name": "Seraphic Arch",
+			"slots": [
+				"Ring"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 8,
+			"agilityModifier": 5,
+			"intelligenceModifier": 9,
+			"id": "cca6a5ec-42c1-4135-aecc-0c67a6579b01",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161609,
+			"updatedAt": 1743161609,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"8a497f58-6176-4dc3-9a93-fca381f38ce3": {
+			"name": "Restoration Statuette",
+			"slots": [
+				"Cloak"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 7,
+			"agilityModifier": 5,
+			"intelligenceModifier": 9,
+			"id": "8a497f58-6176-4dc3-9a93-fca381f38ce3",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161609,
+			"updatedAt": 1743161609,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"8b949d2b-85fc-429a-b418-8868a7abff5a": {
+			"name": "Canopic Chest of Delirium",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 7,
+			"agilityModifier": 9,
+			"intelligenceModifier": 7,
+			"id": "8b949d2b-85fc-429a-b418-8868a7abff5a",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161610,
+			"updatedAt": 1743161610,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"401c6ae6-81bf-4c9e-911b-199063b3a102": {
+			"name": "Guardian's Cube",
+			"slots": [
+				"Helmet"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 9,
+			"agilityModifier": 8,
+			"intelligenceModifier": 9,
+			"id": "401c6ae6-81bf-4c9e-911b-199063b3a102",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161611,
+			"updatedAt": 1743161611,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"356994e7-94e8-4cd6-8ead-8fe807e5bd9c": {
+			"name": "Paradise Shard",
+			"slots": [
+				"Ring"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 8,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "356994e7-94e8-4cd6-8ead-8fe807e5bd9c",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161611,
+			"updatedAt": 1743161611,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"615e0778-a6d8-4e86-a989-7565b276762a": {
+			"name": "Extinction Hide",
+			"slots": [
+				"Ring"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 8,
+			"agilityModifier": 7,
+			"intelligenceModifier": 8,
+			"id": "615e0778-a6d8-4e86-a989-7565b276762a",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161612,
+			"updatedAt": 1743161612,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"709b6d86-af2a-4048-9dd8-850c7d83f0fc": {
+			"name": "Band of Secrets",
+			"slots": [
+				"Armor"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 6,
+			"agilityModifier": 9,
+			"intelligenceModifier": 8,
+			"id": "709b6d86-af2a-4048-9dd8-850c7d83f0fc",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161612,
+			"updatedAt": 1743161612,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"0c842cce-9e29-4605-b31e-b6216ecfa6ff": {
+			"name": "Gold Chest",
+			"slots": [
+				"Helmet"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 9,
+			"agilityModifier": 7,
+			"intelligenceModifier": 8,
+			"id": "0c842cce-9e29-4605-b31e-b6216ecfa6ff",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161613,
+			"updatedAt": 1743161613,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"f0b17ae0-9ffb-417b-a4e7-3d40d5ad4dc5": {
+			"name": "Lamp of Destiny",
+			"slots": [
+				"Armor"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 6,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "f0b17ae0-9ffb-417b-a4e7-3d40d5ad4dc5",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161614,
+			"updatedAt": 1743161614,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"ef1be86f-933c-46a1-b982-440d317fb1ef": {
+			"name": "Torment Letters",
+			"slots": [
+				"Gloves"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 5,
+			"agilityModifier": 9,
+			"intelligenceModifier": 9,
+			"id": "ef1be86f-933c-46a1-b982-440d317fb1ef",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161614,
+			"updatedAt": 1743161614,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"351f2af4-61c8-4e30-b1b4-c379485c54a3": {
+			"name": "Shapeshifter's Fruit",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 9,
+			"agilityModifier": 5,
+			"intelligenceModifier": 6,
+			"id": "351f2af4-61c8-4e30-b1b4-c379485c54a3",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161615,
+			"updatedAt": 1743161615,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"79b1a735-1f2a-4a9e-968f-fbb803e67472": {
+			"name": "Sentient Inscriptions",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 5,
+			"agilityModifier": 5,
+			"intelligenceModifier": 7,
+			"id": "79b1a735-1f2a-4a9e-968f-fbb803e67472",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161616,
+			"updatedAt": 1743161616,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"d85e9b5d-2f2b-4344-9b30-8bdab46c81d2": {
+			"name": "Corruption Ichor",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 6,
+			"agilityModifier": 5,
+			"intelligenceModifier": 8,
+			"id": "d85e9b5d-2f2b-4344-9b30-8bdab46c81d2",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161616,
+			"updatedAt": 1743161616,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"3273828a-5ab5-462c-99c1-64cae290e583": {
+			"name": "Mantle of Peace",
+			"slots": [
+				"MainHand"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 8,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "3273828a-5ab5-462c-99c1-64cae290e583",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161617,
+			"updatedAt": 1743161617,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"f52748b3-55e2-40ff-95b1-9b83d156f8a6": {
+			"name": "Gem of Curses",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 8,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "f52748b3-55e2-40ff-95b1-9b83d156f8a6",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161617,
+			"updatedAt": 1743161617,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"6cdd0515-13c1-4c6d-9d7f-ee3f5004722c": {
+			"name": "Oracle Door",
+			"slots": [
+				"Gloves"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 8,
+			"agilityModifier": 6,
+			"intelligenceModifier": 9,
+			"id": "6cdd0515-13c1-4c6d-9d7f-ee3f5004722c",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161618,
+			"updatedAt": 1743161618,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"ff8044b7-275e-45c9-877a-70ed3e1da21d": {
+			"name": "Judging Texts",
+			"slots": [
+				"MainHand"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 8,
+			"agilityModifier": 9,
+			"intelligenceModifier": 9,
+			"id": "ff8044b7-275e-45c9-877a-70ed3e1da21d",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161619,
+			"updatedAt": 1743161619,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"0d3c353d-8e18-4f2a-b558-a78f10571ad0": {
+			"name": "Key of the Oracle",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 6,
+			"agilityModifier": 5,
+			"intelligenceModifier": 7,
+			"id": "0d3c353d-8e18-4f2a-b558-a78f10571ad0",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161619,
+			"updatedAt": 1743161619,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"6dace768-1662-491a-89ec-f86d9dd5887e": {
+			"name": "Resurrection Urn",
+			"slots": [
+				"MainHand"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 9,
+			"agilityModifier": 5,
+			"intelligenceModifier": 7,
+			"id": "6dace768-1662-491a-89ec-f86d9dd5887e",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161620,
+			"updatedAt": 1743161620,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"09697667-2401-4663-9329-7472489eef49": {
+			"name": "Benediction Scroll",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 9,
+			"agilityModifier": 7,
+			"intelligenceModifier": 5,
+			"id": "09697667-2401-4663-9329-7472489eef49",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161621,
+			"updatedAt": 1743161621,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"36424958-8b21-4c35-8d1b-e49c55ff9d03": {
+			"name": "Eternal Horn",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 6,
+			"agilityModifier": 7,
+			"intelligenceModifier": 6,
+			"id": "36424958-8b21-4c35-8d1b-e49c55ff9d03",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161621,
+			"updatedAt": 1743161621,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"c82686e9-7cd9-4641-a48f-6137d54d7bc8": {
+			"name": "Rod of Virility",
+			"slots": [
+				"Armor"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 9,
+			"agilityModifier": 9,
+			"intelligenceModifier": 5,
+			"id": "c82686e9-7cd9-4641-a48f-6137d54d7bc8",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161622,
+			"updatedAt": 1743161622,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"7ba51e5d-8749-411f-987c-dd8ac85a27b1": {
+			"name": "Hallowed Tablet",
+			"slots": [
+				"Armor"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 9,
+			"agilityModifier": 8,
+			"intelligenceModifier": 5,
+			"id": "7ba51e5d-8749-411f-987c-dd8ac85a27b1",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161622,
+			"updatedAt": 1743161622,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"a64094c6-6daa-4351-8d79-75283c146df6": {
+			"name": "Burning Feather",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 7,
+			"agilityModifier": 5,
+			"intelligenceModifier": 9,
+			"id": "a64094c6-6daa-4351-8d79-75283c146df6",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161623,
+			"updatedAt": 1743161623,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"e163d1f9-b465-4a7a-a976-a0593e99fb64": {
+			"name": "Wisdom Tablet",
+			"slots": [
+				"Necklace"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 5,
+			"agilityModifier": 8,
+			"intelligenceModifier": 5,
+			"id": "e163d1f9-b465-4a7a-a976-a0593e99fb64",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161624,
+			"updatedAt": 1743161624,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"23aa5ca8-4887-48cf-b6ed-26bb38f8e7c8": {
+			"name": "Gem of Truth",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 8,
+			"agilityModifier": 7,
+			"intelligenceModifier": 9,
+			"id": "23aa5ca8-4887-48cf-b6ed-26bb38f8e7c8",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161624,
+			"updatedAt": 1743161624,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"6b91dcd5-089a-40d4-80f8-25f79ff4f374": {
+			"name": "Chest of Oblivion",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 9,
+			"agilityModifier": 9,
+			"intelligenceModifier": 9,
+			"id": "6b91dcd5-089a-40d4-80f8-25f79ff4f374",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161625,
+			"updatedAt": 1743161625,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"802f87a3-d47e-4f03-89de-e2620e3f1b2e": {
+			"name": "Sentient Texts",
+			"slots": [
+				"Helmet"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 9,
+			"agilityModifier": 6,
+			"intelligenceModifier": 8,
+			"id": "802f87a3-d47e-4f03-89de-e2620e3f1b2e",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161625,
+			"updatedAt": 1743161625,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"56b65e17-3525-4764-a03b-a936a6a6a66e": {
+			"name": "Stone of Darkness",
+			"slots": [
+				"Helmet"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 5,
+			"agilityModifier": 7,
+			"intelligenceModifier": 6,
+			"id": "56b65e17-3525-4764-a03b-a936a6a6a66e",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161626,
+			"updatedAt": 1743161626,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"fdf96c12-e09d-4551-9fa5-5f97fed99810": {
+			"name": "Sword of Enigmas",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 8,
+			"agilityModifier": 7,
+			"intelligenceModifier": 5,
+			"id": "fdf96c12-e09d-4551-9fa5-5f97fed99810",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161627,
+			"updatedAt": 1743161627,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"b146ac46-57c9-425c-bd7b-5d421fd37a82": {
+			"name": "Chest of Oblivion",
+			"slots": [
+				"Necklace"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 7,
+			"agilityModifier": 5,
+			"intelligenceModifier": 5,
+			"id": "b146ac46-57c9-425c-bd7b-5d421fd37a82",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161627,
+			"updatedAt": 1743161627,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"e9dd29dd-4bc0-4584-b2c1-1d7c58ccca4e": {
+			"name": "Annihilation Cube",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 5,
+			"agilityModifier": 8,
+			"intelligenceModifier": 7,
+			"id": "e9dd29dd-4bc0-4584-b2c1-1d7c58ccca4e",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161628,
+			"updatedAt": 1743161628,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"96ee8890-f270-49e5-adb5-f5608814c4e6": {
+			"name": "Symbols of Grace",
+			"slots": [
+				"Armor"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 6,
+			"agilityModifier": 6,
+			"intelligenceModifier": 9,
+			"id": "96ee8890-f270-49e5-adb5-f5608814c4e6",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161628,
+			"updatedAt": 1743161628,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"6289b2b7-2a86-4aa8-a70a-f108c2e7ac74": {
+			"name": "Demonic Stone",
+			"slots": [
+				"Necklace"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 6,
+			"agilityModifier": 9,
+			"intelligenceModifier": 9,
+			"id": "6289b2b7-2a86-4aa8-a70a-f108c2e7ac74",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161629,
+			"updatedAt": 1743161629,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"368205ad-7091-4d70-b148-9aa48963244a": {
+			"name": "Torment Tiara",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 8,
+			"agilityModifier": 5,
+			"intelligenceModifier": 9,
+			"id": "368205ad-7091-4d70-b148-9aa48963244a",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161629,
+			"updatedAt": 1743161629,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"a9a5cbc7-f976-47a0-925b-ea0370f2cb90": {
+			"name": "Dementia Urn",
+			"slots": [
+				"Ring"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 7,
+			"agilityModifier": 8,
+			"intelligenceModifier": 7,
+			"id": "a9a5cbc7-f976-47a0-925b-ea0370f2cb90",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161630,
+			"updatedAt": 1743161630,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"627eb023-4685-4f75-95c3-00641094014e": {
+			"name": "Cloak of Oblivion",
+			"slots": [
+				"Ring"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 8,
+			"agilityModifier": 5,
+			"intelligenceModifier": 9,
+			"id": "627eb023-4685-4f75-95c3-00641094014e",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161631,
+			"updatedAt": 1743161631,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"c7e2bfe8-98db-4499-85b2-6ffdb86a25c3": {
+			"name": "Tribute Slab",
+			"slots": [
+				"Necklace"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 5,
+			"agilityModifier": 8,
+			"intelligenceModifier": 6,
+			"id": "c7e2bfe8-98db-4499-85b2-6ffdb86a25c3",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161631,
+			"updatedAt": 1743161631,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"bb0e8600-b644-4ff4-a07c-4346006cb112": {
+			"name": "Mantle of Riddles",
+			"slots": [
+				"Helmet"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 6,
+			"agilityModifier": 7,
+			"intelligenceModifier": 7,
+			"id": "bb0e8600-b644-4ff4-a07c-4346006cb112",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161632,
+			"updatedAt": 1743161632,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"f2cb9690-8899-4cdf-8741-cb77c2264066": {
+			"name": "Key of Betrayal",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 6,
+			"agilityModifier": 5,
+			"intelligenceModifier": 5,
+			"id": "f2cb9690-8899-4cdf-8741-cb77c2264066",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161632,
+			"updatedAt": 1743161632,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"659f1277-6c48-49c7-aa15-7bed999ad5ad": {
+			"name": "Onyx Staff",
+			"slots": [
+				"Ring"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 8,
+			"agilityModifier": 7,
+			"intelligenceModifier": 8,
+			"id": "659f1277-6c48-49c7-aa15-7bed999ad5ad",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161633,
+			"updatedAt": 1743161633,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"6014cc09-2882-4a39-891f-922ea7a31c14": {
+			"name": "Staff of Birth",
+			"slots": [
+				"Helmet"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 6,
+			"agilityModifier": 6,
+			"intelligenceModifier": 8,
+			"id": "6014cc09-2882-4a39-891f-922ea7a31c14",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161634,
+			"updatedAt": 1743161634,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"d3cc109b-d167-4ae9-8e94-add6f52f016f": {
+			"name": "Mantle of Peace",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 8,
+			"agilityModifier": 5,
+			"intelligenceModifier": 5,
+			"id": "d3cc109b-d167-4ae9-8e94-add6f52f016f",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161634,
+			"updatedAt": 1743161634,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"dd264bde-7e6f-4a9e-aeff-39615e18c91c": {
+			"name": "Mending Chest",
+			"slots": [
+				"Helmet"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 6,
+			"agilityModifier": 5,
+			"intelligenceModifier": 8,
+			"id": "dd264bde-7e6f-4a9e-aeff-39615e18c91c",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161635,
+			"updatedAt": 1743161635,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"f4258b0a-3359-49b9-b45b-610b04de9524": {
+			"name": "Sandals of the Void",
+			"slots": [
+				"Armor"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 6,
+			"agilityModifier": 6,
+			"intelligenceModifier": 7,
+			"id": "f4258b0a-3359-49b9-b45b-610b04de9524",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161635,
+			"updatedAt": 1743161635,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"1017091c-d735-4848-815d-d3612497673b": {
+			"name": "Sandals of the Aether",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 6,
+			"agilityModifier": 9,
+			"intelligenceModifier": 9,
+			"id": "1017091c-d735-4848-815d-d3612497673b",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161636,
+			"updatedAt": 1743161636,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"80954a25-fdb4-4eee-8570-a7d69cb2cb6e": {
+			"name": "Virility Hand",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 6,
+			"agilityModifier": 7,
+			"intelligenceModifier": 9,
+			"id": "80954a25-fdb4-4eee-8570-a7d69cb2cb6e",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161637,
+			"updatedAt": 1743161637,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"20a6374b-a8dd-4542-bd56-247af0e234d2": {
+			"name": "Feather of Vengeance",
+			"slots": [
+				"Cloak"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 7,
+			"agilityModifier": 6,
+			"intelligenceModifier": 9,
+			"id": "20a6374b-a8dd-4542-bd56-247af0e234d2",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161638,
+			"updatedAt": 1743161638,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"c4129ab9-6137-4b10-97cb-dd94f2cfbc55": {
+			"name": "Dread Shield",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 7,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "c4129ab9-6137-4b10-97cb-dd94f2cfbc55",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161638,
+			"updatedAt": 1743161638,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"3dc7e080-e231-45f5-89a9-c3ec90146d66": {
+			"name": "Slab of Massacres",
+			"slots": [
+				"Gloves"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 6,
+			"agilityModifier": 8,
+			"intelligenceModifier": 9,
+			"id": "3dc7e080-e231-45f5-89a9-c3ec90146d66",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161639,
+			"updatedAt": 1743161639,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"bbc03b70-8a73-4be8-a114-35ce5a97d283": {
+			"name": "Stone of Darkness",
+			"slots": [
+				"Gloves"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 5,
+			"agilityModifier": 7,
+			"intelligenceModifier": 9,
+			"id": "bbc03b70-8a73-4be8-a114-35ce5a97d283",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161639,
+			"updatedAt": 1743161639,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"b359afcf-d62b-442b-a2f6-254b806c6cba": {
+			"name": "Seraphic Shield",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 8,
+			"agilityModifier": 6,
+			"intelligenceModifier": 8,
+			"id": "b359afcf-d62b-442b-a2f6-254b806c6cba",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161640,
+			"updatedAt": 1743161640,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"e346494b-4ee3-4db7-bb1b-b7f16955aab7": {
+			"name": "Bracelet of Wishes",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 9,
+			"agilityModifier": 7,
+			"intelligenceModifier": 5,
+			"id": "e346494b-4ee3-4db7-bb1b-b7f16955aab7",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161641,
+			"updatedAt": 1743161641,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"05b6e47a-e58d-449c-be3f-6bad96844d0f": {
+			"name": "Athanasia Tome",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 5,
+			"agilityModifier": 8,
+			"intelligenceModifier": 7,
+			"id": "05b6e47a-e58d-449c-be3f-6bad96844d0f",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161641,
+			"updatedAt": 1743161641,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"28e97f73-db8a-4653-a9ff-4d2f72343352": {
+			"name": "Sandals of Wealth",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 7,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "28e97f73-db8a-4653-a9ff-4d2f72343352",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161642,
+			"updatedAt": 1743161642,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"13a93c63-dea7-4b4e-9664-d80742336470": {
+			"name": "Exile Ring",
+			"slots": [
+				"Gloves"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 7,
+			"agilityModifier": 9,
+			"intelligenceModifier": 8,
+			"id": "13a93c63-dea7-4b4e-9664-d80742336470",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161643,
+			"updatedAt": 1743161643,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"33de791b-0a1c-4a3d-b31d-d926bf37dcca": {
+			"name": "Book of Ice",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 7,
+			"agilityModifier": 9,
+			"intelligenceModifier": 6,
+			"id": "33de791b-0a1c-4a3d-b31d-d926bf37dcca",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161643,
+			"updatedAt": 1743161643,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"51ea1e2b-e107-4f45-9ded-0e544c9332dd": {
+			"name": "Longevity Instrument",
+			"slots": [
+				"Ring"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 5,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "51ea1e2b-e107-4f45-9ded-0e544c9332dd",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161644,
+			"updatedAt": 1743161644,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "00a4640b-bcb4-4a67-ae04-e8895c3e0a2d"
+		},
+		"c7f6c1d1-afdd-460b-8a9e-5b2548e6c8f5": {
+			"name": "Destiny's Rod",
+			"slots": [
+				"Gloves"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 7,
+			"agilityModifier": 5,
+			"intelligenceModifier": 9,
+			"id": "c7f6c1d1-afdd-460b-8a9e-5b2548e6c8f5",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161866,
+			"updatedAt": 1743161866,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"110c11df-7645-4a1a-a79e-6efa02e66e49": {
+			"name": "Amulet of Repelling",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 7,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "110c11df-7645-4a1a-a79e-6efa02e66e49",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161868,
+			"updatedAt": 1743161868,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"2ebf13ec-9b9f-4556-95a6-6a82a91d5039": {
+			"name": "Kismet Cup",
+			"slots": [
+				"Armor"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 8,
+			"agilityModifier": 7,
+			"intelligenceModifier": 6,
+			"id": "2ebf13ec-9b9f-4556-95a6-6a82a91d5039",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161869,
+			"updatedAt": 1743161869,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"d60de8e0-6961-45f0-a5ad-ba522cffbad9": {
+			"name": "Grave Urn",
+			"slots": [
+				"Armor"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 8,
+			"agilityModifier": 6,
+			"intelligenceModifier": 9,
+			"id": "d60de8e0-6961-45f0-a5ad-ba522cffbad9",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161870,
+			"updatedAt": 1743161870,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"090b64bf-7a32-4b9f-9b3b-5b877c269424": {
+			"name": "Almighty Box",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 6,
+			"agilityModifier": 6,
+			"intelligenceModifier": 9,
+			"id": "090b64bf-7a32-4b9f-9b3b-5b877c269424",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161870,
+			"updatedAt": 1743161870,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"58ab2c34-844c-40d1-8c75-351c1f531c2c": {
+			"name": "Gem of Specters",
+			"slots": [
+				"Helmet"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 7,
+			"agilityModifier": 6,
+			"intelligenceModifier": 9,
+			"id": "58ab2c34-844c-40d1-8c75-351c1f531c2c",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161871,
+			"updatedAt": 1743161871,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"e8cdbdc8-7da2-4077-9722-4d759f68af02": {
+			"name": "Fire Cylinder",
+			"slots": [
+				"MainHand"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 6,
+			"agilityModifier": 7,
+			"intelligenceModifier": 6,
+			"id": "e8cdbdc8-7da2-4077-9722-4d759f68af02",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161872,
+			"updatedAt": 1743161872,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"5bb4f671-4b3f-4231-9693-ab3faf3de009": {
+			"name": "Root of Shadows",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 6,
+			"agilityModifier": 7,
+			"intelligenceModifier": 5,
+			"id": "5bb4f671-4b3f-4231-9693-ab3faf3de009",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161873,
+			"updatedAt": 1743161873,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"a0cc7d64-73a7-401c-b36a-041bcd4861df": {
+			"name": "Dementia Urn",
+			"slots": [
+				"Cloak"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 6,
+			"agilityModifier": 8,
+			"intelligenceModifier": 8,
+			"id": "a0cc7d64-73a7-401c-b36a-041bcd4861df",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161874,
+			"updatedAt": 1743161874,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"0d6d22ff-18b5-4892-9714-7296aea150ca": {
+			"name": "Runes of the Gods",
+			"slots": [
+				"Cloak"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 9,
+			"agilityModifier": 7,
+			"intelligenceModifier": 8,
+			"id": "0d6d22ff-18b5-4892-9714-7296aea150ca",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161875,
+			"updatedAt": 1743161875,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"7286ea66-696c-4b2e-9c42-6cbc1bfde302": {
+			"name": "Storm Arch",
+			"slots": [
+				"Ring"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 6,
+			"agilityModifier": 8,
+			"intelligenceModifier": 6,
+			"id": "7286ea66-696c-4b2e-9c42-6cbc1bfde302",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161875,
+			"updatedAt": 1743161875,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"6137329e-bf9c-469e-9d77-13199ae92490": {
+			"name": "Misfortune Necklace",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 9,
+			"agilityModifier": 9,
+			"intelligenceModifier": 8,
+			"id": "6137329e-bf9c-469e-9d77-13199ae92490",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161876,
+			"updatedAt": 1743161876,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"4768f652-421c-4068-ae7b-f2aa70b245d7": {
+			"name": "Desire's Root",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 7,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "4768f652-421c-4068-ae7b-f2aa70b245d7",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161877,
+			"updatedAt": 1743161877,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"54aa2873-e0d7-4190-893c-4603fc100662": {
+			"name": "Oracle Door",
+			"slots": [
+				"Gloves"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 8,
+			"agilityModifier": 5,
+			"intelligenceModifier": 8,
+			"id": "54aa2873-e0d7-4190-893c-4603fc100662",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161877,
+			"updatedAt": 1743161877,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"24043eba-79df-422a-b493-a142ae572348": {
+			"name": "Demon Runes",
+			"slots": [
+				"Ring"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 8,
+			"agilityModifier": 8,
+			"intelligenceModifier": 7,
+			"id": "24043eba-79df-422a-b493-a142ae572348",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161878,
+			"updatedAt": 1743161878,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"21d4e57a-dfd9-4e6c-9eb2-f217ca612de3": {
+			"name": "Dread Monolith",
+			"slots": [
+				"Necklace"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 5,
+			"agilityModifier": 9,
+			"intelligenceModifier": 9,
+			"id": "21d4e57a-dfd9-4e6c-9eb2-f217ca612de3",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161879,
+			"updatedAt": 1743161879,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"c4caee21-7bef-4428-b8be-a52bc4bd66dd": {
+			"name": "Blight Sword",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 5,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "c4caee21-7bef-4428-b8be-a52bc4bd66dd",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161880,
+			"updatedAt": 1743161880,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"11e3bc06-864e-465e-9ab2-10ece8be853e": {
+			"name": "Chaos Inscriptions",
+			"slots": [
+				"Gloves"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 8,
+			"agilityModifier": 9,
+			"intelligenceModifier": 6,
+			"id": "11e3bc06-864e-465e-9ab2-10ece8be853e",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161881,
+			"updatedAt": 1743161881,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"e72a0813-58d9-412c-b608-3a02749599e8": {
+			"name": "Gold Root",
+			"slots": [
+				"MainHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 7,
+			"agilityModifier": 5,
+			"intelligenceModifier": 9,
+			"id": "e72a0813-58d9-412c-b608-3a02749599e8",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161882,
+			"updatedAt": 1743161882,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"9a014615-9898-4458-b267-efbdbdbd67f6": {
+			"name": "Nightmare Jar",
+			"slots": [
+				"Necklace"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 6,
+			"agilityModifier": 8,
+			"intelligenceModifier": 5,
+			"id": "9a014615-9898-4458-b267-efbdbdbd67f6",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161882,
+			"updatedAt": 1743161882,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"0b757c31-a1ca-4821-ad69-cee07800f41b": {
+			"name": "Shapeshifter's Jar",
+			"slots": [
+				"Armor"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 8,
+			"agilityModifier": 6,
+			"intelligenceModifier": 6,
+			"id": "0b757c31-a1ca-4821-ad69-cee07800f41b",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161883,
+			"updatedAt": 1743161883,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"6c833c4e-6441-4dc7-89ff-8a9b8739b20b": {
+			"name": "Mending Letters",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 9,
+			"agilityModifier": 7,
+			"intelligenceModifier": 6,
+			"id": "6c833c4e-6441-4dc7-89ff-8a9b8739b20b",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161884,
+			"updatedAt": 1743161884,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"7051db02-b75d-4187-8794-4fb05191ef2a": {
+			"name": "Judgment Canopic Jar",
+			"slots": [
+				"MainHand"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 8,
+			"agilityModifier": 6,
+			"intelligenceModifier": 8,
+			"id": "7051db02-b75d-4187-8794-4fb05191ef2a",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161884,
+			"updatedAt": 1743161884,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"72a92ccc-dbbd-4e7d-a5a5-e922bf85f7db": {
+			"name": "Letters of Dementia",
+			"slots": [
+				"Ring"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 6,
+			"agilityModifier": 8,
+			"intelligenceModifier": 7,
+			"id": "72a92ccc-dbbd-4e7d-a5a5-e922bf85f7db",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161885,
+			"updatedAt": 1743161885,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"0d7c7f57-53b5-4eff-a196-980433170704": {
+			"name": "Statue of Divinity",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 0,
+			"manaModifier": -1,
+			"strengthModifier": 5,
+			"agilityModifier": 8,
+			"intelligenceModifier": 7,
+			"id": "0d7c7f57-53b5-4eff-a196-980433170704",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161886,
+			"updatedAt": 1743161886,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"464c44ee-8813-4fdb-a810-20065b00aa97": {
+			"name": "Destruction Necklace",
+			"slots": [
+				"MainHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 5,
+			"agilityModifier": 6,
+			"intelligenceModifier": 8,
+			"id": "464c44ee-8813-4fdb-a810-20065b00aa97",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161887,
+			"updatedAt": 1743161887,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"ef4d5075-e724-49c8-be7a-e4d54d3b0b04": {
+			"name": "Elixir of Dementia",
+			"slots": [
+				"Belt"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 9,
+			"agilityModifier": 8,
+			"intelligenceModifier": 6,
+			"id": "ef4d5075-e724-49c8-be7a-e4d54d3b0b04",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161887,
+			"updatedAt": 1743161887,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"1828403e-fa97-45b9-9de4-b126f2870ebe": {
+			"name": "Bracelet of Enthrallment",
+			"slots": [
+				"Cloak"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 9,
+			"agilityModifier": 9,
+			"intelligenceModifier": 5,
+			"id": "1828403e-fa97-45b9-9de4-b126f2870ebe",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161888,
+			"updatedAt": 1743161888,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"254a0c2f-a9f9-417a-828a-a39c7f4f0b25": {
+			"name": "Monolith of Fortitude",
+			"slots": [
+				"Helmet"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 5,
+			"agilityModifier": 6,
+			"intelligenceModifier": 5,
+			"id": "254a0c2f-a9f9-417a-828a-a39c7f4f0b25",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161889,
+			"updatedAt": 1743161889,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"cf87a4a1-d3ab-4b25-b0b3-6a6454ec1d24": {
+			"name": "Damnation Goblet",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 1,
+			"manaModifier": -1,
+			"strengthModifier": 7,
+			"agilityModifier": 8,
+			"intelligenceModifier": 8,
+			"id": "cf87a4a1-d3ab-4b25-b0b3-6a6454ec1d24",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161890,
+			"updatedAt": 1743161890,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"44572da2-8b64-418a-ad9f-dc58e2797383": {
+			"name": "Canopic Chest of Youth",
+			"slots": [
+				"MainHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 6,
+			"agilityModifier": 9,
+			"intelligenceModifier": 5,
+			"id": "44572da2-8b64-418a-ad9f-dc58e2797383",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161891,
+			"updatedAt": 1743161891,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"79a91424-e0cb-4f71-b316-7f13d5ac0174": {
+			"name": "Feather of Birth",
+			"slots": [
+				"Armor"
+			],
+			"healthModifier": 0,
+			"manaModifier": 0,
+			"strengthModifier": 7,
+			"agilityModifier": 8,
+			"intelligenceModifier": 6,
+			"id": "79a91424-e0cb-4f71-b316-7f13d5ac0174",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161891,
+			"updatedAt": 1743161891,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"b1195704-d685-4dc1-bf87-ee12f008819e": {
+			"name": "Band of Secrets",
+			"slots": [
+				"Cloak"
+			],
+			"healthModifier": 0,
+			"manaModifier": 1,
+			"strengthModifier": 6,
+			"agilityModifier": 5,
+			"intelligenceModifier": 5,
+			"id": "b1195704-d685-4dc1-bf87-ee12f008819e",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161892,
+			"updatedAt": 1743161892,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"b55dd1f4-5fb0-443a-8354-4aea358f2150": {
+			"name": "Symbols of Enthrallment",
+			"slots": [
+				"Boots"
+			],
+			"healthModifier": 1,
+			"manaModifier": 1,
+			"strengthModifier": 9,
+			"agilityModifier": 6,
+			"intelligenceModifier": 9,
+			"id": "b55dd1f4-5fb0-443a-8354-4aea358f2150",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161893,
+			"updatedAt": 1743161893,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		},
+		"6bd4df76-7665-4dbb-a5a5-350646676612": {
+			"name": "Key of the Oracle",
+			"slots": [
+				"OffHand"
+			],
+			"healthModifier": 1,
+			"manaModifier": 0,
+			"strengthModifier": 5,
+			"agilityModifier": 7,
+			"intelligenceModifier": 8,
+			"id": "6bd4df76-7665-4dbb-a5a5-350646676612",
+			"typeId": "EquipmentType",
+			"createdAt": 1743161894,
+			"updatedAt": 1743161894,
+			"createdBy": "ca84b5a0-a0ae-425d-993a-4e63d235f222",
+			"definitionId": "62e09044-9eb3-4523-8c7a-e3342374a4e1"
+		}
+	}
+}

@@ -23,7 +23,7 @@ export function CharacterInventory(props: CharacterInventoryProps)
 				...props.sx,
 			}}
 		>
-			<button onClick={generateEquipment}>Generate equipment</button>
+			{/* <button onClick={generateEquipment}>Generate equipment</button> */}
 			<ItemSearchContainer
 				itemType={ItemTypes.EquipmentType}
 				renderResults={(results) => (

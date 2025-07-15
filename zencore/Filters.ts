@@ -313,13 +313,13 @@ export class DbFilterHandler
 			if(filter.group === DbFilterGroupType.and)
 			{
 				return filter.children.every((subFilter) => (
-					DbFilterHandler.processFilter(subFilter, item)
+					DbFilterHandler.processFilterOrGroup(subFilter, item)
 				));
 			}
 			else if(filter.group === DbFilterGroupType.or)
 			{
 				return filter.children.some((subFilter) => (
-					DbFilterHandler.processFilter(subFilter, item)
+					DbFilterHandler.processFilterOrGroup(subFilter, item)
 				));
 			}
 		}
@@ -361,7 +361,7 @@ export class DbFilterHandler
 	{
 		return {
 			key,
-			operator,
+			operator: operator as DbFilterOperator,
 			value,
 		};
 	}

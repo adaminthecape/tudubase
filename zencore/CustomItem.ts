@@ -1,11 +1,13 @@
 // Zencore: CUSTOM ITEMS
 
-import { DbFilter, DbFilters } from "./Filters";
+import { DbFilters } from "./Filters";
 import { ItemHandler } from "./Item";
-import { CustomItem, Nullable, CustomItemItem, FieldData, CustomItemOpts, Item } from "./ItemTypes";
+import { CustomItem, Nullable, CustomItemItem, FieldData, CustomItemOpts, Item, ItemTypes, FieldType } from "./ItemTypes";
 import { DbPaginationOpts, PaginatedItemResponse } from "./Pagination";
 import { Utils } from "./Utils";
 import { FieldValidator } from "./Validation";
+import { z } from 'zod';
+import { ZodUtils } from "./ZodUtils";
 
 export class CustomItemHandler<T = CustomItemItem>
 	extends ItemHandler
@@ -15,9 +17,10 @@ export class CustomItemHandler<T = CustomItemItem>
 	public definitionId: Nullable<string>;
 	public data: Partial<T> = {};
 	protected validator: FieldValidator;
-	protected fieldDataArray: (FieldData[]) | null;
+	protected fieldDataArray: (FieldData[]) | undefined;
 	/** Map of field keys to their data */
 	protected fieldKeyMap: Record<string, FieldData>;
+	protected zodSchema?: z.ZodTypeAny;
 
 	public static override async getInstance(
 		opts: CustomItemOpts
@@ -37,14 +40,14 @@ export class CustomItemHandler<T = CustomItemItem>
 		if(!(
 			opts.definition?.id &&
 			Array.isArray(opts.definition?.attachedFields)
-		))
+		) && !opts.zodSchema)
 		{
 			throw new Error(`CustomHandler (${(
 				opts.id
 			)}) requires a definition with attachedFields`);
 		}
 
-		if(!Array.isArray(opts.fieldDataArray))
+		if(!Array.isArray(opts.fieldDataArray) && !opts.zodSchema)
 		{
 			throw new Error(`CustomHandler (${(
 				opts.id
@@ -54,13 +57,29 @@ export class CustomItemHandler<T = CustomItemItem>
 		this.definitionId = opts.definition.id as string;
 		this.typeId = opts.itemType || opts.definition.itemType || 'Custom';
 		this.definition = opts.definition;
-		this.fieldDataArray = opts.fieldDataArray.filter(Utils.isPopulatedObject);
+		this.zodSchema = opts.zodSchema;
 
-		this.validator = new FieldValidator({
-			fieldsArray: this.fieldDataArray
-		});
+		if(opts.fieldDataArray)
+		{
+			this.fieldDataArray = opts.fieldDataArray
+				.filter(Utils.isPopulatedObject);
 
-		this.fieldKeyMap = Utils.reduceIntoAssociativeArray(this.fieldDataArray, 'key');
+			this.validator = new FieldValidator({
+				fieldsArray: this.fieldDataArray
+			});
+
+			this.fieldKeyMap = Utils.reduceIntoAssociativeArray(
+				this.fieldDataArray,
+				'key'
+			);
+		}
+		else
+		{
+			const fields = ZodUtils.convertZodSchemaToFieldData(opts.zodSchema);
+
+			this.fieldKeyMap = Utils.reduceIntoAssociativeArray(fields, 'key');
+			this.validator = new FieldValidator({ fieldsArray: fields });
+		}
 	}
 
 	protected logFailure(opts: {
@@ -97,6 +116,24 @@ export class CustomItemHandler<T = CustomItemItem>
 		{
 			(this.data as Record<string, unknown>)[key] = value;
 			this.markDirty(key);
+		}
+		else if(this.zodSchema)
+		{
+			const zodResult = this.zodSchema.safeParse({ [key]: value });
+
+			if(zodResult.success)
+			{
+				(this.data as Record<string, unknown>)[key] = value;
+				this.markDirty(key);
+			}
+			else
+			{
+				this.logFailure({
+					key,
+					value,
+					field: this.fieldKeyMap[key]
+				});
+			}
 		}
 		else if(opts.validator(value))
 		{

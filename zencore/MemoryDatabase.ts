@@ -8,9 +8,9 @@ import { Utils, Uuid } from "./Utils";
 export type RamDatabaseOpts = {
 	isDebugMode?: boolean;
 };
-export class RamDatabase<T = IItemType>
+export class RamDatabase
 {
-	public cacheByType: Record<string, Record<string, T>> = {};
+	public cacheByType: Record<string, Record<string, any>> = {};
 
 	constructor(opts: RamDatabaseOpts)
 	{
@@ -65,7 +65,7 @@ export class RamDatabase<T = IItemType>
 		return this.cacheByType[opts.itemType]?.[opts.itemId];
 	}
 
-	public getCachedItemsOfType(itemType: string): Record<string, T> | undefined
+	public getCachedItemsOfType<T = IItemType>(itemType: string): Record<string, T> | undefined
 	{
 		return this.cacheByType[itemType];
 	}
@@ -168,7 +168,7 @@ export class RamDatabase<T = IItemType>
 			filters: opts.filters
 		}))?.results?.[0];
 
-		return result;
+		return result as T | undefined;
 	}
 
 	protected slowFilter<T = IItemType>(filters: DbFilters): T[]
@@ -185,6 +185,7 @@ export class RamDatabase<T = IItemType>
 				}
 			});
 		});
+
 		return result;
 	}
 
@@ -210,7 +211,7 @@ export class RamDatabase<T = IItemType>
 
 			if(item)
 			{
-				return [item];
+				return [item as T];
 			}
 
 			return [];

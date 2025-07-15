@@ -3,6 +3,8 @@ import { CustomItemHandler } from "../CustomItem";
 import { ArchetypeOpts, CustomItemOpts, FieldData, FieldType, Item, ItemHandler, ItemTypes, Nullable } from "../ItemTypes";
 import { RamDatabase } from "../MemoryDatabase";
 import { Uuid } from "../Utils";
+import { ArchetypeUtils } from "./ArchetypeUtils";
+import { z } from 'zod';
 
 export const fieldsForCharacter: FieldData[] = [
 	{
@@ -217,7 +219,7 @@ export const fieldsForCharacter: FieldData[] = [
 	},
 ];
 
-export interface Character
+interface _Character
 {
 	name: Nullable<string>;
 	health: Nullable<number>;
@@ -262,6 +264,27 @@ export class CharacterArchetype extends ArchetypeHandler
 	}
 }
 
+const zodSchema = z.object({
+	name: z.string().min(1).max(100).optional(),
+	health: z.number().min(0).max(100).optional(),
+	mana: z.number().min(0).max(100).optional(),
+	strength: z.number().min(0).max(100).optional(),
+	agility: z.number().min(0).max(100).optional(),
+	intelligence: z.number().min(0).max(100).optional(),
+	armor: z.string().optional(),
+	mainHand: z.string().optional(),
+	offHand: z.string().optional(),
+	mainArmor: z.string().optional(),
+	helmet: z.string().optional(),
+	gloves: z.string().optional(),
+	boots: z.string().optional(),
+	necklace: z.string().optional(),
+	ring: z.string().optional(),
+	belt: z.string().optional(),
+	cloak: z.string().optional(),
+});
+export type Character = z.infer<typeof zodSchema>;
+
 export class CharacterHandler
 	extends CustomItemHandler<Character>
 	implements ItemHandler<Character>
@@ -273,16 +296,10 @@ export class CharacterHandler
 		super({
 			id: opts.id,
 			db: opts.db,
-			fieldDataArray: ITEM_FIELDS,
-			definition: {
-				id: Uuid.generateUuid(),
-				typeId: ItemTypes.Archetype,
-				name: ITEM_TYPE,
-				itemType: ITEM_TYPE,
-				attachedFields: ITEM_FIELDS.map((field) => field.id),
-				scopeId: null,
-			},
+			// fieldDataArray: ITEM_FIELDS,
+			definition: ArchetypeUtils.getDummyArchetype(ITEM_TYPE, ITEM_FIELDS),
 			itemType: ITEM_TYPE,
+			zodSchema,
 		});
 	}
 

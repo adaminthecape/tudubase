@@ -38,43 +38,32 @@ export default async function RootLayout({
 				<div className="flex-1 w-full flex flex-col items-center">
 				<nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
 					<div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-						<div className="flex gap-2 items-start font-semibold" style={{alignItems: 'center'}}>
+						<div
+							className="flex gap-2 items-start font-semibold"
+							style={{alignItems: 'center'}}
+						>
 							<Link href={"/"}>tudu</Link>
-							<div />
-							<Link href={"/user"}>
-								<button
-									size="sm"
-									color="neutral"
-									variant="soft"
-								>
-										<BasicI18N sid="nav.test.title" />
-								</button>
-							</Link>
+							<div style={{marginLeft:'30px'}} />
 							<Link href={"/user/tasks"}>
 								<button
-									size="sm"
-									color="neutral"
-									variant="soft"
+									style={{
+										padding: '0.5rem 1rem',
+										borderRadius: '0.5rem',
+									}}
+									className="css-1pg51y0-JoyIconButton-root"
 								>
 									<BasicI18N sid="nav.tasks.title" />
 								</button>
 							</Link>
 							<Link href={"/user/quests"}>
 								<button
-									size="sm"
-									color="neutral"
-									variant="soft"
+									style={{
+										padding: '0.5rem 1rem',
+										borderRadius: '0.5rem',
+									}}
+									className="css-1pg51y0-JoyIconButton-root"
 								>
 									<BasicI18N sid="nav.quests.title" />
-								</button>
-							</Link>
-							<Link href={"/cache"}>
-								<button
-									size="sm"
-									color="neutral"
-									variant="soft"
-								>
-									Cache
 								</button>
 							</Link>
 						</div>

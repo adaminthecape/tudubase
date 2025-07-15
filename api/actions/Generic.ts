@@ -249,6 +249,8 @@ export async function searchItems<T = Record<string, unknown>>(opts: {
 	const { itemType, pagination } = opts;
 	let { filters } = opts;
 
+	console.log('searchItems:', JSON.stringify(opts, null, 4));
+
 	if(!Array.isArray(filters)) filters = [];
 
 	const handler = await getItemHandler({ itemType });

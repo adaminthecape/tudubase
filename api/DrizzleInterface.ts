@@ -5,18 +5,15 @@
 import { DbFilters, DbFilterHandler, DbFilterOperator } from "@/zencore/Filters";
 import { DbPaginationOpts, PaginatedItemResponse, PaginationHandler } from "@/zencore/Pagination";
 import { IItemType, ItemTypes } from "@/zencore/ItemTypes";
-import { IItemType, Item, ItemTypes, Task } from "@/zencore/ItemTypes";
 import { Utils, Uuid } from "@/zencore/Utils";
 import { PgTable } from "drizzle-orm/pg-core";
 import { applyFilter } from "./DrizzleUtils";
 import { eq } from "drizzle-orm";
 import { db as drizzleDb } from "@/src/db";
-import { getItemHandler } from "./ItemUtils";
 import { getItemHandler } from "@/apiUtils/itemUtils";
 import { getTableForItemType } from "@/src/db/schema";
 import { RamDatabase } from "@/zencore/MemoryDatabase";
-import { Collection } from "@/zencore/arch/Collection";
-import { readFileSync, writeFileSync } from "fs";
+import { getDb } from "./TestingInterface";
 
 function applyFilters(
 	query: any,
@@ -318,5 +315,6 @@ export async function getDrizzleHandler(opts: {
 	user?: any;
 })
 {
-	return new DrizzleHandler({});
+	return getDb();
+	// return new DrizzleHandler({});
 }

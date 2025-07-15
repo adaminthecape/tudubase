@@ -50,16 +50,16 @@ export class FieldHandler extends ItemHandler implements FieldData
 		this.markDirty('fieldType');
 	}
 
-	public get key(): Nullable<string>
+	public get key(): string
 	{
-		return this.data.key;
+		return this.data.key || '';
 	}
 
-	public set key(value: Nullable<string>)
+	public set key(value: string)
 	{
 		if(value === null)
 		{
-			this.data.key = null;
+			this.data.key = '';
 		}
 
 		this.data.key = value;
@@ -188,7 +188,7 @@ export class FieldHandler extends ItemHandler implements FieldData
 			this.typeId = 'Field';
 			this.validation = data.validation;
 			this.fieldType = data.fieldType;
-			this.key = data.key;
+			this.key = data.key || '';
 			this.label = data.label;
 			this.icon = data.icon;
 			this.options = data.options;

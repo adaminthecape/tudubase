@@ -36,7 +36,8 @@ export default function ItemFilterList({
 
 	function removeItem(index: number)
 	{
-		const newValue = inputValue.filter((_, i) => i !== index);
+		const newValue = [...inputValue].toSpliced(index, 1);
+		console.log('newValue:', JSON.stringify(newValue));
 		setInputValue(newValue);
 		setValue(newValue);
 	}
